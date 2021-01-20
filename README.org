@@ -28,7 +28,9 @@ Documentation is currently incomplete, you should look at the unit tests.  A sho
       ; => #(0.7d0 19.0d0 70.0)
 #+END_SRC
 
-You can read a CSV file into a ~data-frame~ like this:
+* Data frame reading and writing
+
+  You can read a CSV file into a ~data-frame~ like this:
 #+BEGIN_SRC lisp
   (defparameter *df* (dfio:csv-to-data-frame
 		      (uiop:read-file-string "computers.csv"))) ; assumes file exists in current directory
@@ -36,20 +38,39 @@ You can read a CSV file into a ~data-frame~ like this:
 Or from a network location:
 #+BEGIN_SRC lisp
   (defparameter *df* (dfio:csv-to-data-frame
-		      (dex:get "https://raw.githubusercontent.com/guru99-edu/R-Programming/master/computers.csv" :want-stream t)))
+		      (dex:get
+		       "https://raw.githubusercontent.com/guru99-edu/R-Programming/master/computers.csv"
+		       :want-stream t)))
 #+END_SRC
 and write to a stream
 #+BEGIN_SRC lisp
   (dfio:data-frame-to-csv *df* :stream *standard-output* :add-first-row t) ; add column headers
 #+END_SRC
 
+* Case sensitivity
+
+  Column names are represented by symbols in ~DATA-FRAME~.  This is
+  convenient for several reasons, like symbol plists for column
+  properties, it has the side affect of converting all column names to
+  upper case.  This means that most of the time you cannot
+  'round-trip' exactly to/from a ~DATA-FRAME~.
+
+  In practice, it hasn't been a great hinderence except when
+  exchanging data with other systems.  This can be tracked or
+  discussed on [[https://github.com/Common-Lisp-Statistics/dfio/issues/1][issue #1]].
+
+* Organisation
+
+  CSV as a data format is so common that it is 'built in' to DFIO as
+  the default.  Other data formats, such as JSON, are separate
+  subsystems so you can load them on demand. E.g. ~(require
+  :dfio/json)~
+
 * Running unit tests
-  Unit tests are based on cl-unit. Run them at the REPL with ~(dfio-tests:run)~, or using ASDF: ~(asdf:test-system :dfio)~
 
-** TODO more documentation
-
-Talk about accepting numbers like =.1= and =1.=, possibility of parsing into R-like factors from string-tables
+  Unit tests are based on cl-unit. Run them at the REPL with
+  ~(dfio-tests:run)~, or using ASDF: ~(asdf:test-system :dfio)~
 
 * Reporting bugs
 
-Please report bugs using the [[https://github.com/Common-Lisp-Statistics/dfio/issues][issue tracker]].
+  Please report bugs using the [[https://github.com/Common-Lisp-Statistics/dfio/issues][issue tracker]].

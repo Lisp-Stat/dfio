@@ -6,7 +6,7 @@
   :description "Common Lisp library for reading data from text files (eg CSV)."
   :maintainer  "Steve Nunez <steve@symbolics.tech>"
   :author      "Tamas Papp <tkpapp@gmail.com>"
-  :licence     "MS-PL"
+  :licence     :MS-PL
   :depends-on (#:alexandria
                #:anaphora
                #:cl-csv
@@ -19,11 +19,24 @@
                (:file "dfio"))
   :in-order-to ((test-op (test-op "dfio/tests"))))
 
+
+(asdf:defsystem #:dfio/json
+  :description "Common Lisp library for reading and writing JSON data."
+  :author      "Steve Nunez <steve@symbolics.tech>"
+  :licence     :MS-PL
+  :depends-on (#:yason			; Expect style warnings from yason
+	       #:dfio)
+  :serial t
+  :components ((:file "json"))
+  :in-order-to ((test-op (test-op "dfio/tests"))))
+
+
 (asdf:defsystem #:dfio/tests
   :description "Unit tests for DFIO."
   :maintainer  "Steve Nunez <steve@symbolics.tech>"
   :author      "Tamas Papp <tkpapp@gmail.com>"
   :depends-on (#:dfio
+	       #:dfio/json
                #:clunit)
   :serial t
   :components ((:file "tests"))

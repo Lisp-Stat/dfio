@@ -12,7 +12,9 @@
   (:export
    #:string-to-keyword
    #:csv-to-data-frame
-   #:data-frame-to-csv))
+   #:data-frame-to-csv
+   #:json-to-data-frame
+   #:data-frame-to-json))
 
 (in-package #:dfio)
 
