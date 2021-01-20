@@ -192,9 +192,9 @@ STRING represents a number, randomly generated according to the following rules:
 
 ;;; data-frame
 
-(defsuite csv-reading-tests (dfio-tests))
+(defsuite csv-tests (dfio-tests))
 
-(deftest csv-reading-basic (csv-reading-tests)
+(deftest csv-reading-basic (csv-tests)
   (let ((df (csv-to-data-frame
              "Index,Gender,Age
 0,\"Male\",30
@@ -205,3 +205,20 @@ STRING represents a number, randomly generated according to the following rules:
                      :gender #("Male" "Female" "Male")
                      :age #(30 31 32))
         (nu:as-plist df))))
+
+(deftest csv-writing-basic (csv-tests)
+  (let* ((df (csv-to-data-frame
+             "Index,Gender,Age
+0,\"Male\",30
+1,\"Female\",31
+2,Male,\"32\"
+")))
+    (assert-equalp
+	"INDEX,GENDER,AGE
+0,Male,30
+1,Female,31
+2,Male,32
+"
+	(remove #\ (data-frame-to-csv df :add-first-row t))))) ; remove CR if on windows
+
+

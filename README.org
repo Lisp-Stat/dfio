@@ -30,19 +30,25 @@ Documentation is currently incomplete, you should look at the unit tests.  A sho
 
 You can read a CSV file into a ~data-frame~ like this:
 #+BEGIN_SRC lisp
-(defparameter *df* (dfio:csv-to-data-frame (uiop:read-file-string "computers.csv"))) ; assumes file exists in current directory
+  (defparameter *df* (dfio:csv-to-data-frame
+		      (uiop:read-file-string "computers.csv"))) ; assumes file exists in current directory
 #+END_SRC
 Or from a network location:
 #+BEGIN_SRC lisp
-(defparameter *df* (dfio:csv-to-data-frame (dex:get "https://raw.githubusercontent.com/guru99-edu/R-Programming/master/computers.csv" :want-stream t)))
+  (defparameter *df* (dfio:csv-to-data-frame
+		      (dex:get "https://raw.githubusercontent.com/guru99-edu/R-Programming/master/computers.csv" :want-stream t)))
+#+END_SRC
+and write to a stream
+#+BEGIN_SRC lisp
+  (dfio:data-frame-to-csv *df* :stream *standard-output* :add-first-row t) ; add column headers
 #+END_SRC
 
 * Running unit tests
-  Unit tests are based on cl-unit. Run them with ~(dfio-tests:run)~.
+  Unit tests are based on cl-unit. Run them at the REPL with ~(dfio-tests:run)~, or using ASDF: ~(asdf:test-system :dfio)~
 
 ** TODO more documentation
 
-talk about accepting numbers like =.1= and =1.=, possibility of parsing into R-like factors from string-tables
+Talk about accepting numbers like =.1= and =1.=, possibility of parsing into R-like factors from string-tables
 
 * Reporting bugs
 

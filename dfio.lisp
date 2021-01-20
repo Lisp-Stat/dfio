@@ -11,9 +11,15 @@
         #:dfio.data-column)
   (:export
    #:string-to-keyword
-   #:csv-to-data-frame))
+   #:csv-to-data-frame
+   #:data-frame-to-csv))
 
 (in-package #:dfio)
+
+
+;;;
+;;; CSV
+;;;
 
 (defun csv-to-data-columns (stream-or-string skip-first-row?)
   "Read a CSV file (or stream, or string), accumulate the values in DATA-COLUMNs, return a list of these.  Rows are checked to have the same number of elements.
@@ -73,3 +79,48 @@ When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column keys, regardle
      (mapcar (lambda (column-key data-column)
                (cons column-key (data-column-vector data-column)))
              column-keys data-columns))))
+
+(defun 2d-array-to-list (array)
+  "Helper for CSV writing." 		; make flet?
+  (loop for i below (array-dimension array 0)
+        collect (loop for j below (array-dimension array 1)
+                      collect (aref array i j))))
+
+(defun data-frame-to-csv (df
+                          &key
+			    stream
+			    (add-first-row nil)
+
+			    ;; These mirror options and naming of write-csv. Expect warnings.
+			    ((:separator *separator*) *separator*)
+			    ((:quote *quote*) *quote*)
+			    ((:escape *quote-escape*) *quote-escape*)
+			    ((:newline *write-newline*) cl-csv::*write-newline*)
+			    ((:always-quote *always-quote*) cl-csv::*always-quote*))
+  "Write a data-frame to a stream.
+
+Keywords:
+    stream: stream to write to. Default: nil.
+      nil - writes the rows to a string and returns it
+      an open stream
+      a pathname (overwrites if the file exists)
+    quote: quoting character. Defaults to *quote*
+    escape: escaping character. Defaults to *quote-escape*
+    newline: newline character. Defaults to *write-newline*
+    always-quote: Defaults to *always-quote*
+    add-first-row: Add column names as the first
+
+Notes:
+    The :newline keyword requires a sequence, so use :newline '(#\newline) or use cl-interpol"
+  (let ((rows (if add-first-row
+		  (list* (coerce (df:keys df) 'list)
+			 (2d-array-to-list (aops:as-array df)))
+		  (2d-array-to-list (aops:as-array df)))))
+    (cl-csv:write-csv rows
+		      :stream stream
+		      :separator *separator*
+		      :quote *quote*
+		      :escape *quote-escape*
+		      :newline *write-newline*
+		      :always-quote *always-quote*)))
+
