@@ -1,10 +1,11 @@
-;;; -*- Mode:Lisp; Syntax:ANSI-Common-Lisp; Coding:utf-8 -*-
+;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO.DATA-DOLUMN -*-
+;;; (c) 2021 Symbolics Pte. Ltd. All rights reserved.
 
-(cl:defpackage #:data-omnivore.data-column
+(uiop:define-package #:dfio.data-column
   (:use #:cl
         #:anaphora
-        #:data-omnivore.decimal-omnivore
-        #:data-omnivore.string-table
+        #:dfio.decimal
+        #:dfio.string-table
         #:let-plus)
   (:export
    #:data-column
@@ -12,10 +13,14 @@
    #:data-column-counts
    #:data-column-vector))
 
-(in-package #:data-omnivore.data-column)
+(in-package #:dfio.data-column)
 
 
 
+;;; See https://stackoverflow.com/questions/51723992/how-to-force-slots-type-to-be-checked-during-make-instance
+;;; for commentary on initform and slot type checking. Papp had
+;;; integer-min/max as :initform nil, which it should be, since the
+;;; alternative, 0, might actually be the min/max values.
 (defclass data-column ()
   ((reverse-elements
     :initform nil
@@ -30,10 +35,10 @@
     :initform 0
     :type non-negative-integer)
    (integer-min
-    :initform nil
+    :initform 0 ; FIXME: should be :initform nil, but SBCL complains about type mismatch with INTEGER
     :type integer)
    (integer-max
-    :initform nil
+    :initform 0 ; FIXME: should be :initform nil, but SBCL complains about type mismatch with INTEGER
     :type integer)
    (map-count
     :initform 0

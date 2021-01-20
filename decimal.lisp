@@ -1,13 +1,14 @@
-;;; -*- Mode:Lisp; Syntax:ANSI-Common-Lisp; Coding:utf-8 -*-
+;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO.DECIMAL -*-
+;;; (c) 2021 Symbolics Pte. Ltd. All rights reserved.
 
-(cl:defpackage #:data-omnivore.decimal-omnivore
+(cl:defpackage #:dfio.decimal
   (:use #:cl #:anaphora #:let-plus)
   (:export
    #:parse-rational-error
    #:parse-rational
    #:parse-real))
 
-(cl:in-package #:data-omnivore.decimal-omnivore)
+(cl:in-package #:dfio.decimal)
 
 ;;; conditions
 

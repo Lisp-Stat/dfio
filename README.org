@@ -1,33 +1,44 @@
-| This library is experimental.  Your comments are very welcome. |
+| This library is experimental.  Your comments are welcome. |
 
 * Reading text-based tabular data into Common Lisp
 
-This is a library for reading text-based tabular data (such as CSV) into Common Lisp, using the [[https://github.com/tpapp/cl-data-frame][cl-data-frame]] library.
+This is a library for reading text-based tabular data (such as CSV) into Common Lisp, using the [[https://github.com/Common-Lisp-Statistics/data-frame][data-frame]] library.
 
 Documentation is currently incomplete, you should look at the unit tests.  A short demonstration:
 
 #+BEGIN_SRC lisp
-  (asdf:load-systems "data-omnivore" "cl-slice")
+  (asdf:load-systems "dfio" "select" "dexador")
 
-  (defparameter *d* (data-omnivore:csv-to-data-frame
+  (defparameter *d* (dfio:csv-to-data-frame
                      (format nil "Gender,Age,Height~@
                                   \"Male\",30,180.~@
                                   \"Male\",31,182.7~@
                                   \"Female\",32,1.65e2")))
 
-  (cl-slice:slice *d* t :gender)
+  (select:select *d* t :gender)
       ; => #("Male" "Male" "Female")
 
-  (let ((strings (cl-slice:slice *d* t :gender)))
+  (let ((strings (select:select *d* t :gender)))
     (eq (aref strings 0) (aref strings 1)))
       ; => T, strings in the same column are interned once
 
-  (cl-slice:slice (data-omnivore:csv-to-data-frame
+  (select:select (dfio:csv-to-data-frame
                    (format nil "\"All kinds of wacky number formats\"~%.7~%19.~%.7f2"))
                   t :all-kinds-of-wacky-number-formats)
       ; => #(0.7d0 19.0d0 70.0)
-
 #+END_SRC
+
+You can read a CSV file into a ~data-frame~ like this:
+#+BEGIN_SRC lisp
+(defparameter *df* (dfio:csv-to-data-frame (uiop:read-file-string "computers.csv"))) ; assumes file exists in current directory
+#+END_SRC
+Or from a network location:
+#+BEGIN_SRC lisp
+(defparameter *df* (dfio:csv-to-data-frame (dex:get "https://raw.githubusercontent.com/guru99-edu/R-Programming/master/computers.csv" :want-stream t)))
+#+END_SRC
+
+* Running unit tests
+  Unit tests are based on cl-unit. Run them with ~(dfio-tests:run)~.
 
 ** TODO more documentation
 
@@ -35,4 +46,4 @@ talk about accepting numbers like =.1= and =1.=, possibility of parsing into R-l
 
 * Reporting bugs
 
-Please report bugs using the [[https://github.com/tpapp/data-omnivore/issues][issue tracker]].
+Please report bugs using the [[https://github.com/Common-Lisp-Statistics/dfio/issues][issue tracker]].

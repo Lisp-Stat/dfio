@@ -1,24 +1,25 @@
-;;; -*- Mode:Lisp; Syntax:ANSI-Common-Lisp; Coding:utf-8 -*-
+;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO-TESTS -*-
+;;; (c) 2021 Symbolics Pte. Ltd. All rights reserved.
 
-(cl:defpackage #:data-omnivore-tests
+(cl:defpackage #:dfio-tests
   (:use #:cl
         #:alexandria
         #:clunit
-        #:data-omnivore.decimal-omnivore
-        #:data-omnivore.string-table
-        #:data-omnivore.data-column
-        #:data-omnivore
+        #:dfio.decimal
+        #:dfio.string-table
+        #:dfio.data-column
+        #:dfio
         #:let-plus)
-  (:export
-   #:run))
+  (:import-from #:nu #:as-plist)
+  (:export #:run))
 
-(in-package #:data-omnivore-tests)
+(in-package #:dfio-tests)
 
 
 
 ;;; interface
 
-(defsuite data-omnivore-tests ())
+(defsuite dfio-tests ())
 
 (defparameter *iterations* 10000
   "Number of iterations for random tests.")
@@ -27,11 +28,11 @@
   (let ((*iterations* (if interactive?
                           100
                           *iterations*)))
-    (run-suite 'data-omnivore-tests :use-debugger interactive?)))
+    (run-suite 'dfio-tests :use-debugger interactive?)))
 
-;;; decimal-omnivore
+;;; decimals
 
-(defsuite decimal-omnivore-tests (data-omnivore-tests))
+(defsuite decimal-tests (dfio-tests))
 
 (defun random-sign ()
   "Return a random sign (+,-) or an empty string."
@@ -96,28 +97,28 @@ STRING represents a number, randomly generated according to the following rules:
     (cons value string)))
 
 (defmacro random-parse-test (form)
-  "Evaluates FORM repeatedly, using the resuling (cons VALUE STRING) to test PARSE-REAL."
+  "Evaluates FORM repeatedly, using the resulting (cons VALUE STRING) to test PARSE-REAL."
   `(loop repeat *iterations*
          do (let+ (((value . string) ,form))
               (assert-eql value (parse-real string)
                 value string))))
 
-(deftest parse-real-test (decimal-omnivore-tests)
+(deftest parse-real-test (decimal-tests)
   (random-parse-test (random-float-string)))
 
-(deftest parse-real-test-noexp (decimal-omnivore-tests)
+(deftest parse-real-test-noexp (decimal-tests)
   (random-parse-test (random-float-string :exponent-digits nil)))
 
-(deftest parse-real-test-nowhole (decimal-omnivore-tests)
+(deftest parse-real-test-nowhole (decimal-tests)
   (random-parse-test (random-float-string :whole-digits nil)))
 
-(deftest parse-real-test-nofrac (decimal-omnivore-tests)
+(deftest parse-real-test-nofrac (decimal-tests)
   (random-parse-test (random-float-string :fraction-digits nil)))
 
-(deftest parse-real-test-integer (decimal-omnivore-tests)
+(deftest parse-real-test-integer (decimal-tests)
   (random-parse-test (random-integer-string 5)))
 
-(deftest parse-rational-errors (decimal-omnivore-tests)
+(deftest parse-rational-errors (decimal-tests)
   (assert-condition parse-rational-error (parse-rational ""))     ; empty
   (assert-condition parse-rational-error (parse-rational "junk")) ; junk
   (assert-condition parse-rational-error (parse-rational "1..2"))
@@ -128,7 +129,7 @@ STRING represents a number, randomly generated according to the following rules:
 
 ;;; string-table
 
-(defsuite string-table-tests (data-omnivore-tests))
+(defsuite string-table-tests (dfio-tests))
 
 (deftest string-table-basic-test (string-table-tests)
   (let ((st (string-table)))
@@ -164,7 +165,7 @@ STRING represents a number, randomly generated according to the following rules:
 
 ;;; data-column
 
-(defsuite data-column-tests (data-omnivore-tests))
+(defsuite data-column-tests (dfio-tests))
 
 (deftest data-column-basic-test (data-column-tests)
   (let* ((e-float 'double-float)
@@ -189,11 +190,11 @@ STRING represents a number, randomly generated according to the following rules:
 
 
 
-;;; data-omnivore
+;;; data-frame
 
-(defsuite csv-reading-tests (data-omnivore-tests))
+(defsuite csv-reading-tests (dfio-tests))
 
-(deftest csv-readinb-basic (csv-reading-tests)
+(deftest csv-reading-basic (csv-reading-tests)
   (let ((df (csv-to-data-frame
              "Index,Gender,Age
 0,\"Male\",30
@@ -203,4 +204,4 @@ STRING represents a number, randomly generated according to the following rules:
     (assert-equalp '(:index #(0 1 2)
                      :gender #("Male" "Female" "Male")
                      :age #(30 31 32))
-        (data-frame:as-plist df))))
+        (nu:as-plist df))))

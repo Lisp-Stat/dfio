@@ -1,17 +1,19 @@
-;;; -*- Mode:Lisp; Syntax:ANSI-Common-Lisp; Coding:utf-8 -*-
+;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO -*-
+;;; (c) 2021 Symbolics Pte. Ltd. All rights reserved.
 
-(cl:defpackage #:data-omnivore
+(uiop::define-package #:dfio
+  (:nicknames #:do)
   (:use #:cl
         #:alexandria
         #:anaphora
         #:cl-csv
         #:let-plus
-        #:data-omnivore.data-column)
+        #:dfio.data-column)
   (:export
    #:string-to-keyword
    #:csv-to-data-frame))
 
-(in-package #:data-omnivore)
+(in-package #:dfio)
 
 (defun csv-to-data-columns (stream-or-string skip-first-row?)
   "Read a CSV file (or stream, or string), accumulate the values in DATA-COLUMNs, return a list of these.  Rows are checked to have the same number of elements.
@@ -34,7 +36,14 @@ When SKIP-FIRST-ROW?, the first row is read separately and returned as the secon
 This is the default for constructing column keys for CSV files.
 
 The current implementation replaces #\. and #\space with a #\-, and upcases all other characters."
-  ;; QUESTION: should the result depend on the readtable?
+  ;; QUESTION: should the result depend on the readtable? Papp:date-unknown
+
+  ;; ANSWER: Probably. Symbols would be interned in the current
+  ;; readtable package, *package*. This is likely the case when
+  ;; setting up a data project. All your data-frame could will be in a
+  ;; seperate package. Alternatively, specify a short package name
+  ;; specifically for data objects. Export them too.
+  ;; If in CL-USER, then use KEYWORD package. SN:20210112
   (make-keyword (map 'string
                      (lambda (character)
                        (case character

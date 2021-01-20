@@ -1,6 +1,7 @@
-;;; -*- Mode:Lisp; Syntax:ANSI-Common-Lisp; Coding:utf-8 -*-
+;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO.STRING-TABLE -*-
+;;; (c) 2021 Symbolics Pte. Ltd. All rights reserved.
 
-(cl:defpackage #:data-omnivore.string-table
+(cl:defpackage #:dfio.string-table
   (:use #:cl
         #:alexandria
         #:anaphora
@@ -15,7 +16,7 @@
    #:string-table-add
    #:string-table-intern))
 
-(cl:in-package #:data-omnivore.string-table)
+(cl:in-package #:dfio.string-table)
 
 (defstruct (string-table (:constructor string-table))
   "A table of distinct strings, optionally mapping each one to a value."
