@@ -17,10 +17,10 @@
     <img src="https://lisp-stat.dev/images/stats-image.svg" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Data Frame</h3>
+  <h3 align="center">Data Frame I/O</h3>
 
   <p align="center">
-  A two-dimensional array-like structure in which each column contains values of one variable and each row contains one set of values from each column
+  A system for file and network I/O for data frames
 	<br />
     <a href="https://lisp-stat.dev/docs/tasks/data-frame/"><strong>Explore the docs »</strong></a>
     <br />
@@ -66,10 +66,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About the Project
 
-  A data frame is a two dimensional data structure structure whose
-  columns may be of differing types.  It is similar to, and may be
-  manipulated as, a Common Lisp array. Data frames hold tightly
-  coupled collections of variables that all belong to one experiment.
+  A data frame is isn't much use if you have to type all the data in
+  by hand. This system provides I/O functions to read data sets in
+  delimited (CSV, TSV, etc.) files from both local disk and network
+  locations.
 
 
 
@@ -111,14 +111,16 @@ An ANSI Common Lisp implementation. Developed and tested with
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Create a data frame:
+Create a data frame from a file named "computers.csv" on the local disk:
 
 ```lisp
-(make-df '(:a :b) '(#(1 2 3) #(10 20 30)))
+(defparameter *df* (dfio:csv-to-data-frame
+		      (uiop:read-file-string "computers.csv")))
 
 ```
 
-For more examples, please refer to the [Documentation](https://lisp-stat.dev/docs/tasks/data-frame).
+For more examples, please refer to the
+[Documentation](https://lisp-stat.dev/docs/tasks/data-frame).
 
 
 <!-- ROADMAP -->
@@ -135,7 +137,7 @@ information.
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**. Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on the code of conduct, and the process for submitting pull requests.
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**. Please see [CONTRIBUTING](CONTRIBUTING.md) for details on the code of conduct, and the process for submitting pull requests.
 
 <!-- LICENSE -->
 ## License
