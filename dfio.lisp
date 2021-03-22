@@ -1,8 +1,7 @@
 ;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO -*-
-;;; (c) 2021 Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2021 Symbolics Pte. Ltd. All rights reserved.
 
-(uiop::define-package #:dfio
-  (:nicknames #:do)
+(uiop::define-package :dfio
   (:use #:cl
         #:alexandria
         #:anaphora
