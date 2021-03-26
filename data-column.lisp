@@ -1,7 +1,7 @@
 ;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO.DATA-DOLUMN -*-
 ;;; (c) 2021 Symbolics Pte. Ltd. All rights reserved.
 
-(uiop:define-package #:dfio.data-column
+(uiop:define-package :dfio.data-column
   (:use #:cl
         #:anaphora
         #:dfio.decimal
@@ -16,6 +16,11 @@
 (in-package #:dfio.data-column)
 
 
+
+;;; Until https://github.com/Lisp-Stat/numerical-utilities/issues/3 is
+;;; implemented, define this here.
+(deftype non-negative-integer ()
+      '(integer 0 *))
 
 ;;; See https://stackoverflow.com/questions/51723992/how-to-force-slots-type-to-be-checked-during-make-instance
 ;;; for commentary on initform and slot type checking. Papp had
