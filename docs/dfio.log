@@ -1,0 +1,224 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdfetex 2020.11.19)  2 APR 2021 14:41
+entering extended mode
+**\nonstopmode \input ./dfio.texi
+(dfio.texi ("C:\Program Files\MiKTeX\tex/texinfo/texinfo\texinfo.tex"
+Loading texinfo [version 2019-09-20.22]:
+\outerhsize=\dimen16
+\outervsize=\dimen17
+\topandbottommargin=\dimen18
+\bindingoffset=\dimen19
+\normaloffset=\dimen20
+\txipagewidth=\dimen21
+\txipageheight=\dimen22
+\defaultoutput=\toks13
+\headlinebox=\box16
+\footlinebox=\box17
+\savedtopmark=\toks14
+\margin=\insert252
+\EMsimple=\toks15
+\groupbox=\box18
+\groupinvalidhelp=\toks16
+\mil=\dimen23
+\exdentamount=\skip18
+\inmarginspacing=\skip19
+\centerpenalty=\count27
+ pdf,
+\tempnum=\count28
+\lnkcount=\count29
+\filename=\toks17
+\filenamelength=\count30
+\pgn=\count31
+\toksA=\toks18
+\toksB=\toks19
+\toksC=\toks20
+\toksD=\toks21
+\boxA=\box19
+\boxB=\box20
+\countA=\count32
+\nopdfimagehelp=\toks22
+ fonts,
+\textleading=\dimen24
+\sffam=\fam8
+ markup,
+\fontdepth=\count33
+ glyphs,
+\errorbox=\box21
+
+page headings,
+\titlepagetopglue=\skip20
+\titlepagebottomglue=\skip21
+\evenheadline=\toks23
+\oddheadline=\toks24
+\evenfootline=\toks25
+\oddfootline=\toks26
+ tables,
+\tableindent=\dimen25
+\itemindent=\dimen26
+\itemmargin=\dimen27
+\itemmax=\dimen28
+\itemno=\count34
+\multitableparskip=\skip22
+\multitableparindent=\skip23
+\multitablecolspace=\dimen29
+\multitablelinespace=\skip24
+\colcount=\count35
+\everytab=\toks27
+ conditionals,
+\doignorecount=\count36
+ indexing,
+\dummybox=\box22
+\whatsitskip=\skip25
+\whatsitpenalty=\count37
+\entryrightmargin=\dimen30
+\thinshrinkable=\skip26
+\partialpage=\box23
+\doublecolumnhsize=\dimen31
+\balancedcolumns=\box24
+ sectioning,
+\unnumberedno=\count38
+\chapno=\count39
+\secno=\count40
+\subsecno=\count41
+\subsubsecno=\count42
+\appendixno=\count43
+\absseclevel=\count44
+\secbase=\count45
+\chapheadingskip=\skip27
+\secheadingskip=\skip28
+\subsecheadingskip=\skip29
+ toc,
+\tocfile=\write0
+\contentsrightmargin=\skip30
+\savepageno=\count46
+\lastnegativepageno=\count47
+\tocindent=\dimen32
+ environments,
+\lispnarrowing=\skip31
+\envskipamount=\skip32
+\lskip=\skip33
+\rskip=\skip34
+\circthick=\dimen33
+\cartouter=\dimen34
+\cartinner=\dimen35
+\normbskip=\skip35
+\normpskip=\skip36
+\normlskip=\skip37
+\nonfillparindent=\dimen36
+\tabw=\dimen37
+\verbbox=\box25
+
+defuns,
+\defbodyindent=\skip38
+\defargsindent=\skip39
+\deflastargmargin=\skip40
+\defunpenalty=\count48
+\parencount=\count49
+\brackcount=\count50
+ macros,
+\paramno=\count51
+\macname=\toks28
+ cross references,
+\auxfile=\write1
+\savesfregister=\count52
+\toprefbox=\box26
+\printedrefnamebox=\box27
+\infofilenamebox=\box28
+\printedmanualbox=\box29
+ insertions,
+\footnoteno=\count53
+\SAVEfootins=\box30
+\SAVEmargin=\box31
+
+("C:\Program Files\MiKTeX\tex/generic/epsf\epsf.tex"
+This is `epsf.tex' v2.7.4 <14 February 2011>
+\epsffilein=\read1
+\epsfframemargin=\dimen38
+\epsfframethickness=\dimen39
+\epsfrsize=\dimen40
+\epsftmp=\dimen41
+\epsftsize=\dimen42
+\epsfxsize=\dimen43
+\epsfysize=\dimen44
+\pspoints=\dimen45
+)
+\noepsfhelp=\toks29
+ localization,
+\nolanghelp=\toks30
+\countUTFx=\count54
+\countUTFy=\count55
+\countUTFz=\count56
+ formatting,
+\defaultparindent=\dimen46
+ and turning on texinfo input format.) [1{C:/Users/nunez/AppData/Local/MiKTeX/p
+dftex/config/pdftex.map}] (S:\src\dfio\docs\dfio.toc) [-1] [-2] (S:\src\dfio\do
+cs\dfio.toc) (S:\src\dfio\docs\dfio.toc) Chapter 1
+\openout0 = `dfio.toc'.
+
+
+(S:\src\dfio\docs\dfio.aux)
+\openout1 = `dfio.aux'.
+
+@tpindfile=@write2
+\openout2 = `dfio.tp'.
+
+
+Writing index file dfio.tp
+Chapter 2 [1] [2]
+@cpindfile=@write3
+\openout3 = `dfio.cp'.
+
+
+Writing index file dfio.cp
+[3] Chapter 3 [4] [5] Chapter 4 [6]
+@fnindfile=@write4
+\openout4 = `dfio.fn'.
+
+
+Writing index file dfio.fn
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 882--883
+ []@textrm Parse a decimal rat-ional in (sub-seq string start end) of the form
+
+@hbox(8.2125+2.73749)x455.24408, glue set 6.63516
+.@glue(@leftskip) 14.22636
+.@hbox(0.0+0.0)x0.0
+.@textrm P
+.@kern-0.30418
+.@textrm a
+.etc.
+
+[8] [9]
+@vrindfile=@write5
+\openout5 = `dfio.vr'.
+
+
+Writing index file dfio.vr
+[10] [11] [12] Appendix A [13] [14] (S:\src\dfio\docs\dfio.cps) [15]
+(S:\src\dfio\docs\dfio.fns) [16] (S:\src\dfio\docs\dfio.vrs) [17]
+(S:\src\dfio\docs\dfio.tps) [18] ) 
+Here is how much of TeX's memory you used:
+ 3645 strings out of 495337
+ 47673 string characters out of 3163683
+ 109707 words of memory out of 3000000
+ 5003 multiletter control sequences out of 15000+200000
+ 34203 words of font info for 119 fonts, out of 3000000 for 9000
+ 1178 hyphenation exceptions out of 8191
+ 15i,5n,18p,308b,774s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmb10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+bx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:
+/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Fil
+es/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmsl10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb>
+<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program 
+Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmtt9.pfb>
+Output written on dfio.pdf (21 pages, 277993 bytes).
+PDF statistics:
+ 636 PDF objects out of 1000 (max. 8388607)
+ 91 named destinations out of 1000 (max. 500000)
+ 245 words of extra memory for PDF output out of 10000 (max. 10000000)
+

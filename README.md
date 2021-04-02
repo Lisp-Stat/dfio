@@ -66,10 +66,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About the Project
 
-  A data frame is isn't much use if you have to type all the data in
-  by hand. This system provides I/O functions to read data sets in
-  delimited (CSV, TSV, etc.) files from both local disk and network
-  locations.
+  A data frame isn't much use if you have to type all the data in by
+  hand.  This system provides I/O functions to read data sets from
+  delimited (CSV, TSV, etc.) files.  File may be either on local disk
+  or accessible from network locations.
 
 
 
