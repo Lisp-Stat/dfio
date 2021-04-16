@@ -43,14 +43,10 @@ When SKIP-FIRST-ROW?, the first row is read separately and returned as the secon
 This is the default for constructing column keys for CSV files.
 
 The current implementation replaces #\. and #\space with a #\-, and upcases all other characters."
-  ;; QUESTION: should the result depend on the readtable? Papp:date-unknown
 
-  ;; ANSWER: Probably. Symbols would be interned in the current
-  ;; readtable package, *package*. This is likely the case when
-  ;; setting up a data project. All your data-frame could will be in a
-  ;; seperate package. Alternatively, specify a short package name
-  ;; specifically for data objects. Export them too.
-  ;; If in CL-USER, then use KEYWORD package. SN:20210112
+  ;; Tamas:date-unknown: QUESTION: should the result depend on the readtable?
+  ;; SN:20210416: I suspect Tamas may have been thinking about readtable-case
+  ;; in order to preserve the original case of the column names
   (make-keyword (map 'string
                      (lambda (character)
                        (case character
@@ -70,29 +66,27 @@ When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column keys, regardle
           (csv-to-data-columns stream-or-string skip-first-row?))
          (column-keys (cond
                         ((and first-row (functionp column-keys-or-function))
-                         (mapcar column-keys-or-function first-row))
+                         ;; (nsubstitute-if "row-name" #'(lambda (x) (string= x "")) first-row :start 0 :end 1)
+			 (mapcar column-keys-or-function first-row))
                         ((typep column-keys-or-function 'sequence)
                          (assert (length= data-columns column-keys-or-function) ()
                                  "The length of column keys ~A does not match the number of columns ~A."
-                                 column-keys-or-function (length data-columns)))
+                                 column-keys-or-function (length data-columns))
+			 column-keys-or-function)
                         (t (error "Could not generate column keys.")))))
     (data-frame:alist-df
      (mapcar (lambda (column-key data-column)
                (cons column-key (data-column-vector data-column)))
              column-keys data-columns))))
 
-(defun 2d-array-to-list (array)
-  "Helper for CSV writing." 		; make flet?
-  (loop for i below (array-dimension array 0)
-        collect (loop for j below (array-dimension array 1)
-                      collect (aref array i j))))
-
 (defun data-frame-to-csv (df
                           &key
 			    stream
 			    (add-first-row nil)
 
-			    ;; These mirror options and naming of write-csv. Expect warnings.
+			    ;; These mirror options and naming of
+			    ;; write-csv. Expect warnings because of
+			    ;; the earmuffs.
 			    ((:separator *separator*) *separator*)
 			    ((:quote *quote*) *quote*)
 			    ((:escape *quote-escape*) *quote-escape*)
@@ -115,8 +109,8 @@ Notes:
     The :newline keyword requires a sequence, so use :newline '(#\newline) or use cl-interpol"
   (let ((rows (if add-first-row
 		  (list* (coerce (df:keys df) 'list)
-			 (2d-array-to-list (aops:as-array df)))
-		  (2d-array-to-list (aops:as-array df)))))
+			 (df::2d-array-to-list (aops:as-array df)))
+		  (df::2d-array-to-list (aops:as-array df)))))
     (cl-csv:write-csv rows
 		      :stream stream
 		      :separator *separator*

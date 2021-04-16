@@ -1,7 +1,7 @@
 ;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: CL-USER -*-
 ;;; Copyright (c) 2021 by Symbolics Pte. Ltd. All rights reserved.
 
-(asdf:defsystem #:dfio
+(asdf:defsystem :dfio
   :version     (:read-file-form "version.sexp")
   :description "Common Lisp library for reading data from text files (eg CSV)."
   :maintainer  "Steve Nunez <steve@symbolics.tech>"
@@ -19,12 +19,11 @@
                (:file "dfio"))
   :in-order-to ((test-op (test-op "dfio/tests"))))
 
-(asdf:defsystem #:dfio/tests
+(asdf:defsystem :dfio/tests
   :description "Unit tests for DFIO."
   :maintainer  "Steve Nunez <steve@symbolics.tech>"
   :author      "Tamas Papp <tkpapp@gmail.com>"
   :depends-on (#:dfio
-	       #:dfio/json
                #:clunit)
   :serial t
   :components ((:file "tests"))

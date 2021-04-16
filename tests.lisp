@@ -204,6 +204,18 @@ STRING represents a number, randomly generated according to the following rules:
     (assert-equalp '(:index #(0 1 2)
                      :gender #("Male" "Female" "Male")
                      :age #(30 31 32))
+		   (nu:as-plist df))))
+
+(deftest csv-reading-with-row-names (csv-tests)
+  (let ((df (csv-to-data-frame
+             "Not,the,original
+0,\"Male\",30
+1,\"Female\",31
+2,Male,\"32\"
+" :column-keys-or-function '(index gender age))))
+    (assert-equalp '(index #(0 1 2)
+                     gender #("Male" "Female" "Male")
+                     age #(30 31 32))
         (nu:as-plist df))))
 
 (deftest csv-writing-basic (csv-tests)
@@ -221,57 +233,3 @@ STRING represents a number, randomly generated according to the following rules:
 "
 	(remove #\ (data-frame-to-csv df :add-first-row t))))) ; remove CR if on windows
 
-
-(defsuite json-tests (dfio-tests))
-
-(deftest json-basic (json-tests)
-  (let ((df (json-to-data-frame
-	     "[
-   {
-      \"Name\":\"chevrolet chevelle malibu\",
-      \"Miles_per_Gallon\":18,
-      \"Cylinders\":8,
-      \"Displacement\":307,
-      \"Horsepower\":130,
-      \"Weight_in_lbs\":3504,
-      \"Acceleration\":12,
-      \"Year\":\"1970-01-01\",
-      \"Origin\":\"USA\"
-   },
-   {
-      \"Name\":\"buick skylark 320\",
-      \"Miles_per_Gallon\":15,
-      \"Cylinders\":8,
-      \"Displacement\":350,
-      \"Horsepower\":165,
-      \"Weight_in_lbs\":3693,
-      \"Acceleration\":11.5,
-      \"Year\":\"1970-01-01\",
-      \"Origin\":\"USA\"
-   },
-   {
-      \"Name\":\"plymouth satellite\",
-      \"Miles_per_Gallon\":18,
-      \"Cylinders\":8,
-      \"Displacement\":318,
-      \"Horsepower\":150,
-      \"Weight_in_lbs\":3436,
-      \"Acceleration\":11,
-      \"Year\":\"1970-01-01\",
-      \"Origin\":\"USA\"
-   }]")))
-    (assert-equalp '(:origin #("USA" "USA" "USA")
-		     :year #("1970-01-01" "1970-01-01" "1970-01-01")
-		     :acceleration #(12 11.5d0 11)
-		     :weight_in_lbs #(3504 3693 3436)
-		     :horsepower #(130 165 150)
-		     :displacement #(307 350 318)
-		     :cylinders #(8 8 8)
-		     :miles_per_gallon #(18 15 18)
-                     :name #("chevrolet chevelle malibu" "buick skylark 320" "plymouth satellite"))
-        (nu:as-plist df))
-    #+nil
-    (assert-equalp ;FIXME This should work but doesn't
-    	"[{\"origin\":\"USA\",\"year\":\"1970-01-01\",\"acceleration\":12,\"weight_in_lbs\":3504,\"horsepower\":130,\"displacement\":307,\"cylinders\":8,\"miles_per_gallon\":18,\"name\":\"chevrolet chevelle malibu\"}{\"origin\":\"USA\",\"year\":\"1970-01-01\",\"acceleration\":11.5,\"weight_in_lbs\":3693,\"horsepower\":165,\"displacement\":350,\"cylinders\":8,\"miles_per_gallon\":15,\"name\":\"buick skylark 320\"}{\"origin\":\"USA\",\"year\":\"1970-01-01\",\"acceleration\":11,\"weight_in_lbs\":3436,\"horsepower\":150,\"displacement\":318,\"cylinders\":8,\"miles_per_gallon\":18,\"name\":\"plymouth satellite\"}"
-    	(data-frame-to-json df))
-    ))
