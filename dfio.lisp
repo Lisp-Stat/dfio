@@ -10,12 +10,13 @@
         #:dfio.data-column)
   (:export
    #:string-to-keyword
+   #:string-to-symbol
    #:csv-to-data-frame
    #:data-frame-to-csv
    #:json-to-data-frame
    #:data-frame-to-json))
 
-(in-package #:dfio)
+(in-package :dfio)
 
 
 ;;;
@@ -54,9 +55,26 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
                          (otherwise (char-upcase character))))
                      string)))
 
+(defun string-to-symbol (string &optional (package nil))
+  "Map STRING to a symbol in PACKAGE, replacing #\. and #\space with a #\-, and upcasing all other characters. Exports symbol."
+  (let* ((pkg (cond
+		((not package) *package*)
+		((find-package package) package)
+		(t (make-package (string-upcase package))))) ;revisit upcase
+	 (sym (intern (map 'string
+			   (lambda (character)
+			     (case character
+			       ((#\. #\space) #\-)
+			       (otherwise (char-upcase character))))
+			   string)
+		      pkg)))
+    (export sym pkg)
+    sym))
+
 (defun csv-to-data-frame (stream-or-string
                           &key (skip-first-row? nil)
-                               (column-keys-or-function #'string-to-keyword))
+                               (column-keys-or-function #'string-to-symbol))
+                               ;; (column-keys-or-function #'string-to-keyword))
   "Read a CSV file (or stream, or string) into a DATA-FRAME, which is returned.
 
 When SKIP-FIRST-ROW?, the first row is read separately and COLUMN-KEYS-OR-FUNCTION is used to form column keys.
@@ -86,12 +104,12 @@ When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column keys, regardle
 
 			    ;; These mirror options and naming of
 			    ;; write-csv. Expect warnings because of
-			    ;; the earmuffs.
-			    ((:separator *separator*) *separator*)
-			    ((:quote *quote*) *quote*)
-			    ((:escape *quote-escape*) *quote-escape*)
-			    ((:newline *write-newline*) cl-csv::*write-newline*)
-			    ((:always-quote *always-quote*) cl-csv::*always-quote*))
+			    ;; the earmuffs; consider changing.
+			    ((:separator separator) *separator*)
+			    ((:quote quote) *quote*)
+			    ((:escape quote-escape) *quote-escape*)
+			    ((:newline write-newline) cl-csv::*write-newline*)
+			    ((:always-quote always-quote) cl-csv::*always-quote*))
   "Write a data-frame to a stream.
 
 Keywords:
@@ -113,9 +131,9 @@ Notes:
 		  (df::2d-array-to-list (aops:as-array df)))))
     (cl-csv:write-csv rows
 		      :stream stream
-		      :separator *separator*
-		      :quote *quote*
-		      :escape *quote-escape*
-		      :newline *write-newline*
-		      :always-quote *always-quote*)))
+		      :separator separator
+		      :quote  quote
+		      :escape quote-escape
+		      :newline write-newline
+		      :always-quote always-quote)))
 

@@ -200,7 +200,9 @@ STRING represents a number, randomly generated according to the following rules:
 0,\"Male\",30
 1,\"Female\",31
 2,Male,\"32\"
-")))
+"
+	     :column-keys-or-function #'string-to-keyword
+	     )))
     (assert-equalp '(:index #(0 1 2)
                      :gender #("Male" "Female" "Male")
                      :age #(30 31 32))
