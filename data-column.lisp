@@ -1,18 +1,6 @@
 ;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO.DATA-DOLUMN -*-
 ;;; (c) 2021 Symbolics Pte. Ltd. All rights reserved.
 
-(uiop:define-package :dfio.data-column
-  (:use #:cl
-        #:anaphora
-        #:dfio.decimal
-        #:dfio.string-table
-        #:let-plus)
-  (:export
-   #:data-column
-   #:data-column-add
-   #:data-column-counts
-   #:data-column-vector))
-
 (in-package #:dfio.data-column)
 
 

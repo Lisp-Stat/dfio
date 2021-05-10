@@ -1,0 +1,54 @@
+;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: CL-USER -*-
+;;; Copyright (c) 2021 Symbolics Pte. Ltd. All rights reserved.
+
+(uiop:define-package #:dfio.decimal
+  (:use #:cl #:anaphora #:let-plus)
+  (:export
+   #:parse-rational-error
+   #:parse-rational
+   #:parse-real))
+
+(uiop:define-package #:dfio.string-table
+  (:use #:cl
+        #:alexandria
+        #:anaphora
+        #:let-plus)
+  (:export
+   #:string-table
+   #:string-table-not-found
+   #:string-table-duplicate
+   #:string-table-count
+   #:string-table-strings
+   #:string-table-lookup
+   #:string-table-add
+   #:string-table-intern))
+
+(uiop:define-package #:dfio.data-column
+  (:use #:cl
+        #:anaphora
+        #:dfio.decimal
+        #:dfio.string-table
+        #:let-plus)
+  (:export
+   #:data-column
+   #:data-column-add
+   #:data-column-counts
+   #:data-column-vector))
+
+(uiop:define-package #:dfio
+  (:use #:cl
+        #:alexandria
+        #:anaphora
+        #:cl-csv
+        #:let-plus
+        #:dfio.data-column)
+  (:export
+   #:string-to-keyword
+   #:string-to-symbol
+   #:csv-to-data-frame
+   #:data-frame-to-csv
+   #:json-to-data-frame
+   #:data-frame-to-json
+   #:read-csv*))			;cl-csv has a function read-csv
+
+

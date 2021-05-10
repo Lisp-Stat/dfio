@@ -1,23 +1,6 @@
 ;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO -*-
 ;;; Copyright (c) 2021 Symbolics Pte. Ltd. All rights reserved.
-
-(uiop::define-package :dfio
-  (:use #:cl
-        #:alexandria
-        #:anaphora
-        #:cl-csv
-        #:let-plus
-        #:dfio.data-column)
-  (:export
-   #:string-to-keyword
-   #:string-to-symbol
-   #:csv-to-data-frame
-   #:data-frame-to-csv
-   #:json-to-data-frame
-   #:data-frame-to-json))
-
-(in-package :dfio)
-
+(in-package #:dfio)
 
 ;;;
 ;;; CSV
@@ -41,8 +24,6 @@ When SKIP-FIRST-ROW?, the first row is read separately and returned as the secon
 (defun string-to-keyword (string)
   "Map string to a keyword.
 
-This is the default for constructing column keys for CSV files.
-
 The current implementation replaces #\. and #\space with a #\-, and upcases all other characters."
 
   ;; Tamas:date-unknown: QUESTION: should the result depend on the readtable?
@@ -55,26 +36,26 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
                          (otherwise (char-upcase character))))
                      string)))
 
-(defun string-to-symbol (string &optional (package nil))
+(defun string-to-symbol (string)
   "Map STRING to a symbol in PACKAGE, replacing #\. and #\space with a #\-, and upcasing all other characters. Exports symbol."
-  (let* ((pkg (cond
-		((not package) *package*)
-		((find-package package) package)
-		(t (make-package (string-upcase package))))) ;revisit upcase
-	 (sym (intern (map 'string
-			   (lambda (character)
-			     (case character
-			       ((#\. #\space) #\-)
-			       (otherwise (char-upcase character))))
-			   string)
-		      pkg)))
-    (export sym pkg)
+  (let* ((sym (cond ((string= string "")
+		     (warn "Missing column name was filled in")
+		     (gentemp "X"))
+		    (t (intern
+			(map 'string
+			     (lambda (character)
+			       (case character
+				 ((#\. #\space) #\-)
+				 (otherwise (char-upcase character))))
+			     string))))))
+    (export sym)
     sym))
 
 (defun csv-to-data-frame (stream-or-string
-                          &key (skip-first-row? nil)
-                               (column-keys-or-function #'string-to-symbol))
-                               ;; (column-keys-or-function #'string-to-keyword))
+                          &key
+			    (skip-first-row? nil)
+                            (column-keys-or-function #'string-to-symbol)
+			    (package nil))
   "Read a CSV file (or stream, or string) into a DATA-FRAME, which is returned.
 
 When SKIP-FIRST-ROW?, the first row is read separately and COLUMN-KEYS-OR-FUNCTION is used to form column keys.
@@ -82,9 +63,12 @@ When SKIP-FIRST-ROW?, the first row is read separately and COLUMN-KEYS-OR-FUNCTI
 When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column keys, regardless of the value of SKIP-FIRST-ROW?."
   (let+ (((&values data-columns first-row)
           (csv-to-data-columns stream-or-string skip-first-row?))
+	 (*package* (cond
+		      ((not package) *package*)
+		      ((find-package (string-upcase package)) (find-package (string-upcase package)))
+		      (t (make-package (string-upcase package)))))
          (column-keys (cond
                         ((and first-row (functionp column-keys-or-function))
-                         ;; (nsubstitute-if "row-name" #'(lambda (x) (string= x "")) first-row :start 0 :end 1)
 			 (mapcar column-keys-or-function first-row))
                         ((typep column-keys-or-function 'sequence)
                          (assert (length= data-columns column-keys-or-function) ()
@@ -101,10 +85,6 @@ When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column keys, regardle
                           &key
 			    stream
 			    (add-first-row nil)
-
-			    ;; These mirror options and naming of
-			    ;; write-csv. Expect warnings because of
-			    ;; the earmuffs; consider changing.
 			    ((:separator separator) *separator*)
 			    ((:quote quote) *quote*)
 			    ((:escape quote-escape) *quote-escape*)

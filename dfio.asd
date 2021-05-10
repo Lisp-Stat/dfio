@@ -13,7 +13,8 @@
                #:data-frame
                #:let-plus)
   :serial t
-  :components ((:file "decimal")
+  :components ((:file "pkgdcl")
+	       (:file "decimal")
                (:file "string-table")
                (:file "data-column")
                (:file "dfio"))

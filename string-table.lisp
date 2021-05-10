@@ -1,21 +1,6 @@
 ;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO.STRING-TABLE -*-
 ;;; (c) 2021 Symbolics Pte. Ltd. All rights reserved.
 
-(cl:defpackage #:dfio.string-table
-  (:use #:cl
-        #:alexandria
-        #:anaphora
-        #:let-plus)
-  (:export
-   #:string-table
-   #:string-table-not-found
-   #:string-table-duplicate
-   #:string-table-count
-   #:string-table-strings
-   #:string-table-lookup
-   #:string-table-add
-   #:string-table-intern))
-
 (cl:in-package #:dfio.string-table)
 
 (defstruct (string-table (:constructor string-table))
