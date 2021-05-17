@@ -3,7 +3,7 @@
 
 (asdf:defsystem :dfio
   :version     (:read-file-form "version.sexp")
-  :description "Common Lisp library for reading data from text files (eg CSV)."
+  :description "Common Lisp library for reading and writing data-frame data."
   :maintainer  "Steve Nunez <steve@symbolics.tech>"
   :author      "Tamas Papp <tkpapp@gmail.com>"
   :licence     :MS-PL
@@ -17,7 +17,7 @@
 	       (:file "decimal")
                (:file "string-table")
                (:file "data-column")
-               (:file "dfio"))
+               (:file "delimited-text"))
   :in-order-to ((test-op (test-op "dfio/tests"))))
 
 (asdf:defsystem :dfio/tests

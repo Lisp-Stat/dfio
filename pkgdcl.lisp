@@ -39,16 +39,18 @@
   (:use #:cl
         #:alexandria
         #:anaphora
-        #:cl-csv
         #:let-plus
         #:dfio.data-column)
   (:export
    #:string-to-keyword
    #:string-to-symbol
-   #:csv-to-data-frame
-   #:data-frame-to-csv
+
+   ;; Text delimited formats
+   #:read-csv
+   #:write-csv
+
    #:json-to-data-frame
-   #:data-frame-to-json
-   #:read-csv*))			;cl-csv has a function read-csv
+   #:data-frame-to-json))
+
 
 

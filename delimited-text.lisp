@@ -12,7 +12,7 @@
 When SKIP-FIRST-ROW?, the first row is read separately and returned as the second value (list of strings), otherwise it is considered data like all other rows."
   (let (data-columns
         (first-row skip-first-row?))
-    (do-csv (row stream-or-string)
+    (cl-csv:do-csv (row stream-or-string)
       (if data-columns
           (assert (length= data-columns row))
           (setf data-columns (loop repeat (length row) collect (data-column))))
@@ -51,11 +51,11 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
     (export sym)
     sym))
 
-(defun csv-to-data-frame (stream-or-string
-                          &key
-			    (skip-first-row? nil)
-                            (column-keys-or-function #'string-to-symbol)
-			    (package nil))
+(defun read-csv (stream-or-string
+                 &key
+		   (skip-first-row? nil)
+                   (column-keys-or-function #'string-to-symbol)
+		   (package nil))
   "Read a CSV file (or stream, or string) into a DATA-FRAME, which is returned.
 
 When SKIP-FIRST-ROW?, the first row is read separately and COLUMN-KEYS-OR-FUNCTION is used to form column keys.
@@ -81,15 +81,16 @@ When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column keys, regardle
                (cons column-key (data-column-vector data-column)))
              column-keys data-columns))))
 
-(defun data-frame-to-csv (df
-                          &key
-			    stream
-			    (add-first-row nil)
-			    ((:separator separator) *separator*)
-			    ((:quote quote) *quote*)
-			    ((:escape quote-escape) *quote-escape*)
-			    ((:newline write-newline) cl-csv::*write-newline*)
-			    ((:always-quote always-quote) cl-csv::*always-quote*))
+;; (defun data-frame-to-csv (df
+(defun write-csv (df
+                  &key
+		    stream
+		    (add-first-row nil)
+		    ((:separator separator) cl-csv:*separator*)
+		    ((:quote quote) cl-csv:*quote*)
+		    ((:escape quote-escape) cl-csv:*quote-escape*)
+		    ((:newline write-newline) cl-csv::*write-newline*)
+		    ((:always-quote always-quote) cl-csv::*always-quote*))
   "Write a data-frame to a stream.
 
 Keywords:
