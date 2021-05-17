@@ -6,7 +6,7 @@
 ;;; CSV
 ;;;
 
-(defun csv-to-data-columns (stream-or-string skip-first-row?)
+(defun csv-to-data-columns (stream-or-string skip-first-row? &key map-alist)
   "Read a CSV file (or stream, or string), accumulate the values in DATA-COLUMNs, return a list of these.  Rows are checked to have the same number of elements.
 
 When SKIP-FIRST-ROW?, the first row is read separately and returned as the second value (list of strings), otherwise it is considered data like all other rows."
@@ -15,7 +15,7 @@ When SKIP-FIRST-ROW?, the first row is read separately and returned as the secon
     (cl-csv:do-csv (row stream-or-string)
       (if data-columns
           (assert (length= data-columns row))
-          (setf data-columns (loop repeat (length row) collect (data-column))))
+          (setf data-columns (loop repeat (length row) collect (data-column :map-alist map-alist))))
       (if first-row
           (mapc #'data-column-add data-columns row)
           (setf first-row row)))
@@ -55,14 +55,20 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
                  &key
 		   (skip-first-row? nil)
                    (column-keys-or-function #'string-to-symbol)
-		   (package nil))
+		   (package nil)
+		   (map-alist '(("" . :na) ;could be anything, e.g. :missing
+                                ("NA" . :na))))
   "Read a CSV file (or stream, or string) into a DATA-FRAME, which is returned.
 
 When SKIP-FIRST-ROW?, the first row is read separately and COLUMN-KEYS-OR-FUNCTION is used to form column keys.
 
-When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column keys, regardless of the value of SKIP-FIRST-ROW?."
+When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column keys, regardless of the value of SKIP-FIRST-ROW?.
+
+PACKAGE indicates the package to intern column names into.
+
+MAP-ALIST maps values during the import. This is useful if you want special mappings for missing, though the mechanism is general."
   (let+ (((&values data-columns first-row)
-          (csv-to-data-columns stream-or-string skip-first-row?))
+          (csv-to-data-columns stream-or-string skip-first-row? :map-alist map-alist))
 	 (*package* (cond
 		      ((not package) *package*)
 		      ((find-package (string-upcase package)) (find-package (string-upcase package)))
@@ -81,7 +87,6 @@ When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column keys, regardle
                (cons column-key (data-column-vector data-column)))
              column-keys data-columns))))
 
-;; (defun data-frame-to-csv (df
 (defun write-csv (df
                   &key
 		    stream

@@ -1,7 +1,6 @@
 ;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO.DECIMAL -*-
-;;; (c) 2021 Symbolics Pte. Ltd. All rights reserved.
-
-(cl:in-package #:dfio.decimal)
+;;; Copyright (c) 2021 Symbolics Pte. Ltd. All rights reserved.
+(in-package #:dfio.decimal)
 
 ;;; conditions
 

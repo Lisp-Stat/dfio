@@ -1,7 +1,6 @@
 ;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO.STRING-TABLE -*-
-;;; (c) 2021 Symbolics Pte. Ltd. All rights reserved.
-
-(cl:in-package #:dfio.string-table)
+;;; Copyright (c) 2021 Symbolics Pte. Ltd. All rights reserved.
+(in-package #:dfio.string-table)
 
 (defstruct (string-table (:constructor string-table))
   "A table of distinct strings, optionally mapping each one to a value."
