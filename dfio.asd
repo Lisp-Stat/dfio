@@ -25,7 +25,7 @@
   :maintainer  "Steve Nunez <steve@symbolics.tech>"
   :author      "Tamas Papp <tkpapp@gmail.com>"
   :depends-on (#:dfio
-               #:clunit)
+               #:clunit2)
   :serial t
   :components ((:file "tests"))
   :perform (test-op (o s)

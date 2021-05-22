@@ -56,7 +56,7 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
 		   (skip-first-row? nil)
                    (column-keys-or-function #'string-to-symbol)
 		   (package nil)
-		   (map-alist '(("" . :na) ;could be anything, e.g. :missing
+		   (map-alist '(("" . :na) ;could be anything, e.g. :missing, nil
                                 ("NA" . :na))))
   "Read a CSV file (or stream, or string) into a DATA-FRAME, which is returned.
 
