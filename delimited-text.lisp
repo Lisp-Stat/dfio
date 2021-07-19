@@ -45,7 +45,7 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
 			(map 'string
 			     (lambda (character)
 			       (case character
-				 ((#\. #\space) #\-)
+				 ((#\. #\_ #\space) #\-)
 				 (otherwise (char-upcase character))))
 			     string))))))
     (export sym)
