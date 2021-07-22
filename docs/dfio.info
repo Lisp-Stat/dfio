@@ -11,7 +11,7 @@ File: dfio.info,  Node: Top,  Next: Systems,  Prev: (dir),  Up: (dir)
 The Data Frame Input/Output Reference Manual
 ********************************************
 
-This is the Data Frame Input/Output Reference Manual, version 1.3.
+This is the Data Frame Input/Output Reference Manual, version 1.0.
 
 * Menu:
 
@@ -46,9 +46,9 @@ File: dfio.info,  Node: The dfio system,  Prev: Systems,  Up: Systems
 *License*
      MS-PL
 *Description*
-     Common Lisp library for reading data from text files (eg CSV).
+     Common Lisp library for reading and writing data-frame data.
 *Version*
-     1.3
+     1.0
 *Dependencies*
         • alexandria
         • anaphora
@@ -60,12 +60,14 @@ File: dfio.info,  Node: The dfio system,  Prev: Systems,  Up: Systems
 *Directory*
      s:/src/dfio/
 *Components*
+        • *note pkgdcl.lisp: go to the dfio/pkgdcl․lisp file. (file)
         • *note decimal.lisp: go to the dfio/decimal․lisp file. (file)
         • *note string-table.lisp: go to the dfio/string-table․lisp
           file. (file)
         • *note data-column.lisp: go to the dfio/data-column․lisp file.
           (file)
-        • *note dfio.lisp: go to the dfio/dfio․lisp file. (file)
+        • *note delimited-text.lisp: go to the dfio/delimited-text․lisp
+          file. (file)
 
 
 File: dfio.info,  Node: Files,  Next: Packages,  Prev: Systems,  Up: Top
@@ -89,13 +91,14 @@ File: dfio.info,  Node: Lisp files,  Prev: Files,  Up: Files
 * Menu:
 
 * The dfio.asd file: The dfio․asd file.
+* The dfio/pkgdcl.lisp file: The dfio/pkgdcl․lisp file.
 * The dfio/decimal.lisp file: The dfio/decimal․lisp file.
 * The dfio/string-table.lisp file: The dfio/string-table․lisp file.
 * The dfio/data-column.lisp file: The dfio/data-column․lisp file.
-* The dfio/dfio.lisp file: The dfio/dfio․lisp file.
+* The dfio/delimited-text.lisp file: The dfio/delimited-text․lisp file.
 
 
-File: dfio.info,  Node: The dfio․asd file,  Next: The dfio/decimal․lisp file,  Prev: Lisp files,  Up: Lisp files
+File: dfio.info,  Node: The dfio․asd file,  Next: The dfio/pkgdcl․lisp file,  Prev: Lisp files,  Up: Lisp files
 
 2.1.1 dfio.asd
 --------------
@@ -106,17 +109,33 @@ File: dfio.info,  Node: The dfio․asd file,  Next: The dfio/decimal․lisp file
      *note dfio: go to the dfio system. (system)
 
 
-File: dfio.info,  Node: The dfio/decimal․lisp file,  Next: The dfio/string-table․lisp file,  Prev: The dfio․asd file,  Up: Lisp files
+File: dfio.info,  Node: The dfio/pkgdcl․lisp file,  Next: The dfio/decimal․lisp file,  Prev: The dfio․asd file,  Up: Lisp files
 
-2.1.2 dfio/decimal.lisp
------------------------
+2.1.2 dfio/pkgdcl.lisp
+----------------------
 
 *Parent*
      *note dfio: go to the dfio system. (system)
 *Location*
-     decimal.lisp
+     pkgdcl.lisp
 *Packages*
-     *note dfio.decimal: go to the DFIO․DECIMAL package.
+        • *note dfio.string-table: go to the DFIO․STRING-TABLE package.
+        • *note dfio.data-column: go to the DFIO․DATA-COLUMN package.
+        • *note dfio: go to the DFIO package.
+        • *note dfio.decimal: go to the DFIO․DECIMAL package.
+
+
+File: dfio.info,  Node: The dfio/decimal․lisp file,  Next: The dfio/string-table․lisp file,  Prev: The dfio/pkgdcl․lisp file,  Up: Lisp files
+
+2.1.3 dfio/decimal.lisp
+-----------------------
+
+*Dependency*
+     *note pkgdcl.lisp: go to the dfio/pkgdcl․lisp file. (file)
+*Parent*
+     *note dfio: go to the dfio system. (system)
+*Location*
+     decimal.lisp
 *Exported Definitions*
         • *note parse-rational: go to the DFIO․DECIMAL∶∶PARSE-RATIONAL
           function. (function)
@@ -136,7 +155,7 @@ File: dfio.info,  Node: The dfio/decimal․lisp file,  Next: The dfio/string-tab
 
 File: dfio.info,  Node: The dfio/string-table․lisp file,  Next: The dfio/data-column․lisp file,  Prev: The dfio/decimal․lisp file,  Up: Lisp files
 
-2.1.3 dfio/string-table.lisp
+2.1.4 dfio/string-table.lisp
 ----------------------------
 
 *Dependency*
@@ -145,8 +164,6 @@ File: dfio.info,  Node: The dfio/string-table․lisp file,  Next: The dfio/data-
      *note dfio: go to the dfio system. (system)
 *Location*
      string-table.lisp
-*Packages*
-     *note dfio.string-table: go to the DFIO․STRING-TABLE package.
 *Exported Definitions*
         • *note string-table: go to the DFIO․STRING-TABLE∶∶STRING-TABLE
           function. (function)
@@ -185,9 +202,9 @@ File: dfio.info,  Node: The dfio/string-table․lisp file,  Next: The dfio/data-
           (function)
 
 
-File: dfio.info,  Node: The dfio/data-column․lisp file,  Next: The dfio/dfio․lisp file,  Prev: The dfio/string-table․lisp file,  Up: Lisp files
+File: dfio.info,  Node: The dfio/data-column․lisp file,  Next: The dfio/delimited-text․lisp file,  Prev: The dfio/string-table․lisp file,  Up: Lisp files
 
-2.1.4 dfio/data-column.lisp
+2.1.5 dfio/data-column.lisp
 ---------------------------
 
 *Dependency*
@@ -197,8 +214,6 @@ File: dfio.info,  Node: The dfio/data-column․lisp file,  Next: The dfio/dfio�
      *note dfio: go to the dfio system. (system)
 *Location*
      data-column.lisp
-*Packages*
-     *note dfio.data-column: go to the DFIO․DATA-COLUMN package.
 *Exported Definitions*
         • *note data-column: go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN
           function. (function)
@@ -215,10 +230,10 @@ File: dfio.info,  Node: The dfio/data-column․lisp file,  Next: The dfio/dfio�
      DFIO․DATA-COLUMN∶∶NON-NEGATIVE-INTEGER type. (type)
 
 
-File: dfio.info,  Node: The dfio/dfio․lisp file,  Prev: The dfio/data-column․lisp file,  Up: Lisp files
+File: dfio.info,  Node: The dfio/delimited-text․lisp file,  Prev: The dfio/data-column․lisp file,  Up: Lisp files
 
-2.1.5 dfio/dfio.lisp
---------------------
+2.1.6 dfio/delimited-text.lisp
+------------------------------
 
 *Dependency*
      *note data-column.lisp: go to the dfio/data-column․lisp file.
@@ -226,21 +241,18 @@ File: dfio.info,  Node: The dfio/dfio․lisp file,  Prev: The dfio/data-column�
 *Parent*
      *note dfio: go to the dfio system. (system)
 *Location*
-     dfio.lisp
-*Packages*
-     *note dfio: go to the DFIO package.
+     delimited-text.lisp
 *Exported Definitions*
-        • *note csv-to-data-frame: go to the DFIO∶∶CSV-TO-DATA-FRAME
-          function. (function)
-        • *note data-frame-to-csv: go to the DFIO∶∶DATA-FRAME-TO-CSV
-          function. (function)
+        • *note read-csv: go to the DFIO∶∶READ-CSV function. (function)
         • *note string-to-keyword: go to the DFIO∶∶STRING-TO-KEYWORD
           function. (function)
+        • *note string-to-symbol: go to the DFIO∶∶STRING-TO-SYMBOL
+          function. (function)
+        • *note write-csv: go to the DFIO∶∶WRITE-CSV function.
+          (function)
 *Internal Definitions*
-        • *note 2d-array-to-list: go to the DFIO∶∶2D-ARRAY-TO-LIST
-          function. (function)
-        • *note csv-to-data-columns: go to the DFIO∶∶CSV-TO-DATA-COLUMNS
-          function. (function)
+     *note csv-to-data-columns: go to the DFIO∶∶CSV-TO-DATA-COLUMNS
+     function. (function)
 
 
 File: dfio.info,  Node: Packages,  Next: Definitions,  Prev: Files,  Up: Top
@@ -252,50 +264,19 @@ Packages are listed by definition order.
 
 * Menu:
 
-* The dfio.decimal package: The dfio․decimal package.
 * The dfio.string-table package: The dfio․string-table package.
 * The dfio.data-column package: The dfio․data-column package.
 * The dfio package::
+* The dfio.decimal package: The dfio․decimal package.
 
 
-File: dfio.info,  Node: The dfio․decimal package,  Next: The dfio․string-table package,  Prev: Packages,  Up: Packages
+File: dfio.info,  Node: The dfio․string-table package,  Next: The dfio․data-column package,  Prev: Packages,  Up: Packages
 
-3.1 dfio.decimal
-================
-
-*Source*
-     *note decimal.lisp: go to the dfio/decimal․lisp file. (file)
-*Use List*
-        • let-plus
-        • anaphora
-        • common-lisp
-*Used By List*
-     *note dfio.data-column: go to the DFIO․DATA-COLUMN package.
-*Exported Definitions*
-        • *note parse-rational: go to the DFIO․DECIMAL∶∶PARSE-RATIONAL
-          function. (function)
-        • *note parse-rational-error: go to the
-          DFIO․DECIMAL∶∶PARSE-RATIONAL-ERROR condition. (condition)
-        • *note parse-real: go to the DFIO․DECIMAL∶∶PARSE-REAL function.
-          (function)
-*Internal Definitions*
-        • *note +exponent-chars+: go to the
-          DFIO․DECIMAL∶∶+EXPONENT-CHARS+ special variable. (special
-          variable)
-        • *note gobble-positive-integer: go to the
-          DFIO․DECIMAL∶∶GOBBLE-POSITIVE-INTEGER function. (function)
-        • *note gobble-sign: go to the DFIO․DECIMAL∶∶GOBBLE-SIGN
-          function. (function)
-
-
-File: dfio.info,  Node: The dfio․string-table package,  Next: The dfio․data-column package,  Prev: The dfio․decimal package,  Up: Packages
-
-3.2 dfio.string-table
+3.1 dfio.string-table
 =====================
 
 *Source*
-     *note string-table.lisp: go to the dfio/string-table․lisp file.
-     (file)
+     *note pkgdcl.lisp: go to the dfio/pkgdcl․lisp file. (file)
 *Use List*
         • let-plus
         • anaphora
@@ -343,12 +324,11 @@ File: dfio.info,  Node: The dfio․string-table package,  Next: The dfio․data-
 
 File: dfio.info,  Node: The dfio․data-column package,  Next: The dfio package,  Prev: The dfio․string-table package,  Up: Packages
 
-3.3 dfio.data-column
+3.2 dfio.data-column
 ====================
 
 *Source*
-     *note data-column.lisp: go to the dfio/data-column․lisp file.
-     (file)
+     *note pkgdcl.lisp: go to the dfio/pkgdcl․lisp file. (file)
 *Use List*
         • let-plus
         • *note dfio.string-table: go to the DFIO․STRING-TABLE package.
@@ -356,8 +336,7 @@ File: dfio.info,  Node: The dfio․data-column package,  Next: The dfio package,
         • anaphora
         • common-lisp
 *Used By List*
-        • vglt
-        • *note dfio: go to the DFIO package.
+     *note dfio: go to the DFIO package.
 *Exported Definitions*
         • *note data-column: go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN
           function. (function)
@@ -374,33 +353,61 @@ File: dfio.info,  Node: The dfio․data-column package,  Next: The dfio package,
      DFIO․DATA-COLUMN∶∶NON-NEGATIVE-INTEGER type. (type)
 
 
-File: dfio.info,  Node: The dfio package,  Prev: The dfio․data-column package,  Up: Packages
+File: dfio.info,  Node: The dfio package,  Next: The dfio․decimal package,  Prev: The dfio․data-column package,  Up: Packages
 
-3.4 dfio
+3.3 dfio
 ========
 
 *Source*
-     *note dfio.lisp: go to the dfio/dfio․lisp file. (file)
+     *note pkgdcl.lisp: go to the dfio/pkgdcl․lisp file. (file)
 *Use List*
         • *note dfio.data-column: go to the DFIO․DATA-COLUMN package.
         • let-plus
-        • cl-csv
         • anaphora
         • alexandria
         • common-lisp
 *Used By List*
-     vglt
+     lisp-stat
 *Exported Definitions*
-        • *note csv-to-data-frame: go to the DFIO∶∶CSV-TO-DATA-FRAME
-          function. (function)
-        • *note data-frame-to-csv: go to the DFIO∶∶DATA-FRAME-TO-CSV
-          function. (function)
+        • *note read-csv: go to the DFIO∶∶READ-CSV function. (function)
         • *note string-to-keyword: go to the DFIO∶∶STRING-TO-KEYWORD
           function. (function)
-*Internal Definitions*
-        • *note 2d-array-to-list: go to the DFIO∶∶2D-ARRAY-TO-LIST
+        • *note string-to-symbol: go to the DFIO∶∶STRING-TO-SYMBOL
           function. (function)
-        • *note csv-to-data-columns: go to the DFIO∶∶CSV-TO-DATA-COLUMNS
+        • *note write-csv: go to the DFIO∶∶WRITE-CSV function.
+          (function)
+*Internal Definitions*
+     *note csv-to-data-columns: go to the DFIO∶∶CSV-TO-DATA-COLUMNS
+     function. (function)
+
+
+File: dfio.info,  Node: The dfio․decimal package,  Prev: The dfio package,  Up: Packages
+
+3.4 dfio.decimal
+================
+
+*Source*
+     *note pkgdcl.lisp: go to the dfio/pkgdcl․lisp file. (file)
+*Use List*
+        • let-plus
+        • anaphora
+        • common-lisp
+*Used By List*
+     *note dfio.data-column: go to the DFIO․DATA-COLUMN package.
+*Exported Definitions*
+        • *note parse-rational: go to the DFIO․DECIMAL∶∶PARSE-RATIONAL
+          function. (function)
+        • *note parse-rational-error: go to the
+          DFIO․DECIMAL∶∶PARSE-RATIONAL-ERROR condition. (condition)
+        • *note parse-real: go to the DFIO․DECIMAL∶∶PARSE-REAL function.
+          (function)
+*Internal Definitions*
+        • *note +exponent-chars+: go to the
+          DFIO․DECIMAL∶∶+EXPONENT-CHARS+ special variable. (special
+          variable)
+        • *note gobble-positive-integer: go to the
+          DFIO․DECIMAL∶∶GOBBLE-POSITIVE-INTEGER function. (function)
+        • *note gobble-sign: go to the DFIO․DECIMAL∶∶GOBBLE-SIGN
           function. (function)
 
 
@@ -436,20 +443,6 @@ File: dfio.info,  Node: Exported functions,  Next: Exported conditions,  Prev: E
 4.1.1 Functions
 ---------------
 
- -- Function: csv-to-data-frame STREAM-OR-STRING &key SKIP-FIRST-ROW?
-          COLUMN-KEYS-OR-FUNCTION
-     Read a CSV file (or stream, or string) into a DATA-FRAME, which is
-     returned.
-
-     When SKIP-FIRST-ROW?, the first row is read separately and
-     COLUMN-KEYS-OR-FUNCTION is used to form column keys.
-
-     When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column
-     keys, regardless of the value of SKIP-FIRST-ROW?.
-     *Package*
-          *note dfio: go to the DFIO package.
-     *Source*
-          *note dfio.lisp: go to the dfio/dfio․lisp file. (file)
  -- Function: data-column &key MAP-ALIST DEFAULT-FLOAT-FORMAT
      *Package*
           *note dfio.data-column: go to the DFIO․DATA-COLUMN package.
@@ -476,29 +469,6 @@ File: dfio.info,  Node: Exported functions,  Next: Exported conditions,  Prev: E
      *Source*
           *note data-column.lisp: go to the dfio/data-column․lisp file.
           (file)
- -- Function: data-frame-to-csv DF &key STREAM ADD-FIRST-ROW (SEPARATOR
-          *SEPARATOR*) (QUOTE *QUOTE*) (ESCAPE *QUOTE-ESCAPE*) (NEWLINE
-          *WRITE-NEWLINE*) (ALWAYS-QUOTE *ALWAYS-QUOTE*)
-     Write a data-frame to a stream.
-
-     Keywords:
-     stream: stream to write to.  Default: nil.
-     nil - writes the rows to a string and returns it
-     an open stream
-     a pathname (overwrites if the file exists)
-     quote: quoting character.  Defaults to *quote*
-     escape: escaping character.  Defaults to *quote-escape*
-     newline: newline character.  Defaults to *write-newline*
-     always-quote: Defaults to *always-quote*
-     add-first-row: Add column names as the first
-
-     Notes:
-     The :newline keyword requires a sequence, so use :newline
-     ’(#newline) or use cl-interpol
-     *Package*
-          *note dfio: go to the DFIO package.
-     *Source*
-          *note dfio.lisp: go to the dfio/dfio․lisp file. (file)
  -- Function: parse-rational STRING &key START END EXPONENT-CHARS
      Parse a decimal rational in (subseq string start end) of the form
      [sign][whole][.[fraction]][exponent] where
@@ -547,6 +517,26 @@ File: dfio.info,  Node: Exported functions,  Next: Exported conditions,  Prev: E
           *note dfio.decimal: go to the DFIO․DECIMAL package.
      *Source*
           *note decimal.lisp: go to the dfio/decimal․lisp file. (file)
+ -- Function: read-csv STREAM-OR-STRING &key SKIP-FIRST-ROW?
+          COLUMN-KEYS-OR-FUNCTION PACKAGE MAP-ALIST
+     Read a CSV file (or stream, or string) into a DATA-FRAME, which is
+     returned.
+
+     When SKIP-FIRST-ROW?, the first row is read separately and
+     COLUMN-KEYS-OR-FUNCTION is used to form column keys.
+
+     When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column
+     keys, regardless of the value of SKIP-FIRST-ROW?.
+
+     PACKAGE indicates the package to intern column names into.
+
+     MAP-ALIST maps values during the import.  This is useful if you
+     want special mappings for missing, though the mechanism is general.
+     *Package*
+          *note dfio: go to the DFIO package.
+     *Source*
+          *note delimited-text.lisp: go to the dfio/delimited-text․lisp
+          file. (file)
  -- Function: string-table &key (TABLE TABLE)
      *Package*
           *note dfio.string-table: go to the DFIO․STRING-TABLE package.
@@ -598,14 +588,45 @@ File: dfio.info,  Node: Exported functions,  Next: Exported conditions,  Prev: E
  -- Function: string-to-keyword STRING
      Map string to a keyword.
 
-     This is the default for constructing column keys for CSV files.
-
      The current implementation replaces #.  and #space with a #-, and
      upcases all other characters.
      *Package*
           *note dfio: go to the DFIO package.
      *Source*
-          *note dfio.lisp: go to the dfio/dfio․lisp file. (file)
+          *note delimited-text.lisp: go to the dfio/delimited-text․lisp
+          file. (file)
+ -- Function: string-to-symbol STRING
+     Map STRING to a symbol in PACKAGE, replacing #., #_ and #space with
+     a #-, and upcasing all other characters.  Exports symbol.
+     *Package*
+          *note dfio: go to the DFIO package.
+     *Source*
+          *note delimited-text.lisp: go to the dfio/delimited-text․lisp
+          file. (file)
+ -- Function: write-csv DF &key STREAM ADD-FIRST-ROW (SEPARATOR
+          SEPARATOR) (QUOTE QUOTE) (ESCAPE QUOTE-ESCAPE) (NEWLINE
+          WRITE-NEWLINE) (ALWAYS-QUOTE ALWAYS-QUOTE)
+     Write a data-frame to a stream.
+
+     Keywords:
+     stream: stream to write to.  Default: nil.
+     nil - writes the rows to a string and returns it
+     an open stream
+     a pathname (overwrites if the file exists)
+     quote: quoting character.  Defaults to *quote*
+     escape: escaping character.  Defaults to *quote-escape*
+     newline: newline character.  Defaults to *write-newline*
+     always-quote: Defaults to *always-quote*
+     add-first-row: Add column names as the first
+
+     Notes:
+     The :newline keyword requires a sequence, so use :newline
+     ’(#newline) or use cl-interpol
+     *Package*
+          *note dfio: go to the DFIO package.
+     *Source*
+          *note delimited-text.lisp: go to the dfio/delimited-text․lisp
+          file. (file)
 
 
 File: dfio.info,  Node: Exported conditions,  Next: Exported structures,  Prev: Exported functions,  Up: Exported definitions
@@ -775,19 +796,14 @@ File: dfio.info,  Node: Internal functions,  Next: Internal types,  Prev: Intern
 4.2.2 Functions
 ---------------
 
- -- Function: 2d-array-to-list ARRAY
-     Helper for CSV writing.
-     *Package*
-          *note dfio: go to the DFIO package.
-     *Source*
-          *note dfio.lisp: go to the dfio/dfio․lisp file. (file)
  -- Function: copy-string-table INSTANCE
      *Package*
           *note dfio.string-table: go to the DFIO․STRING-TABLE package.
      *Source*
           *note string-table.lisp: go to the dfio/string-table․lisp
           file. (file)
- -- Function: csv-to-data-columns STREAM-OR-STRING SKIP-FIRST-ROW?
+ -- Function: csv-to-data-columns STREAM-OR-STRING SKIP-FIRST-ROW? &key
+          MAP-ALIST
      Read a CSV file (or stream, or string), accumulate the values in
      DATA-COLUMNs, return a list of these.  Rows are checked to have the
      same number of elements.
@@ -798,7 +814,8 @@ File: dfio.info,  Node: Internal functions,  Next: Internal types,  Prev: Intern
      *Package*
           *note dfio: go to the DFIO package.
      *Source*
-          *note dfio.lisp: go to the dfio/dfio․lisp file. (file)
+          *note delimited-text.lisp: go to the dfio/delimited-text․lisp
+          file. (file)
  -- Function: gobble-positive-integer STRING START END
      If (SUBSEQ STRING START END) starts with a nonnegative integer (ie
      a sequence of digits 0-9), return the integer and position at which
@@ -896,7 +913,9 @@ A.1 Concepts
                                                                 (line 6)
 * dfio/decimal.lisp:                     The dfio/decimal․lisp file.
                                                                 (line 6)
-* dfio/dfio.lisp:                        The dfio/dfio․lisp file.
+* dfio/delimited-text.lisp:              The dfio/delimited-text․lisp file.
+                                                                (line 6)
+* dfio/pkgdcl.lisp:                      The dfio/pkgdcl․lisp file.
                                                                 (line 6)
 * dfio/string-table.lisp:                The dfio/string-table․lisp file.
                                                                 (line 6)
@@ -905,7 +924,9 @@ A.1 Concepts
                                                                 (line 6)
 * File, Lisp, dfio/decimal.lisp:         The dfio/decimal․lisp file.
                                                                 (line 6)
-* File, Lisp, dfio/dfio.lisp:            The dfio/dfio․lisp file.
+* File, Lisp, dfio/delimited-text.lisp:  The dfio/delimited-text․lisp file.
+                                                                (line 6)
+* File, Lisp, dfio/pkgdcl.lisp:          The dfio/pkgdcl․lisp file.
                                                                 (line 6)
 * File, Lisp, dfio/string-table.lisp:    The dfio/string-table․lisp file.
                                                                 (line 6)
@@ -914,7 +935,9 @@ A.1 Concepts
                                                                 (line 6)
 * Lisp File, dfio/decimal.lisp:          The dfio/decimal․lisp file.
                                                                 (line 6)
-* Lisp File, dfio/dfio.lisp:             The dfio/dfio․lisp file.
+* Lisp File, dfio/delimited-text.lisp:   The dfio/delimited-text․lisp file.
+                                                                (line 6)
+* Lisp File, dfio/pkgdcl.lisp:           The dfio/pkgdcl․lisp file.
                                                                 (line 6)
 * Lisp File, dfio/string-table.lisp:     The dfio/string-table․lisp file.
                                                                 (line 6)
@@ -928,56 +951,56 @@ A.2 Functions
  [index ]
 * Menu:
 
-* (setf string-table-get):               Internal functions.  (line  62)
-* (setf string-table-table):             Internal functions.  (line  80)
-* 2d-array-to-list:                      Internal functions.  (line   6)
-* copy-string-table:                     Internal functions.  (line  12)
-* csv-to-data-columns:                   Internal functions.  (line  18)
-* csv-to-data-frame:                     Exported functions.  (line   6)
-* data-column:                           Exported functions.  (line  20)
-* data-column-add:                       Exported functions.  (line  26)
-* data-column-counts:                    Exported functions.  (line  32)
-* data-column-vector:                    Exported functions.  (line  39)
-* data-frame-to-csv:                     Exported functions.  (line  46)
-* Function, (setf string-table-get):     Internal functions.  (line  63)
-* Function, (setf string-table-table):   Internal functions.  (line  81)
-* Function, 2d-array-to-list:            Internal functions.  (line   7)
-* Function, copy-string-table:           Internal functions.  (line  13)
-* Function, csv-to-data-columns:         Internal functions.  (line  19)
-* Function, csv-to-data-frame:           Exported functions.  (line   8)
-* Function, data-column:                 Exported functions.  (line  21)
-* Function, data-column-add:             Exported functions.  (line  27)
-* Function, data-column-counts:          Exported functions.  (line  33)
-* Function, data-column-vector:          Exported functions.  (line  40)
-* Function, data-frame-to-csv:           Exported functions.  (line  49)
-* Function, gobble-positive-integer:     Internal functions.  (line  31)
-* Function, gobble-sign:                 Internal functions.  (line  44)
-* Function, parse-rational:              Exported functions.  (line  70)
-* Function, parse-real:                  Exported functions.  (line 107)
-* Function, string-table:                Exported functions.  (line 118)
-* Function, string-table-add:            Exported functions.  (line 124)
-* Function, string-table-count:          Exported functions.  (line 133)
-* Function, string-table-get:            Internal functions.  (line  52)
-* Function, string-table-intern:         Exported functions.  (line 141)
-* Function, string-table-lookup:         Exported functions.  (line 151)
-* Function, string-table-p:              Internal functions.  (line  74)
-* Function, string-table-strings:        Exported functions.  (line 159)
-* Function, string-table-table:          Internal functions.  (line  80)
-* Function, string-to-keyword:           Exported functions.  (line 166)
-* gobble-positive-integer:               Internal functions.  (line  30)
-* gobble-sign:                           Internal functions.  (line  43)
-* parse-rational:                        Exported functions.  (line  69)
-* parse-real:                            Exported functions.  (line 105)
-* string-table:                          Exported functions.  (line 117)
-* string-table-add:                      Exported functions.  (line 123)
-* string-table-count:                    Exported functions.  (line 132)
-* string-table-get:                      Internal functions.  (line  51)
-* string-table-intern:                   Exported functions.  (line 139)
-* string-table-lookup:                   Exported functions.  (line 150)
-* string-table-p:                        Internal functions.  (line  73)
-* string-table-strings:                  Exported functions.  (line 158)
-* string-table-table:                    Internal functions.  (line  79)
-* string-to-keyword:                     Exported functions.  (line 165)
+* (setf string-table-get):               Internal functions.  (line  58)
+* (setf string-table-table):             Internal functions.  (line  76)
+* copy-string-table:                     Internal functions.  (line   6)
+* csv-to-data-columns:                   Internal functions.  (line  12)
+* data-column:                           Exported functions.  (line   6)
+* data-column-add:                       Exported functions.  (line  12)
+* data-column-counts:                    Exported functions.  (line  18)
+* data-column-vector:                    Exported functions.  (line  25)
+* Function, (setf string-table-get):     Internal functions.  (line  59)
+* Function, (setf string-table-table):   Internal functions.  (line  77)
+* Function, copy-string-table:           Internal functions.  (line   7)
+* Function, csv-to-data-columns:         Internal functions.  (line  14)
+* Function, data-column:                 Exported functions.  (line   7)
+* Function, data-column-add:             Exported functions.  (line  13)
+* Function, data-column-counts:          Exported functions.  (line  19)
+* Function, data-column-vector:          Exported functions.  (line  26)
+* Function, gobble-positive-integer:     Internal functions.  (line  27)
+* Function, gobble-sign:                 Internal functions.  (line  40)
+* Function, parse-rational:              Exported functions.  (line  33)
+* Function, parse-real:                  Exported functions.  (line  70)
+* Function, read-csv:                    Exported functions.  (line  82)
+* Function, string-table:                Exported functions.  (line 101)
+* Function, string-table-add:            Exported functions.  (line 107)
+* Function, string-table-count:          Exported functions.  (line 116)
+* Function, string-table-get:            Internal functions.  (line  48)
+* Function, string-table-intern:         Exported functions.  (line 124)
+* Function, string-table-lookup:         Exported functions.  (line 134)
+* Function, string-table-p:              Internal functions.  (line  70)
+* Function, string-table-strings:        Exported functions.  (line 142)
+* Function, string-table-table:          Internal functions.  (line  76)
+* Function, string-to-keyword:           Exported functions.  (line 149)
+* Function, string-to-symbol:            Exported functions.  (line 159)
+* Function, write-csv:                   Exported functions.  (line 169)
+* gobble-positive-integer:               Internal functions.  (line  26)
+* gobble-sign:                           Internal functions.  (line  39)
+* parse-rational:                        Exported functions.  (line  32)
+* parse-real:                            Exported functions.  (line  68)
+* read-csv:                              Exported functions.  (line  80)
+* string-table:                          Exported functions.  (line 100)
+* string-table-add:                      Exported functions.  (line 106)
+* string-table-count:                    Exported functions.  (line 115)
+* string-table-get:                      Internal functions.  (line  47)
+* string-table-intern:                   Exported functions.  (line 122)
+* string-table-lookup:                   Exported functions.  (line 133)
+* string-table-p:                        Internal functions.  (line  69)
+* string-table-strings:                  Exported functions.  (line 141)
+* string-table-table:                    Internal functions.  (line  75)
+* string-to-keyword:                     Exported functions.  (line 148)
+* string-to-symbol:                      Exported functions.  (line 158)
+* write-csv:                             Exported functions.  (line 166)
 
 
 File: dfio.info,  Node: Variable index,  Next: Data type index,  Prev: Function index,  Up: Indexes
@@ -1064,74 +1087,76 @@ Node: Top230
 Node: Systems684
 Node: The dfio system876
 Ref: go to the dfio system968
-Node: Files1753
-Node: Lisp files1960
-Node: The dfio․asd file2347
-Ref: go to the dfio․asd file2498
-Node: The dfio/decimal․lisp file2583
-Ref: go to the dfio/decimal․lisp file2775
-Node: The dfio/string-table․lisp file3687
-Ref: go to the dfio/string-table․lisp file3902
-Node: The dfio/data-column․lisp file6107
-Ref: go to the dfio/data-column․lisp file6317
-Node: The dfio/dfio․lisp file7305
-Ref: go to the dfio/dfio․lisp file7459
-Node: Packages8268
-Node: The dfio․decimal package8630
-Ref: go to the DFIO․DECIMAL package8791
-Node: The dfio․string-table package9782
-Ref: go to the DFIO․STRING-TABLE package9975
-Node: The dfio․data-column package12201
-Ref: go to the DFIO․DATA-COLUMN package12382
-Node: The dfio package13494
-Ref: go to the DFIO package13611
-Node: Definitions14479
-Node: Exported definitions14744
-Node: Exported functions15012
-Ref: go to the DFIO∶∶CSV-TO-DATA-FRAME function15279
-Ref: go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN function15820
-Ref: go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-ADD function16061
-Ref: go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-COUNTS function16298
-Ref: go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-VECTOR function16559
-Ref: go to the DFIO∶∶DATA-FRAME-TO-CSV function17000
-Ref: go to the DFIO․DECIMAL∶∶PARSE-RATIONAL function17816
-Ref: go to the DFIO․DECIMAL∶∶PARSE-REAL function19246
-Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE function19775
-Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-ADD function20038
-Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-COUNT function20420
-Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-INTERN function20746
-Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-LOOKUP function21217
-Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-STRINGS function21572
-Ref: go to the DFIO∶∶STRING-TO-KEYWORD function21845
-Node: Exported conditions22195
-Ref: go to the DFIO․DECIMAL∶∶PARSE-RATIONAL-ERROR condition22398
-Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-DUPLICATE condition22910
-Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-NOT-FOUND condition23239
-Node: Exported structures23523
-Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE structure23716
-Node: Exported classes24689
-Ref: go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN class24843
-Node: Internal definitions26609
-Node: Internal special variables26838
-Ref: go to the DFIO․DECIMAL∶∶+EXPONENT-CHARS+ special variable27063
-Node: Internal functions27264
-Ref: go to the DFIO∶∶2D-ARRAY-TO-LIST function27465
-Ref: go to the DFIO․STRING-TABLE∶∶COPY-STRING-TABLE function27677
-Ref: go to the DFIO∶∶CSV-TO-DATA-COLUMNS function27940
-Ref: go to the DFIO․DECIMAL∶∶GOBBLE-POSITIVE-INTEGER function28486
-Ref: go to the DFIO․DECIMAL∶∶GOBBLE-SIGN function29000
-Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-GET function29410
-Ref: go to the DFIO․STRING-TABLE∶∶❨SETF STRING-TABLE-GET❩ function29872
-Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-P function30322
-Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-TABLE function30560
-Ref: go to the DFIO․STRING-TABLE∶∶❨SETF STRING-TABLE-TABLE❩ function30615
-Node: Internal types30812
-Ref: go to the DFIO․DATA-COLUMN∶∶NON-NEGATIVE-INTEGER type30967
-Node: Indexes31160
-Node: Concept index31350
-Node: Function index33464
-Node: Variable index37266
-Node: Data type index39602
+Node: Files1854
+Node: Lisp files2061
+Node: The dfio․asd file2526
+Ref: go to the dfio․asd file2676
+Node: The dfio/pkgdcl․lisp file2761
+Ref: go to the dfio/pkgdcl․lisp file2945
+Node: The dfio/decimal․lisp file3307
+Ref: go to the dfio/decimal․lisp file3507
+Node: The dfio/string-table․lisp file4428
+Ref: go to the dfio/string-table․lisp file4643
+Node: The dfio/data-column․lisp file6768
+Ref: go to the dfio/data-column․lisp file6988
+Node: The dfio/delimited-text․lisp file7898
+Ref: go to the dfio/delimited-text․lisp file8082
+Node: Packages8793
+Node: The dfio․string-table package9155
+Ref: go to the DFIO․STRING-TABLE package9330
+Node: The dfio․data-column package11539
+Ref: go to the DFIO․DATA-COLUMN package11720
+Node: The dfio package12793
+Ref: go to the DFIO package12945
+Node: The dfio․decimal package13747
+Ref: go to the DFIO․DECIMAL package13876
+Node: Definitions14865
+Node: Exported definitions15130
+Node: Exported functions15398
+Ref: go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN function15623
+Ref: go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-ADD function15864
+Ref: go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-COUNTS function16101
+Ref: go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-VECTOR function16362
+Ref: go to the DFIO․DECIMAL∶∶PARSE-RATIONAL function16668
+Ref: go to the DFIO․DECIMAL∶∶PARSE-REAL function18098
+Ref: go to the DFIO∶∶READ-CSV function18694
+Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE function19457
+Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-ADD function19720
+Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-COUNT function20102
+Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-INTERN function20428
+Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-LOOKUP function20899
+Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-STRINGS function21254
+Ref: go to the DFIO∶∶STRING-TO-KEYWORD function21527
+Ref: go to the DFIO∶∶STRING-TO-SYMBOL function21874
+Ref: go to the DFIO∶∶WRITE-CSV function22365
+Node: Exported conditions23146
+Ref: go to the DFIO․DECIMAL∶∶PARSE-RATIONAL-ERROR condition23349
+Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-DUPLICATE condition23861
+Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-NOT-FOUND condition24190
+Node: Exported structures24474
+Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE structure24667
+Node: Exported classes25640
+Ref: go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN class25794
+Node: Internal definitions27560
+Node: Internal special variables27789
+Ref: go to the DFIO․DECIMAL∶∶+EXPONENT-CHARS+ special variable28014
+Node: Internal functions28215
+Ref: go to the DFIO․STRING-TABLE∶∶COPY-STRING-TABLE function28420
+Ref: go to the DFIO∶∶CSV-TO-DATA-COLUMNS function28708
+Ref: go to the DFIO․DECIMAL∶∶GOBBLE-POSITIVE-INTEGER function29284
+Ref: go to the DFIO․DECIMAL∶∶GOBBLE-SIGN function29798
+Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-GET function30208
+Ref: go to the DFIO․STRING-TABLE∶∶❨SETF STRING-TABLE-GET❩ function30670
+Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-P function31120
+Ref: go to the DFIO․STRING-TABLE∶∶STRING-TABLE-TABLE function31358
+Ref: go to the DFIO․STRING-TABLE∶∶❨SETF STRING-TABLE-TABLE❩ function31413
+Node: Internal types31610
+Ref: go to the DFIO․DATA-COLUMN∶∶NON-NEGATIVE-INTEGER type31765
+Node: Indexes31958
+Node: Concept index32148
+Node: Function index34721
+Node: Variable index38523
+Node: Data type index40859
 
 End Tag Table
 

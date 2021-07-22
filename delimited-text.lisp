@@ -37,7 +37,7 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
                      string)))
 
 (defun string-to-symbol (string)
-  "Map STRING to a symbol in PACKAGE, replacing #\. and #\space with a #\-, and upcasing all other characters. Exports symbol."
+  "Map STRING to a symbol in PACKAGE, replacing #\., #\_ and #\space with a #\-, and upcasing all other characters. Exports symbol."
   (let* ((sym (cond ((string= string "")
 		     (warn "Missing column name was filled in")
 		     (gentemp "X"))
