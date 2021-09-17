@@ -3,10 +3,10 @@
 <!-- Created by GNU Texinfo 6.7, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>The Data Frame Input/Output Reference Manual</title>
+<title>The Data Frame I/O Reference Manual</title>
 
-<meta name="description" content="The Data Frame Input/Output Reference Manual, version 1.0.">
-<meta name="keywords" content="The Data Frame Input/Output Reference Manual">
+<meta name="description" content="The Data Frame I/O Reference Manual, version 2.0.">
+<meta name="keywords" content="The Data Frame I/O Reference Manual">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -37,7 +37,7 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<h1 class="settitle" align="center">The Data Frame Input/Output Reference Manual</h1>
+<h1 class="settitle" align="center">The Data Frame I/O Reference Manual</h1>
 
 
 
@@ -103,14 +103,15 @@ ul.no-bullet {list-style: none}
       <li><a id="toc-dfio_002fdecimal_002elisp" href="#The-dfio_002fdecimal_2024lisp-file">2.1.3 <tt>dfio/decimal.lisp</tt></a></li>
       <li><a id="toc-dfio_002fstring_002dtable_002elisp" href="#The-dfio_002fstring_002dtable_2024lisp-file">2.1.4 <tt>dfio/string-table.lisp</tt></a></li>
       <li><a id="toc-dfio_002fdata_002dcolumn_002elisp" href="#The-dfio_002fdata_002dcolumn_2024lisp-file">2.1.5 <tt>dfio/data-column.lisp</tt></a></li>
-      <li><a id="toc-dfio_002fdelimited_002dtext_002elisp" href="#The-dfio_002fdelimited_002dtext_2024lisp-file">2.1.6 <tt>dfio/delimited-text.lisp</tt></a></li>
+      <li><a id="toc-dfio_002futils_002elisp" href="#The-dfio_002futils_2024lisp-file">2.1.6 <tt>dfio/utils.lisp</tt></a></li>
+      <li><a id="toc-dfio_002fdelimited_002dtext_002elisp" href="#The-dfio_002fdelimited_002dtext_2024lisp-file">2.1.7 <tt>dfio/delimited-text.lisp</tt></a></li>
     </ul></li>
   </ul></li>
   <li><a id="toc-Packages-1" href="#Packages">3 Packages</a>
   <ul class="no-bullet">
-    <li><a id="toc-dfio_002estring_002dtable" href="#The-dfio_2024string_002dtable-package">3.1 <tt>dfio.string-table</tt></a></li>
-    <li><a id="toc-dfio_002edata_002dcolumn" href="#The-dfio_2024data_002dcolumn-package">3.2 <tt>dfio.data-column</tt></a></li>
-    <li><a id="toc-dfio-1" href="#The-dfio-package">3.3 <tt>dfio</tt></a></li>
+    <li><a id="toc-dfio_002edata_002dcolumn" href="#The-dfio_2024data_002dcolumn-package">3.1 <tt>dfio.data-column</tt></a></li>
+    <li><a id="toc-dfio-1" href="#The-dfio-package">3.2 <tt>dfio</tt></a></li>
+    <li><a id="toc-dfio_002estring_002dtable" href="#The-dfio_2024string_002dtable-package">3.3 <tt>dfio.string-table</tt></a></li>
     <li><a id="toc-dfio_002edecimal" href="#The-dfio_2024decimal-package">3.4 <tt>dfio.decimal</tt></a></li>
   </ul></li>
   <li><a id="toc-Definitions-1" href="#Definitions">4 Definitions</a>
@@ -146,8 +147,8 @@ ul.no-bullet {list-style: none}
 <p>
 Next: <a href="#Systems" accesskey="n" rel="next">Systems</a>, Previous: <a href="dir.html#Top" accesskey="p" rel="prev">(dir)</a>, Up: <a href="dir.html#Top" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
 </div>
-<span id="The-Data-Frame-Input_002fOutput-Reference-Manual"></span><h1 class="top">The Data Frame Input/Output Reference Manual</h1>
-<p>This is the Data Frame Input/Output Reference Manual, version 1.0.
+<span id="The-Data-Frame-I_002fO-Reference-Manual"></span><h1 class="top">The Data Frame I/O Reference Manual</h1>
+<p>This is the Data Frame I/O Reference Manual, version 2.0.
 </p>
 <table class="menu" border="0" cellspacing="0">
 <tr><td align="left" valign="top">&bull; <a href="#Systems" accesskey="1">Systems</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The systems documentation
@@ -197,10 +198,10 @@ Previous: <a href="#Systems" accesskey="p" rel="prev">Systems</a>, Up: <a href="
 <dd><p>MS-PL
 </p></dd>
 <dt><strong>Description</strong></dt>
-<dd><p>Common Lisp library for reading and writing data-frame data.
+<dd><p>Common Lisp library for reading and writing data-frames
 </p></dd>
 <dt><strong>Version</strong></dt>
-<dd><p>1.0
+<dd><p>2.0
 </p></dd>
 <dt><strong>Dependencies</strong></dt>
 <dd><ul>
@@ -223,6 +224,7 @@ Previous: <a href="#Systems" accesskey="p" rel="prev">Systems</a>, Up: <a href="
 </li><li> <a href="#go-to-the-dfio_002fdecimal_2024lisp-file"><tt>decimal.lisp</tt></a> (file)
 </li><li> <a href="#go-to-the-dfio_002fstring_002dtable_2024lisp-file"><tt>string-table.lisp</tt></a> (file)
 </li><li> <a href="#go-to-the-dfio_002fdata_002dcolumn_2024lisp-file"><tt>data-column.lisp</tt></a> (file)
+</li><li> <a href="#go-to-the-dfio_002futils_2024lisp-file"><tt>utils.lisp</tt></a> (file)
 </li><li> <a href="#go-to-the-dfio_002fdelimited_002dtext_2024lisp-file"><tt>delimited-text.lisp</tt></a> (file)
 </li></ul>
 </dd>
@@ -262,7 +264,9 @@ Previous: <a href="#Files" accesskey="p" rel="prev">Files</a>, Up: <a href="#Fil
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#The-dfio_002fdata_002dcolumn_2024lisp-file" accesskey="5">The dfio/data-column.lisp file</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#The-dfio_002fdelimited_002dtext_2024lisp-file" accesskey="6">The dfio/delimited-text.lisp file</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#The-dfio_002futils_2024lisp-file" accesskey="6">The dfio/utils.lisp file</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="#The-dfio_002fdelimited_002dtext_2024lisp-file" accesskey="7">The dfio/delimited-text.lisp file</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
@@ -302,9 +306,9 @@ Next: <a href="#The-dfio_002fdecimal_2024lisp-file" accesskey="n" rel="next">The
 </p></dd>
 <dt><strong>Packages</strong></dt>
 <dd><ul>
-<li> <a href="#go-to-the-DFIO_2024STRING_002dTABLE-package"><tt>dfio.string-table</tt></a>
-</li><li> <a href="#go-to-the-DFIO_2024DATA_002dCOLUMN-package"><tt>dfio.data-column</tt></a>
+<li> <a href="#go-to-the-DFIO_2024DATA_002dCOLUMN-package"><tt>dfio.data-column</tt></a>
 </li><li> <a href="#go-to-the-DFIO-package"><tt>dfio</tt></a>
+</li><li> <a href="#go-to-the-DFIO_2024STRING_002dTABLE-package"><tt>dfio.string-table</tt></a>
 </li><li> <a href="#go-to-the-DFIO_2024DECIMAL-package"><tt>dfio.decimal</tt></a>
 </li></ul>
 </dd>
@@ -392,7 +396,7 @@ Next: <a href="#The-dfio_002fdata_002dcolumn_2024lisp-file" accesskey="n" rel="n
 <hr>
 <span id="The-dfio_002fdata_002dcolumn_2024lisp-file"></span><div class="header">
 <p>
-Next: <a href="#The-dfio_002fdelimited_002dtext_2024lisp-file" accesskey="n" rel="next">The dfio/delimited-text․lisp file</a>, Previous: <a href="#The-dfio_002fstring_002dtable_2024lisp-file" accesskey="p" rel="prev">The dfio/string-table․lisp file</a>, Up: <a href="#Lisp-files" accesskey="u" rel="up">Lisp files</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#The-dfio_002futils_2024lisp-file" accesskey="n" rel="next">The dfio/utils․lisp file</a>, Previous: <a href="#The-dfio_002fstring_002dtable_2024lisp-file" accesskey="p" rel="prev">The dfio/string-table․lisp file</a>, Up: <a href="#Lisp-files" accesskey="u" rel="up">Lisp files</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
 </div>
 <span id="dfio_002fdata_002dcolumn_002elisp"></span><h4 class="subsection">2.1.5 <tt>dfio/data-column.lisp</tt></h4>
 <span id="go-to-the-dfio_002fdata_002dcolumn_2024lisp-file"></span><span id="index-dfio_002fdata_002dcolumn_002elisp"></span>
@@ -423,17 +427,44 @@ Next: <a href="#The-dfio_002fdelimited_002dtext_2024lisp-file" accesskey="n" rel
 </dl>
 
 <hr>
+<span id="The-dfio_002futils_2024lisp-file"></span><div class="header">
+<p>
+Next: <a href="#The-dfio_002fdelimited_002dtext_2024lisp-file" accesskey="n" rel="next">The dfio/delimited-text․lisp file</a>, Previous: <a href="#The-dfio_002fdata_002dcolumn_2024lisp-file" accesskey="p" rel="prev">The dfio/data-column․lisp file</a>, Up: <a href="#Lisp-files" accesskey="u" rel="up">Lisp files</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="dfio_002futils_002elisp"></span><h4 class="subsection">2.1.6 <tt>dfio/utils.lisp</tt></h4>
+<span id="go-to-the-dfio_002futils_2024lisp-file"></span><span id="index-dfio_002futils_002elisp"></span>
+<span id="index-Lisp-File_002c-dfio_002futils_002elisp"></span>
+<span id="index-File_002c-Lisp_002c-dfio_002futils_002elisp"></span>
+<dl compact="compact">
+<dt><strong>Dependency</strong></dt>
+<dd><p><a href="#go-to-the-dfio_002fdata_002dcolumn_2024lisp-file"><tt>data-column.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Parent</strong></dt>
+<dd><p><a href="#go-to-the-dfio-system"><tt>dfio</tt></a> (system)
+</p></dd>
+<dt><strong>Location</strong></dt>
+<dd><p><a href="file://s:/src/dfio/utils.lisp"><tt>utils.lisp</tt></a>
+</p></dd>
+<dt><strong>Exported Definitions</strong></dt>
+<dd><ul>
+<li> <a href="#go-to-the-DFIO_2236_2236STRING_002dTO_002dKEYWORD-function"><tt>string-to-keyword</tt></a> (function)
+</li><li> <a href="#go-to-the-DFIO_2236_2236STRING_002dTO_002dSYMBOL-function"><tt>string-to-symbol</tt></a> (function)
+</li></ul>
+</dd>
+</dl>
+
+<hr>
 <span id="The-dfio_002fdelimited_002dtext_2024lisp-file"></span><div class="header">
 <p>
-Previous: <a href="#The-dfio_002fdata_002dcolumn_2024lisp-file" accesskey="p" rel="prev">The dfio/data-column․lisp file</a>, Up: <a href="#Lisp-files" accesskey="u" rel="up">Lisp files</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+Previous: <a href="#The-dfio_002futils_2024lisp-file" accesskey="p" rel="prev">The dfio/utils․lisp file</a>, Up: <a href="#Lisp-files" accesskey="u" rel="up">Lisp files</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
 </div>
-<span id="dfio_002fdelimited_002dtext_002elisp"></span><h4 class="subsection">2.1.6 <tt>dfio/delimited-text.lisp</tt></h4>
+<span id="dfio_002fdelimited_002dtext_002elisp"></span><h4 class="subsection">2.1.7 <tt>dfio/delimited-text.lisp</tt></h4>
 <span id="go-to-the-dfio_002fdelimited_002dtext_2024lisp-file"></span><span id="index-dfio_002fdelimited_002dtext_002elisp"></span>
 <span id="index-Lisp-File_002c-dfio_002fdelimited_002dtext_002elisp"></span>
 <span id="index-File_002c-Lisp_002c-dfio_002fdelimited_002dtext_002elisp"></span>
 <dl compact="compact">
 <dt><strong>Dependency</strong></dt>
-<dd><p><a href="#go-to-the-dfio_002fdata_002dcolumn_2024lisp-file"><tt>data-column.lisp</tt></a> (file)
+<dd><p><a href="#go-to-the-dfio_002futils_2024lisp-file"><tt>utils.lisp</tt></a> (file)
 </p></dd>
 <dt><strong>Parent</strong></dt>
 <dd><p><a href="#go-to-the-dfio-system"><tt>dfio</tt></a> (system)
@@ -444,8 +475,6 @@ Previous: <a href="#The-dfio_002fdata_002dcolumn_2024lisp-file" accesskey="p" re
 <dt><strong>Exported Definitions</strong></dt>
 <dd><ul>
 <li> <a href="#go-to-the-DFIO_2236_2236READ_002dCSV-function"><tt>read-csv</tt></a> (function)
-</li><li> <a href="#go-to-the-DFIO_2236_2236STRING_002dTO_002dKEYWORD-function"><tt>string-to-keyword</tt></a> (function)
-</li><li> <a href="#go-to-the-DFIO_2236_2236STRING_002dTO_002dSYMBOL-function"><tt>string-to-symbol</tt></a> (function)
 </li><li> <a href="#go-to-the-DFIO_2236_2236WRITE_002dCSV-function"><tt>write-csv</tt></a> (function)
 </li></ul>
 </dd>
@@ -465,11 +494,11 @@ Next: <a href="#Definitions" accesskey="n" rel="next">Definitions</a>, Previous:
 <p>Packages are listed by definition order.
 </p>
 <table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top">&bull; <a href="#The-dfio_2024string_002dtable-package" accesskey="1">The dfio.string-table package</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#The-dfio_2024data_002dcolumn-package" accesskey="1">The dfio.data-column package</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#The-dfio_2024data_002dcolumn-package" accesskey="2">The dfio.data-column package</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#The-dfio-package" accesskey="2">The dfio package</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#The-dfio-package" accesskey="3">The dfio package</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="#The-dfio_2024string_002dtable-package" accesskey="3">The dfio.string-table package</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#The-dfio_2024decimal-package" accesskey="4">The dfio.decimal package</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -477,11 +506,85 @@ Next: <a href="#Definitions" accesskey="n" rel="next">Definitions</a>, Previous:
 
 
 <hr>
+<span id="The-dfio_2024data_002dcolumn-package"></span><div class="header">
+<p>
+Next: <a href="#The-dfio-package" accesskey="n" rel="next">The dfio package</a>, Previous: <a href="#Packages" accesskey="p" rel="prev">Packages</a>, Up: <a href="#Packages" accesskey="u" rel="up">Packages</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="dfio_002edata_002dcolumn"></span><h3 class="section">3.1 <tt>dfio.data-column</tt></h3>
+<span id="go-to-the-DFIO_2024DATA_002dCOLUMN-package"></span><span id="index-dfio_002edata_002dcolumn"></span>
+<span id="index-Package_002c-dfio_002edata_002dcolumn"></span>
+<dl compact="compact">
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-dfio_002fpkgdcl_2024lisp-file"><tt>pkgdcl.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Use List</strong></dt>
+<dd><ul>
+<li> <tt>let-plus</tt>
+</li><li> <a href="#go-to-the-DFIO_2024STRING_002dTABLE-package"><tt>dfio.string-table</tt></a>
+</li><li> <a href="#go-to-the-DFIO_2024DECIMAL-package"><tt>dfio.decimal</tt></a>
+</li><li> <tt>anaphora</tt>
+</li><li> <tt>common-lisp</tt>
+</li></ul>
+</dd>
+<dt><strong>Used By List</strong></dt>
+<dd><p><a href="#go-to-the-DFIO-package"><tt>dfio</tt></a>
+</p></dd>
+<dt><strong>Exported Definitions</strong></dt>
+<dd><ul>
+<li> <a href="#go-to-the-DFIO_2024DATA_002dCOLUMN_2236_2236DATA_002dCOLUMN-function"><tt>data-column</tt></a> (function)
+</li><li> <a href="#go-to-the-DFIO_2024DATA_002dCOLUMN_2236_2236DATA_002dCOLUMN-class"><tt>data-column</tt></a> (class)
+</li><li> <a href="#go-to-the-DFIO_2024DATA_002dCOLUMN_2236_2236DATA_002dCOLUMN_002dADD-function"><tt>data-column-add</tt></a> (function)
+</li><li> <a href="#go-to-the-DFIO_2024DATA_002dCOLUMN_2236_2236DATA_002dCOLUMN_002dCOUNTS-function"><tt>data-column-counts</tt></a> (function)
+</li><li> <a href="#go-to-the-DFIO_2024DATA_002dCOLUMN_2236_2236DATA_002dCOLUMN_002dVECTOR-function"><tt>data-column-vector</tt></a> (function)
+</li></ul>
+</dd>
+<dt><strong>Internal Definitions</strong></dt>
+<dd><p><a href="#go-to-the-DFIO_2024DATA_002dCOLUMN_2236_2236NON_002dNEGATIVE_002dINTEGER-type"><tt>non-negative-integer</tt></a> (type)
+</p></dd>
+</dl>
+
+
+<hr>
+<span id="The-dfio-package"></span><div class="header">
+<p>
+Next: <a href="#The-dfio_2024string_002dtable-package" accesskey="n" rel="next">The dfio․string-table package</a>, Previous: <a href="#The-dfio_2024data_002dcolumn-package" accesskey="p" rel="prev">The dfio․data-column package</a>, Up: <a href="#Packages" accesskey="u" rel="up">Packages</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+</div>
+<span id="dfio-1"></span><h3 class="section">3.2 <tt>dfio</tt></h3>
+<span id="go-to-the-DFIO-package"></span><span id="index-dfio-1"></span>
+<span id="index-Package_002c-dfio"></span>
+<dl compact="compact">
+<dt><strong>Source</strong></dt>
+<dd><p><a href="#go-to-the-dfio_002fpkgdcl_2024lisp-file"><tt>pkgdcl.lisp</tt></a> (file)
+</p></dd>
+<dt><strong>Use List</strong></dt>
+<dd><ul>
+<li> <a href="#go-to-the-DFIO_2024DATA_002dCOLUMN-package"><tt>dfio.data-column</tt></a>
+</li><li> <tt>let-plus</tt>
+</li><li> <tt>anaphora</tt>
+</li><li> <tt>alexandria</tt>
+</li><li> <tt>common-lisp</tt>
+</li></ul>
+</dd>
+<dt><strong>Exported Definitions</strong></dt>
+<dd><ul>
+<li> <a href="#go-to-the-DFIO_2236_2236READ_002dCSV-function"><tt>read-csv</tt></a> (function)
+</li><li> <a href="#go-to-the-DFIO_2236_2236STRING_002dTO_002dKEYWORD-function"><tt>string-to-keyword</tt></a> (function)
+</li><li> <a href="#go-to-the-DFIO_2236_2236STRING_002dTO_002dSYMBOL-function"><tt>string-to-symbol</tt></a> (function)
+</li><li> <a href="#go-to-the-DFIO_2236_2236WRITE_002dCSV-function"><tt>write-csv</tt></a> (function)
+</li></ul>
+</dd>
+<dt><strong>Internal Definitions</strong></dt>
+<dd><p><a href="#go-to-the-DFIO_2236_2236CSV_002dTO_002dDATA_002dCOLUMNS-function"><tt>csv-to-data-columns</tt></a> (function)
+</p></dd>
+</dl>
+
+
+<hr>
 <span id="The-dfio_2024string_002dtable-package"></span><div class="header">
 <p>
-Next: <a href="#The-dfio_2024data_002dcolumn-package" accesskey="n" rel="next">The dfio․data-column package</a>, Previous: <a href="#Packages" accesskey="p" rel="prev">Packages</a>, Up: <a href="#Packages" accesskey="u" rel="up">Packages</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+Next: <a href="#The-dfio_2024decimal-package" accesskey="n" rel="next">The dfio․decimal package</a>, Previous: <a href="#The-dfio-package" accesskey="p" rel="prev">The dfio package</a>, Up: <a href="#Packages" accesskey="u" rel="up">Packages</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
 </div>
-<span id="dfio_002estring_002dtable"></span><h3 class="section">3.1 <tt>dfio.string-table</tt></h3>
+<span id="dfio_002estring_002dtable"></span><h3 class="section">3.3 <tt>dfio.string-table</tt></h3>
 <span id="go-to-the-DFIO_2024STRING_002dTABLE-package"></span><span id="index-dfio_002estring_002dtable"></span>
 <span id="index-Package_002c-dfio_002estring_002dtable"></span>
 <dl compact="compact">
@@ -526,86 +629,9 @@ Next: <a href="#The-dfio_2024data_002dcolumn-package" accesskey="n" rel="next">T
 
 
 <hr>
-<span id="The-dfio_2024data_002dcolumn-package"></span><div class="header">
-<p>
-Next: <a href="#The-dfio-package" accesskey="n" rel="next">The dfio package</a>, Previous: <a href="#The-dfio_2024string_002dtable-package" accesskey="p" rel="prev">The dfio․string-table package</a>, Up: <a href="#Packages" accesskey="u" rel="up">Packages</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
-</div>
-<span id="dfio_002edata_002dcolumn"></span><h3 class="section">3.2 <tt>dfio.data-column</tt></h3>
-<span id="go-to-the-DFIO_2024DATA_002dCOLUMN-package"></span><span id="index-dfio_002edata_002dcolumn"></span>
-<span id="index-Package_002c-dfio_002edata_002dcolumn"></span>
-<dl compact="compact">
-<dt><strong>Source</strong></dt>
-<dd><p><a href="#go-to-the-dfio_002fpkgdcl_2024lisp-file"><tt>pkgdcl.lisp</tt></a> (file)
-</p></dd>
-<dt><strong>Use List</strong></dt>
-<dd><ul>
-<li> <tt>let-plus</tt>
-</li><li> <a href="#go-to-the-DFIO_2024STRING_002dTABLE-package"><tt>dfio.string-table</tt></a>
-</li><li> <a href="#go-to-the-DFIO_2024DECIMAL-package"><tt>dfio.decimal</tt></a>
-</li><li> <tt>anaphora</tt>
-</li><li> <tt>common-lisp</tt>
-</li></ul>
-</dd>
-<dt><strong>Used By List</strong></dt>
-<dd><p><a href="#go-to-the-DFIO-package"><tt>dfio</tt></a>
-</p></dd>
-<dt><strong>Exported Definitions</strong></dt>
-<dd><ul>
-<li> <a href="#go-to-the-DFIO_2024DATA_002dCOLUMN_2236_2236DATA_002dCOLUMN-function"><tt>data-column</tt></a> (function)
-</li><li> <a href="#go-to-the-DFIO_2024DATA_002dCOLUMN_2236_2236DATA_002dCOLUMN-class"><tt>data-column</tt></a> (class)
-</li><li> <a href="#go-to-the-DFIO_2024DATA_002dCOLUMN_2236_2236DATA_002dCOLUMN_002dADD-function"><tt>data-column-add</tt></a> (function)
-</li><li> <a href="#go-to-the-DFIO_2024DATA_002dCOLUMN_2236_2236DATA_002dCOLUMN_002dCOUNTS-function"><tt>data-column-counts</tt></a> (function)
-</li><li> <a href="#go-to-the-DFIO_2024DATA_002dCOLUMN_2236_2236DATA_002dCOLUMN_002dVECTOR-function"><tt>data-column-vector</tt></a> (function)
-</li></ul>
-</dd>
-<dt><strong>Internal Definitions</strong></dt>
-<dd><p><a href="#go-to-the-DFIO_2024DATA_002dCOLUMN_2236_2236NON_002dNEGATIVE_002dINTEGER-type"><tt>non-negative-integer</tt></a> (type)
-</p></dd>
-</dl>
-
-
-<hr>
-<span id="The-dfio-package"></span><div class="header">
-<p>
-Next: <a href="#The-dfio_2024decimal-package" accesskey="n" rel="next">The dfio․decimal package</a>, Previous: <a href="#The-dfio_2024data_002dcolumn-package" accesskey="p" rel="prev">The dfio․data-column package</a>, Up: <a href="#Packages" accesskey="u" rel="up">Packages</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
-</div>
-<span id="dfio-1"></span><h3 class="section">3.3 <tt>dfio</tt></h3>
-<span id="go-to-the-DFIO-package"></span><span id="index-dfio-1"></span>
-<span id="index-Package_002c-dfio"></span>
-<dl compact="compact">
-<dt><strong>Source</strong></dt>
-<dd><p><a href="#go-to-the-dfio_002fpkgdcl_2024lisp-file"><tt>pkgdcl.lisp</tt></a> (file)
-</p></dd>
-<dt><strong>Use List</strong></dt>
-<dd><ul>
-<li> <a href="#go-to-the-DFIO_2024DATA_002dCOLUMN-package"><tt>dfio.data-column</tt></a>
-</li><li> <tt>let-plus</tt>
-</li><li> <tt>anaphora</tt>
-</li><li> <tt>alexandria</tt>
-</li><li> <tt>common-lisp</tt>
-</li></ul>
-</dd>
-<dt><strong>Used By List</strong></dt>
-<dd><p><tt>lisp-stat</tt>
-</p></dd>
-<dt><strong>Exported Definitions</strong></dt>
-<dd><ul>
-<li> <a href="#go-to-the-DFIO_2236_2236READ_002dCSV-function"><tt>read-csv</tt></a> (function)
-</li><li> <a href="#go-to-the-DFIO_2236_2236STRING_002dTO_002dKEYWORD-function"><tt>string-to-keyword</tt></a> (function)
-</li><li> <a href="#go-to-the-DFIO_2236_2236STRING_002dTO_002dSYMBOL-function"><tt>string-to-symbol</tt></a> (function)
-</li><li> <a href="#go-to-the-DFIO_2236_2236WRITE_002dCSV-function"><tt>write-csv</tt></a> (function)
-</li></ul>
-</dd>
-<dt><strong>Internal Definitions</strong></dt>
-<dd><p><a href="#go-to-the-DFIO_2236_2236CSV_002dTO_002dDATA_002dCOLUMNS-function"><tt>csv-to-data-columns</tt></a> (function)
-</p></dd>
-</dl>
-
-
-<hr>
 <span id="The-dfio_2024decimal-package"></span><div class="header">
 <p>
-Previous: <a href="#The-dfio-package" accesskey="p" rel="prev">The dfio package</a>, Up: <a href="#Packages" accesskey="u" rel="up">Packages</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
+Previous: <a href="#The-dfio_2024string_002dtable-package" accesskey="p" rel="prev">The dfio․string-table package</a>, Up: <a href="#Packages" accesskey="u" rel="up">Packages</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Indexes" title="Index" rel="index">Index</a>]</p>
 </div>
 <span id="dfio_002edecimal"></span><h3 class="section">3.4 <tt>dfio.decimal</tt></h3>
 <span id="go-to-the-DFIO_2024DECIMAL-package"></span><span id="index-dfio_002edecimal"></span>
@@ -785,13 +811,10 @@ exponent ::= exponent-char[sign]digit+<br>
 <dl>
 <dt id="index-read_002dcsv">Function: <strong>read-csv</strong> <em>STREAM-OR-STRING &amp;key SKIP-FIRST-ROW? COLUMN-KEYS-OR-FUNCTION PACKAGE MAP-ALIST</em></dt>
 <dd><span id="go-to-the-DFIO_2236_2236READ_002dCSV-function"></span><span id="index-Function_002c-read_002dcsv"></span>
-<p>Read a CSV file (or stream, or string) into a DATA-FRAME, which is returned.<br>
-</p>
-<p>When SKIP-FIRST-ROW?, the first row is read separately and COLUMN-KEYS-OR-FUNCTION is used to form column keys.<br>
-</p>
-<p>When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column keys, regardless of the value of SKIP-FIRST-ROW?.<br>
-</p>
-<p>PACKAGE indicates the package to intern column names into.<br>
+<p>Read a CSV file, stream, or string into a DATA-FRAME, which is returned.<br>
+When SKIP-FIRST-ROW?, the first row is read separately and COLUMN-KEYS-OR-FUNCTION is used to form column keys.<br>
+When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column keys, regardless of the value of SKIP-FIRST-ROW?.<br>
+PACKAGE indicates the package to intern column names into.<br>
 </p>
 <p>MAP-ALIST maps values during the import. This is useful if you want special mappings for missing, though the mechanism is general.
 </p><dl compact="compact">
@@ -891,7 +914,7 @@ exponent ::= exponent-char[sign]digit+<br>
 <dd><p><a href="#go-to-the-DFIO-package"><tt>dfio</tt></a>
 </p></dd>
 <dt><strong>Source</strong></dt>
-<dd><p><a href="#go-to-the-dfio_002fdelimited_002dtext_2024lisp-file"><tt>delimited-text.lisp</tt></a> (file)
+<dd><p><a href="#go-to-the-dfio_002futils_2024lisp-file"><tt>utils.lisp</tt></a> (file)
 </p></dd>
 </dl>
 </dd></dl>
@@ -904,7 +927,7 @@ exponent ::= exponent-char[sign]digit+<br>
 <dd><p><a href="#go-to-the-DFIO-package"><tt>dfio</tt></a>
 </p></dd>
 <dt><strong>Source</strong></dt>
-<dd><p><a href="#go-to-the-dfio_002fdelimited_002dtext_2024lisp-file"><tt>delimited-text.lisp</tt></a> (file)
+<dd><p><a href="#go-to-the-dfio_002futils_2024lisp-file"><tt>utils.lisp</tt></a> (file)
 </p></dd>
 </dl>
 </dd></dl>
@@ -961,8 +984,11 @@ Next: <a href="#Exported-structures" accesskey="n" rel="next">Exported structure
 <dt id="index-string">Slot: <strong>string</strong></dt>
 <dd><span id="index-Slot_002c-string"></span>
 <dl compact="compact">
+<dt><strong>Initargs</strong></dt>
+<dd><p><tt>:string</tt>
+</p></dd>
 <dt><strong>Initform</strong></dt>
-<dd><p><tt>(quote :string)</tt>
+<dd><p><tt>(quote nil)</tt>
 </p></dd>
 </dl>
 </dd></dl>
@@ -970,8 +996,11 @@ Next: <a href="#Exported-structures" accesskey="n" rel="next">Exported structure
 <dt id="index-message">Slot: <strong>message</strong></dt>
 <dd><span id="index-Slot_002c-message"></span>
 <dl compact="compact">
+<dt><strong>Initargs</strong></dt>
+<dd><p><tt>:message</tt>
+</p></dd>
 <dt><strong>Initform</strong></dt>
-<dd><p><tt>(quote :message)</tt>
+<dd><p><tt>(quote nil)</tt>
 </p></dd>
 </dl>
 </dd></dl>
@@ -1418,6 +1447,7 @@ Next: <a href="#Function-index" accesskey="n" rel="next">Function index</a>, Pre
 <tr><td></td><td valign="top"><a href="#index-dfio_002fdelimited_002dtext_002elisp"><tt>dfio/delimited-text.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-dfio_002fdelimited_002dtext_2024lisp-file">The dfio/delimited-text․lisp file</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-dfio_002fpkgdcl_002elisp"><tt>dfio/pkgdcl.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-dfio_002fpkgdcl_2024lisp-file">The dfio/pkgdcl․lisp file</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-dfio_002fstring_002dtable_002elisp"><tt>dfio/string-table.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-dfio_002fstring_002dtable_2024lisp-file">The dfio/string-table․lisp file</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-dfio_002futils_002elisp"><tt>dfio/utils.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-dfio_002futils_2024lisp-file">The dfio/utils․lisp file</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th id="Concept-index_cp_letter-F">F</th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-File_002c-Lisp_002c-dfio_002easd">File, Lisp, <tt>dfio.asd</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-dfio_2024asd-file">The dfio․asd file</a></td></tr>
@@ -1426,6 +1456,7 @@ Next: <a href="#Function-index" accesskey="n" rel="next">Function index</a>, Pre
 <tr><td></td><td valign="top"><a href="#index-File_002c-Lisp_002c-dfio_002fdelimited_002dtext_002elisp">File, Lisp, <tt>dfio/delimited-text.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-dfio_002fdelimited_002dtext_2024lisp-file">The dfio/delimited-text․lisp file</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-File_002c-Lisp_002c-dfio_002fpkgdcl_002elisp">File, Lisp, <tt>dfio/pkgdcl.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-dfio_002fpkgdcl_2024lisp-file">The dfio/pkgdcl․lisp file</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-File_002c-Lisp_002c-dfio_002fstring_002dtable_002elisp">File, Lisp, <tt>dfio/string-table.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-dfio_002fstring_002dtable_2024lisp-file">The dfio/string-table․lisp file</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-File_002c-Lisp_002c-dfio_002futils_002elisp">File, Lisp, <tt>dfio/utils.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-dfio_002futils_2024lisp-file">The dfio/utils․lisp file</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th id="Concept-index_cp_letter-L">L</th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-Lisp-File_002c-dfio_002easd">Lisp File, <tt>dfio.asd</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-dfio_2024asd-file">The dfio․asd file</a></td></tr>
@@ -1434,6 +1465,7 @@ Next: <a href="#Function-index" accesskey="n" rel="next">Function index</a>, Pre
 <tr><td></td><td valign="top"><a href="#index-Lisp-File_002c-dfio_002fdelimited_002dtext_002elisp">Lisp File, <tt>dfio/delimited-text.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-dfio_002fdelimited_002dtext_2024lisp-file">The dfio/delimited-text․lisp file</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-Lisp-File_002c-dfio_002fpkgdcl_002elisp">Lisp File, <tt>dfio/pkgdcl.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-dfio_002fpkgdcl_2024lisp-file">The dfio/pkgdcl․lisp file</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-Lisp-File_002c-dfio_002fstring_002dtable_002elisp">Lisp File, <tt>dfio/string-table.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-dfio_002fstring_002dtable_2024lisp-file">The dfio/string-table․lisp file</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Lisp-File_002c-dfio_002futils_002elisp">Lisp File, <tt>dfio/utils.lisp</tt></a>:</td><td>&nbsp;</td><td valign="top"><a href="#The-dfio_002futils_2024lisp-file">The dfio/utils․lisp file</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 </table>
 <table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Concept-index_cp_letter-D"><b>D</b></a>

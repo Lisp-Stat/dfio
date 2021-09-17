@@ -1,4 +1,4 @@
-;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO.DATA-DOLUMN -*-
+;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO.DATA-COLUMN -*-
 ;;; Copyright (c) 2021 Symbolics Pte. Ltd. All rights reserved.
 (in-package #:dfio.data-column)
 

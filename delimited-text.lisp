@@ -2,10 +2,6 @@
 ;;; Copyright (c) 2021 Symbolics Pte. Ltd. All rights reserved.
 (in-package #:dfio)
 
-;;;
-;;; CSV
-;;;
-
 (defun csv-to-data-columns (stream-or-string skip-first-row? &key map-alist)
   "Read a CSV file (or stream, or string), accumulate the values in DATA-COLUMNs, return a list of these.  Rows are checked to have the same number of elements.
 
@@ -21,36 +17,6 @@ When SKIP-FIRST-ROW?, the first row is read separately and returned as the secon
           (setf first-row row)))
     (values data-columns (unless skip-first-row? first-row))))
 
-(defun string-to-keyword (string)
-  "Map string to a keyword.
-
-The current implementation replaces #\. and #\space with a #\-, and upcases all other characters."
-
-  ;; Tamas:date-unknown: QUESTION: should the result depend on the readtable?
-  ;; SN:20210416: I suspect Tamas may have been thinking about readtable-case
-  ;; in order to preserve the original case of the column names
-  (make-keyword (map 'string
-                     (lambda (character)
-                       (case character
-                         ((#\. #\space) #\-)
-                         (otherwise (char-upcase character))))
-                     string)))
-
-(defun string-to-symbol (string)
-  "Map STRING to a symbol in PACKAGE, replacing #\., #\_ and #\space with a #\-, and upcasing all other characters. Exports symbol."
-  (let* ((sym (cond ((string= string "")
-		     (warn "Missing column name was filled in")
-		     (gentemp "X"))
-		    (t (intern
-			(map 'string
-			     (lambda (character)
-			       (case character
-				 ((#\. #\_ #\space) #\-)
-				 (otherwise (char-upcase character))))
-			     string))))))
-    (export sym)
-    sym))
-
 (defun read-csv (stream-or-string
                  &key
 		   (skip-first-row? nil)
@@ -58,12 +24,9 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
 		   (package nil)
 		   (map-alist '(("" . :na) ;could be anything, e.g. :missing, nil
                                 ("NA" . :na))))
-  "Read a CSV file (or stream, or string) into a DATA-FRAME, which is returned.
-
+  "Read a CSV file, stream, or string into a DATA-FRAME, which is returned.
 When SKIP-FIRST-ROW?, the first row is read separately and COLUMN-KEYS-OR-FUNCTION is used to form column keys.
-
 When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column keys, regardless of the value of SKIP-FIRST-ROW?.
-
 PACKAGE indicates the package to intern column names into.
 
 MAP-ALIST maps values during the import. This is useful if you want special mappings for missing, though the mechanism is general."

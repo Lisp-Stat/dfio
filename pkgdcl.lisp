@@ -46,8 +46,8 @@
    #:string-to-symbol
 
    ;; Text delimited formats
-   #:read-csv
-   #:write-csv
+   #-genera #:read-csv
+   #-genera #:write-csv
 
    #:json-to-data-frame
    #:data-frame-to-json))

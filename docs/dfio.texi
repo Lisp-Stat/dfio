@@ -5,14 +5,14 @@
 @c Copyright (C) 2021 Steve Nunez
 @c Copyright (C) 2021 Tamas Papp
 
-@c This file is part of Data Frame Input/Output.
+@c This file is part of Data Frame I/O.
 
 
 
 @c Commentary:
 
 @c Generated automatically by Declt version 2.4 patchlevel 1 "Will Decker"
-@c on Thu Jul 22 17:03:15 2021 GMT+8.
+@c on Fri Sep 17 10:44:43 2021 GMT+8.
 
 
 @c ====================================================================
@@ -20,7 +20,7 @@
 @c ====================================================================
 @c %**start of header
 @setfilename dfio.info
-@settitle The Data Frame Input/Output Reference Manual
+@settitle The Data Frame I/O Reference Manual
 @afourpaper
 @documentencoding UTF-8
 @c %**end of header
@@ -92,7 +92,7 @@
 @c ====================================================================
 @setchapternewpage odd
 @documentdescription
-The Data Frame Input/Output Reference Manual, version 1.0.
+The Data Frame I/O Reference Manual, version 2.0.
 @end documentdescription
 
 
@@ -263,7 +263,7 @@ The Data Frame Input/Output Reference Manual, version 1.0.
 @c ====================================================================
 @dircategory Common Lisp
 @direntry
-* Data Frame Input/Output Reference: (dfio). The Data Frame Input/Output Reference Manual.
+* Data Frame I/O Reference: (dfio). The Data Frame I/O Reference Manual.
 @end direntry
 
 
@@ -272,8 +272,8 @@ The Data Frame Input/Output Reference Manual, version 1.0.
 @c Title Page
 @c ====================================================================
 @titlepage
-@title The Data Frame Input/Output Reference Manual
-@subtitle Common Lisp library for reading and writing data-frame data, version 1.0
+@title The Data Frame I/O Reference Manual
+@subtitle Common Lisp library for reading and writing data-frames, version 2.0
 
 @author Steve Nunez <@email{steve@atchar{}symbolics.tech}>
 @author Tamas Papp <@email{tkpapp@atchar{}gmail.com}>
@@ -294,8 +294,8 @@ The Data Frame Input/Output Reference Manual, version 1.0.
 @c ====================================================================
 @ifnottex
 @node Top, Systems, (dir), (dir)
-@top The Data Frame Input/Output Reference Manual
-This is the Data Frame Input/Output Reference Manual, version 1.0.
+@top The Data Frame I/O Reference Manual
+This is the Data Frame I/O Reference Manual, version 2.0.
 
 @menu
 * Systems:: The systems documentation
@@ -335,9 +335,9 @@ Tamas Papp <@email{tkpapp@atchar{}gmail.com}>
 @item License
 MS-PL
 @item Description
-Common Lisp library for reading and writing data-frame data.
+Common Lisp library for reading and writing data-frames
 @item Version
-1.0
+2.0
 @item Dependencies
 @itemize @bullet
 @item
@@ -365,6 +365,8 @@ Common Lisp library for reading and writing data-frame data.
 @ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
 @item
 @ref{go to the dfio/data-column․lisp file, , @t{data-column.lisp}} (file)
+@item
+@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
 @item
 @ref{go to the dfio/delimited-text․lisp file, , @t{delimited-text.lisp}} (file)
 @end itemize
@@ -396,6 +398,7 @@ components trees.
 * The dfio/decimal.lisp file: The dfio/decimal․lisp file.
 * The dfio/string-table.lisp file: The dfio/string-table․lisp file.
 * The dfio/data-column.lisp file: The dfio/data-column․lisp file.
+* The dfio/utils.lisp file: The dfio/utils․lisp file.
 * The dfio/delimited-text.lisp file: The dfio/delimited-text․lisp file.
 @end menu
 
@@ -422,11 +425,11 @@ components trees.
 @item Packages
 @itemize @bullet
 @item
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
-@item
 @ref{go to the DFIO․DATA-COLUMN package, , @t{dfio.data-column}}
 @item
 @ref{go to the DFIO package, , @t{dfio}}
+@item
+@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
 @item
 @ref{go to the DFIO․DECIMAL package, , @t{dfio.decimal}}
 @end itemize
@@ -512,7 +515,7 @@ components trees.
 @end itemize
 @end table
 
-@node The dfio/data-column․lisp file, The dfio/delimited-text․lisp file, The dfio/string-table․lisp file, Lisp files
+@node The dfio/data-column․lisp file, The dfio/utils․lisp file, The dfio/string-table․lisp file, Lisp files
 @subsection @t{dfio/data-column.lisp}
 @anchor{go to the dfio/data-column․lisp file}@c
 @lispfileindex{dfio/data-column.lisp}@c
@@ -540,13 +543,33 @@ components trees.
 @ref{go to the DFIO․DATA-COLUMN∶∶NON-NEGATIVE-INTEGER type, , @t{non-negative-integer}} (type)
 @end table
 
-@node The dfio/delimited-text․lisp file, , The dfio/data-column․lisp file, Lisp files
+@node The dfio/utils․lisp file, The dfio/delimited-text․lisp file, The dfio/data-column․lisp file, Lisp files
+@subsection @t{dfio/utils.lisp}
+@anchor{go to the dfio/utils․lisp file}@c
+@lispfileindex{dfio/utils.lisp}@c
+@table @strong
+@item Dependency
+@ref{go to the dfio/data-column․lisp file, , @t{data-column.lisp}} (file)
+@item Parent
+@ref{go to the dfio system, , @t{dfio}} (system)
+@item Location
+@url{file://s:/src/dfio/utils.lisp, ignore, @t{utils.lisp}}
+@item Exported Definitions
+@itemize @bullet
+@item
+@ref{go to the DFIO∶∶STRING-TO-KEYWORD function, , @t{string-to-keyword}} (function)
+@item
+@ref{go to the DFIO∶∶STRING-TO-SYMBOL function, , @t{string-to-symbol}} (function)
+@end itemize
+@end table
+
+@node The dfio/delimited-text․lisp file, , The dfio/utils․lisp file, Lisp files
 @subsection @t{dfio/delimited-text.lisp}
 @anchor{go to the dfio/delimited-text․lisp file}@c
 @lispfileindex{dfio/delimited-text.lisp}@c
 @table @strong
 @item Dependency
-@ref{go to the dfio/data-column․lisp file, , @t{data-column.lisp}} (file)
+@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
 @item Parent
 @ref{go to the dfio system, , @t{dfio}} (system)
 @item Location
@@ -555,10 +578,6 @@ components trees.
 @itemize @bullet
 @item
 @ref{go to the DFIO∶∶READ-CSV function, , @t{read-csv}} (function)
-@item
-@ref{go to the DFIO∶∶STRING-TO-KEYWORD function, , @t{string-to-keyword}} (function)
-@item
-@ref{go to the DFIO∶∶STRING-TO-SYMBOL function, , @t{string-to-symbol}} (function)
 @item
 @ref{go to the DFIO∶∶WRITE-CSV function, , @t{write-csv}} (function)
 @end itemize
@@ -576,17 +595,99 @@ components trees.
 Packages are listed by definition order.
 
 @menu
-* The dfio.string-table package: The dfio․string-table package.
 * The dfio.data-column package: The dfio․data-column package.
 * The dfio package::
+* The dfio.string-table package: The dfio․string-table package.
 * The dfio.decimal package: The dfio․decimal package.
 @end menu
+
+
+@c ----------------------------
+@c The dfio.data-column package
+@c ----------------------------
+@node The dfio․data-column package, The dfio package, Packages, Packages
+@section @t{dfio.data-column}
+@anchor{go to the DFIO․DATA-COLUMN package}@c
+@packageindex{dfio.data-column}@c
+@table @strong
+@item Source
+@ref{go to the dfio/pkgdcl․lisp file, , @t{pkgdcl.lisp}} (file)
+@item Use List
+@itemize @bullet
+@item
+@t{let-plus}
+@item
+@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@item
+@ref{go to the DFIO․DECIMAL package, , @t{dfio.decimal}}
+@item
+@t{anaphora}
+@item
+@t{common-lisp}
+@end itemize
+@item Used By List
+@ref{go to the DFIO package, , @t{dfio}}
+@item Exported Definitions
+@itemize @bullet
+@item
+@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN function, , @t{data-column}} (function)
+@item
+@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN class, , @t{data-column}} (class)
+@item
+@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-ADD function, , @t{data-column-add}} (function)
+@item
+@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-COUNTS function, , @t{data-column-counts}} (function)
+@item
+@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-VECTOR function, , @t{data-column-vector}} (function)
+@end itemize
+@item Internal Definitions
+@ref{go to the DFIO․DATA-COLUMN∶∶NON-NEGATIVE-INTEGER type, , @t{non-negative-integer}} (type)
+@end table
+
+
+@c ----------------
+@c The dfio package
+@c ----------------
+@node The dfio package, The dfio․string-table package, The dfio․data-column package, Packages
+@section @t{dfio}
+@anchor{go to the DFIO package}@c
+@packageindex{dfio}@c
+@table @strong
+@item Source
+@ref{go to the dfio/pkgdcl․lisp file, , @t{pkgdcl.lisp}} (file)
+@item Use List
+@itemize @bullet
+@item
+@ref{go to the DFIO․DATA-COLUMN package, , @t{dfio.data-column}}
+@item
+@t{let-plus}
+@item
+@t{anaphora}
+@item
+@t{alexandria}
+@item
+@t{common-lisp}
+@end itemize
+@item Exported Definitions
+@itemize @bullet
+@item
+@ref{go to the DFIO∶∶READ-CSV function, , @t{read-csv}} (function)
+@item
+@ref{go to the DFIO∶∶STRING-TO-KEYWORD function, , @t{string-to-keyword}} (function)
+@item
+@ref{go to the DFIO∶∶STRING-TO-SYMBOL function, , @t{string-to-symbol}} (function)
+@item
+@ref{go to the DFIO∶∶WRITE-CSV function, , @t{write-csv}} (function)
+@end itemize
+@item Internal Definitions
+@ref{go to the DFIO∶∶CSV-TO-DATA-COLUMNS function, , @t{csv-to-data-columns}} (function)
+@end table
 
 
 @c -----------------------------
 @c The dfio.string-table package
 @c -----------------------------
-@node The dfio․string-table package, The dfio․data-column package, Packages, Packages
+@node The dfio․string-table package, The dfio․decimal package, The dfio package, Packages
 @section @t{dfio.string-table}
 @anchor{go to the DFIO․STRING-TABLE package}@c
 @packageindex{dfio.string-table}@c
@@ -645,94 +746,10 @@ Packages are listed by definition order.
 @end table
 
 
-@c ----------------------------
-@c The dfio.data-column package
-@c ----------------------------
-@node The dfio․data-column package, The dfio package, The dfio․string-table package, Packages
-@section @t{dfio.data-column}
-@anchor{go to the DFIO․DATA-COLUMN package}@c
-@packageindex{dfio.data-column}@c
-@table @strong
-@item Source
-@ref{go to the dfio/pkgdcl․lisp file, , @t{pkgdcl.lisp}} (file)
-@item Use List
-@itemize @bullet
-@item
-@t{let-plus}
-@item
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
-@item
-@ref{go to the DFIO․DECIMAL package, , @t{dfio.decimal}}
-@item
-@t{anaphora}
-@item
-@t{common-lisp}
-@end itemize
-@item Used By List
-@ref{go to the DFIO package, , @t{dfio}}
-@item Exported Definitions
-@itemize @bullet
-@item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN function, , @t{data-column}} (function)
-@item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN class, , @t{data-column}} (class)
-@item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-ADD function, , @t{data-column-add}} (function)
-@item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-COUNTS function, , @t{data-column-counts}} (function)
-@item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-VECTOR function, , @t{data-column-vector}} (function)
-@end itemize
-@item Internal Definitions
-@ref{go to the DFIO․DATA-COLUMN∶∶NON-NEGATIVE-INTEGER type, , @t{non-negative-integer}} (type)
-@end table
-
-
-@c ----------------
-@c The dfio package
-@c ----------------
-@node The dfio package, The dfio․decimal package, The dfio․data-column package, Packages
-@section @t{dfio}
-@anchor{go to the DFIO package}@c
-@packageindex{dfio}@c
-@table @strong
-@item Source
-@ref{go to the dfio/pkgdcl․lisp file, , @t{pkgdcl.lisp}} (file)
-@item Use List
-@itemize @bullet
-@item
-@ref{go to the DFIO․DATA-COLUMN package, , @t{dfio.data-column}}
-@item
-@t{let-plus}
-@item
-@t{anaphora}
-@item
-@t{alexandria}
-@item
-@t{common-lisp}
-@end itemize
-@item Used By List
-@t{lisp-stat}
-@item Exported Definitions
-@itemize @bullet
-@item
-@ref{go to the DFIO∶∶READ-CSV function, , @t{read-csv}} (function)
-@item
-@ref{go to the DFIO∶∶STRING-TO-KEYWORD function, , @t{string-to-keyword}} (function)
-@item
-@ref{go to the DFIO∶∶STRING-TO-SYMBOL function, , @t{string-to-symbol}} (function)
-@item
-@ref{go to the DFIO∶∶WRITE-CSV function, , @t{write-csv}} (function)
-@end itemize
-@item Internal Definitions
-@ref{go to the DFIO∶∶CSV-TO-DATA-COLUMNS function, , @t{csv-to-data-columns}} (function)
-@end table
-
-
 @c ------------------------
 @c The dfio.decimal package
 @c ------------------------
-@node The dfio․decimal package, , The dfio package, Packages
+@node The dfio․decimal package, , The dfio․string-table package, Packages
 @section @t{dfio.decimal}
 @anchor{go to the DFIO․DECIMAL package}@c
 @packageindex{dfio.decimal}@c
@@ -891,12 +908,9 @@ See PARSE-RATIONAL for accepted formats@comma{} errors@comma{} etc.
 @deffn {Function} {read-csv} STREAM-OR-STRING &key SKIP-FIRST-ROW? COLUMN-KEYS-OR-FUNCTION PACKAGE MAP-ALIST
 @anchor{go to the DFIO∶∶READ-CSV function}@c
 @functionsubindex{read-csv}@c
-Read a CSV file (or stream@comma{} or string) into a DATA-FRAME@comma{} which is returned.@*
-
+Read a CSV file@comma{} stream@comma{} or string into a DATA-FRAME@comma{} which is returned.@*
 When SKIP-FIRST-ROW?@comma{} the first row is read separately and COLUMN-KEYS-OR-FUNCTION is used to form column keys.@*
-
 When COLUMN-KEYS-OR-FUNCTION is a sequence@comma{} it is used for column keys@comma{} regardless of the value of SKIP-FIRST-ROW?.@*
-
 PACKAGE indicates the package to intern column names into.@*
 
 MAP-ALIST maps values during the import. This is useful if you want special mappings for missing@comma{} though the mechanism is general.
@@ -982,7 +996,7 @@ The current implementation replaces @hashchar{}. and @hashchar{}space with a @ha
 @item Package
 @ref{go to the DFIO package, , @t{dfio}}
 @item Source
-@ref{go to the dfio/delimited-text․lisp file, , @t{delimited-text.lisp}} (file)
+@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
 @end table
 @end deffn
 @deffn {Function} {string-to-symbol} STRING
@@ -993,7 +1007,7 @@ Map STRING to a symbol in PACKAGE@comma{} replacing @hashchar{}.@comma{} @hashch
 @item Package
 @ref{go to the DFIO package, , @t{dfio}}
 @item Source
-@ref{go to the dfio/delimited-text․lisp file, , @t{delimited-text.lisp}} (file)
+@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
 @end table
 @end deffn
 @deffn {Function} {write-csv} DF &key STREAM ADD-FIRST-ROW (SEPARATOR SEPARATOR) (QUOTE QUOTE) (ESCAPE QUOTE-ESCAPE) (NEWLINE WRITE-NEWLINE) (ALWAYS-QUOTE ALWAYS-QUOTE)
@@ -1039,15 +1053,19 @@ Error used by parse-rational and parse-real.
 @defvr {Slot} string
 @slotsubindex{string}@c
 @table @strong
+@item Initargs
+@t{:string}
 @item Initform
-@t{(quote :string)}
+@t{(quote nil)}
 @end table
 @end defvr
 @defvr {Slot} message
 @slotsubindex{message}@c
 @table @strong
+@item Initargs
+@t{:message}
 @item Initform
-@t{(quote :message)}
+@t{(quote nil)}
 @end table
 @end defvr
 @end table

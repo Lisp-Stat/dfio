@@ -1,34 +1,45 @@
-;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: CL-USER -*-
+;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: ASDF -*-
 ;;; Copyright (c) 2021 by Symbolics Pte. Ltd. All rights reserved.
 
-(asdf:defsystem :dfio
+(defsystem "dfio"
   :version     (:read-file-form "version.sexp")
-  :description "Common Lisp library for reading and writing data-frame data."
+  :description "Common Lisp library for reading and writing data-frames"
   :maintainer  "Steve Nunez <steve@symbolics.tech>"
   :author      "Tamas Papp <tkpapp@gmail.com>"
   :licence     :MS-PL
-  :depends-on (#:alexandria
-               #:anaphora
-               #:cl-csv
-               #:data-frame
-               #:let-plus)
+  :depends-on ("alexandria"
+               "anaphora"
+               #-genera "cl-csv"
+               "data-frame"
+               "let-plus")
   :serial t
   :components ((:file "pkgdcl")
 	       (:file "decimal")
                (:file "string-table")
                (:file "data-column")
-               (:file "delimited-text"))
+	       (:file "utils")
+               #-genera (:file "delimited-text")
+	       )
   :in-order-to ((test-op (test-op "dfio/tests"))))
 
-(asdf:defsystem :dfio/tests
+(defsystem "dfio/json"
+  :description "Serialise/deserialise data-frames to various JSON formats"
+  :author      "Steve Nunez <steve@symbolics.tech>"
+  :licence     :MS-PL
+  :depends-on ("dfio"
+	       "yason")
+  :serial t
+  :components ((:file "vega-lite")))
+
+(defsystem "dfio/tests"
   :description "Unit tests for DFIO."
   :maintainer  "Steve Nunez <steve@symbolics.tech>"
   :author      "Tamas Papp <tkpapp@gmail.com>"
-  :depends-on (#:dfio
-               #:clunit2)
+  :depends-on ("dfio"
+               "clunit2")
   :serial t
   :components ((:file "tests"))
   :perform (test-op (o s)
-		    (uiop:symbol-call :clunit :run-suite
-				      (uiop:find-symbol* :dfio-tests
-							 :dfio-tests))))
+		    (symbol-call :clunit :run-suite
+				 (find-symbol* :dfio-tests
+					       :dfio-tests))))

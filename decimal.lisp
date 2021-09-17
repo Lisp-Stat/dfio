@@ -5,8 +5,8 @@
 ;;; conditions
 
 (define-condition parse-rational-error (error)
-  ((string :initform :string)
-   (message :initform :message))
+  ((string :initarg :string :initform nil)
+   (message :initarg :message :initform nil))
   (:report (lambda (condition stream)
              (let+ (((&slots-r/o string message) condition))
                (format stream "Could not parse ~A as a real number: ~A."
