@@ -12,7 +12,7 @@
 @c Commentary:
 
 @c Generated automatically by Declt version 2.4 patchlevel 1 "Will Decker"
-@c on Fri Sep 17 10:44:43 2021 GMT+8.
+@c on Sat Sep 18 16:44:18 2021 GMT+8.
 
 
 @c ====================================================================
@@ -368,6 +368,8 @@ Common Lisp library for reading and writing data-frames
 @item
 @ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
 @item
+@ref{go to the dfio/write․lisp file, , @t{write.lisp}} (file)
+@item
 @ref{go to the dfio/delimited-text․lisp file, , @t{delimited-text.lisp}} (file)
 @end itemize
 @end table
@@ -399,6 +401,7 @@ components trees.
 * The dfio/string-table.lisp file: The dfio/string-table․lisp file.
 * The dfio/data-column.lisp file: The dfio/data-column․lisp file.
 * The dfio/utils.lisp file: The dfio/utils․lisp file.
+* The dfio/write.lisp file: The dfio/write․lisp file.
 * The dfio/delimited-text.lisp file: The dfio/delimited-text․lisp file.
 @end menu
 
@@ -543,7 +546,7 @@ components trees.
 @ref{go to the DFIO․DATA-COLUMN∶∶NON-NEGATIVE-INTEGER type, , @t{non-negative-integer}} (type)
 @end table
 
-@node The dfio/utils․lisp file, The dfio/delimited-text․lisp file, The dfio/data-column․lisp file, Lisp files
+@node The dfio/utils․lisp file, The dfio/write․lisp file, The dfio/data-column․lisp file, Lisp files
 @subsection @t{dfio/utils.lisp}
 @anchor{go to the dfio/utils․lisp file}@c
 @lispfileindex{dfio/utils.lisp}@c
@@ -563,13 +566,33 @@ components trees.
 @end itemize
 @end table
 
-@node The dfio/delimited-text․lisp file, , The dfio/utils․lisp file, Lisp files
+@node The dfio/write․lisp file, The dfio/delimited-text․lisp file, The dfio/utils․lisp file, Lisp files
+@subsection @t{dfio/write.lisp}
+@anchor{go to the dfio/write․lisp file}@c
+@lispfileindex{dfio/write.lisp}@c
+@table @strong
+@item Dependency
+@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
+@item Parent
+@ref{go to the dfio system, , @t{dfio}} (system)
+@item Location
+@url{file://s:/src/dfio/write.lisp, ignore, @t{write.lisp}}
+@item Exported Definitions
+@itemize @bullet
+@item
+@ref{go to the DFIO∶∶SAVE macro, , @t{save}} (macro)
+@item
+@ref{go to the DFIO∶∶WRITE-DF macro, , @t{write-df}} (macro)
+@end itemize
+@end table
+
+@node The dfio/delimited-text․lisp file, , The dfio/write․lisp file, Lisp files
 @subsection @t{dfio/delimited-text.lisp}
 @anchor{go to the dfio/delimited-text․lisp file}@c
 @lispfileindex{dfio/delimited-text.lisp}@c
 @table @strong
 @item Dependency
-@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
+@ref{go to the dfio/write․lisp file, , @t{write.lisp}} (file)
 @item Parent
 @ref{go to the dfio system, , @t{dfio}} (system)
 @item Location
@@ -673,11 +696,15 @@ Packages are listed by definition order.
 @item
 @ref{go to the DFIO∶∶READ-CSV function, , @t{read-csv}} (function)
 @item
+@ref{go to the DFIO∶∶SAVE macro, , @t{save}} (macro)
+@item
 @ref{go to the DFIO∶∶STRING-TO-KEYWORD function, , @t{string-to-keyword}} (function)
 @item
 @ref{go to the DFIO∶∶STRING-TO-SYMBOL function, , @t{string-to-symbol}} (function)
 @item
 @ref{go to the DFIO∶∶WRITE-CSV function, , @t{write-csv}} (function)
+@item
+@ref{go to the DFIO∶∶WRITE-DF macro, , @t{write-df}} (macro)
 @end itemize
 @item Internal Definitions
 @ref{go to the DFIO∶∶CSV-TO-DATA-COLUMNS function, , @t{csv-to-data-columns}} (function)
@@ -809,13 +836,39 @@ lexicographic order.
 @node Exported definitions, Internal definitions, Definitions, Definitions
 @section Exported definitions
 @menu
+* Exported macros::
 * Exported functions::
 * Exported conditions::
 * Exported structures::
 * Exported classes::
 @end menu
 
-@node Exported functions, Exported conditions, Exported definitions, Exported definitions
+@node Exported macros, Exported functions, Exported definitions, Exported definitions
+@subsection Macros
+@deffn {Macro} {save} DF PATHSPEC
+@anchor{go to the DFIO∶∶SAVE macro}@c
+@macrosubindex{save}@c
+Save DF in the file named by PATHSPEC
+@table @strong
+@item Package
+@ref{go to the DFIO package, , @t{dfio}}
+@item Source
+@ref{go to the dfio/write․lisp file, , @t{write.lisp}} (file)
+@end table
+@end deffn
+@deffn {Macro} {write-df} DF STREAM
+@anchor{go to the DFIO∶∶WRITE-DF macro}@c
+@macrosubindex{write-df}@c
+Write DF to STREAM in a format suitable for reading back in with the Lisp reader
+@table @strong
+@item Package
+@ref{go to the DFIO package, , @t{dfio}}
+@item Source
+@ref{go to the dfio/write․lisp file, , @t{write.lisp}} (file)
+@end table
+@end deffn
+
+@node Exported functions, Exported conditions, Exported macros, Exported definitions
 @subsection Functions
 @deffn {Function} {data-column} &key MAP-ALIST DEFAULT-FLOAT-FORMAT
 @anchor{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN function}@c

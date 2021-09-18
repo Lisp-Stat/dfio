@@ -41,14 +41,23 @@
         #:anaphora
         #:let-plus
         #:dfio.data-column)
+  (:import-from #:num-utils
+		#:as-alist)
   (:export
+
+   ;; Utility functions
    #:string-to-keyword
    #:string-to-symbol
 
-   ;; Text delimited formats
+   ;; Text delimited format
    #-genera #:read-csv
    #-genera #:write-csv
 
+   ;; Lisp format
+   #:write-df
+   #:save
+
+   ;; JSON (Vega-Lite) format
    #:json-to-data-frame
    #:data-frame-to-json))
 

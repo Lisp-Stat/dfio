@@ -4,7 +4,7 @@
 (defsystem "dfio"
   :version     (:read-file-form "version.sexp")
   :description "Common Lisp library for reading and writing data-frames"
-  :maintainer  "Steve Nunez <steve@symbolics.tech>"
+  :author      "Steve Nunez <steve@symbolics.tech>"
   :author      "Tamas Papp <tkpapp@gmail.com>"
   :licence     :MS-PL
   :depends-on ("alexandria"
@@ -18,6 +18,7 @@
                (:file "string-table")
                (:file "data-column")
 	       (:file "utils")
+	       (:file "write")
                #-genera (:file "delimited-text")
 	       )
   :in-order-to ((test-op (test-op "dfio/tests"))))
@@ -33,7 +34,7 @@
 
 (defsystem "dfio/tests"
   :description "Unit tests for DFIO."
-  :maintainer  "Steve Nunez <steve@symbolics.tech>"
+  :author      "Steve Nunez <steve@symbolics.tech>"
   :author      "Tamas Papp <tkpapp@gmail.com>"
   :depends-on ("dfio"
                "clunit2")
