@@ -50,8 +50,8 @@
    #:string-to-symbol
 
    ;; Text delimited format
-   #-genera #:read-csv
-   #-genera #:write-csv
+   #:read-csv
+   #:write-csv
 
    ;; Lisp format
    #:write-df

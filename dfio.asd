@@ -4,12 +4,12 @@
 (defsystem "dfio"
   :version     (:read-file-form "version.sexp")
   :description "Common Lisp library for reading and writing data-frames"
-  :author      "Steve Nunez <steve@symbolics.tech>"
   :author      "Tamas Papp <tkpapp@gmail.com>"
+  :author      "Steve Nunez <steve@symbolics.tech>"
   :licence     :MS-PL
   :depends-on ("alexandria"
                "anaphora"
-               #-genera "cl-csv"
+               "fare-csv"
                "data-frame"
                "let-plus")
   :serial t
@@ -19,8 +19,7 @@
                (:file "data-column")
 	       (:file "utils")
 	       (:file "write")
-               #-genera (:file "delimited-text")
-	       )
+               (:file "delimited-text"))
   :in-order-to ((test-op (test-op "dfio/tests"))))
 
 (defsystem "dfio/json"
@@ -34,10 +33,10 @@
 
 (defsystem "dfio/tests"
   :description "Unit tests for DFIO."
-  :author      "Steve Nunez <steve@symbolics.tech>"
   :author      "Tamas Papp <tkpapp@gmail.com>"
+  :author      "Steve Nunez <steve@symbolics.tech>"
   :depends-on ("dfio"
-               "clunit2")
+               "clunit2")		;TODO: Move tests to parachute
   :serial t
   :components ((:file "tests"))
   :perform (test-op (o s)

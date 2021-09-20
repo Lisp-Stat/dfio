@@ -233,5 +233,5 @@ STRING represents a number, randomly generated according to the following rules:
 1,Female,31
 2,Male,32
 "
-	(remove #\ (write-csv df :add-first-row t))))) ; remove CR if on windows
+	(remove #\ (write-csv df nil :add-first-row t))))) ; remove CR if on windows
 

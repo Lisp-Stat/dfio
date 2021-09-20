@@ -8,13 +8,17 @@
 When SKIP-FIRST-ROW?, the first row is read separately and returned as the second value (list of strings), otherwise it is considered data like all other rows."
   (let (data-columns
         (first-row skip-first-row?))
-    (cl-csv:do-csv (row stream-or-string)
-      (if data-columns
-          (assert (length= data-columns row))
-          (setf data-columns (loop repeat (length row) collect (data-column :map-alist map-alist))))
-      (if first-row
-          (mapc #'data-column-add data-columns row)
-          (setf first-row row)))
+    (with-csv-input-stream (s stream-or-string)
+      (loop for row = (fare-csv:read-csv-line s) while row do
+	(progn
+	  (if data-columns
+              (assert (length= data-columns row))
+              (setf data-columns (loop repeat (length row) collect (data-column :map-alist map-alist))))
+	  (if first-row
+              (mapc #'data-column-add data-columns row)
+              (setf first-row row)))
+	    ) ;loop
+      )
     (values data-columns (unless skip-first-row? first-row))))
 
 (defun read-csv (stream-or-string
@@ -50,39 +54,31 @@ MAP-ALIST maps values during the import. This is useful if you want special mapp
                (cons column-key (data-column-vector data-column)))
              column-keys data-columns))))
 
-(defun write-csv (df
+(defun write-csv (df stream
                   &key
-		    stream
 		    (add-first-row nil)
-		    ((:separator separator) cl-csv:*separator*)
-		    ((:quote quote) cl-csv:*quote*)
-		    ((:escape quote-escape) cl-csv:*quote-escape*)
-		    ((:newline write-newline) cl-csv::*write-newline*)
-		    ((:always-quote always-quote) cl-csv::*always-quote*))
-  "Write a data-frame to a stream.
+		    ((:separator separator) fare-csv:*separator*)
+                    ((:quote quote) fare-csv:*quote*)
+                    ((:eol eol) fare-csv:+LF+))
+  "Write DF to STRING-OR-STREAM in CSV format. STRING-OR-STREAM can be a STREAM, a STRING or a file PATHSPEC.
 
 Keywords:
-    stream: stream to write to. Default: nil.
-      nil - writes the rows to a string and returns it
-      an open stream
-      a pathname (overwrites if the file exists)
-    quote: quoting character. Defaults to *quote*
-    escape: escaping character. Defaults to *quote-escape*
-    newline: newline character. Defaults to *write-newline*
-    always-quote: Defaults to *always-quote*
-    add-first-row: Add column names as the first
+    string-or-stream: stream to write to. Default: nil, returning a string
+    add-first-row:    add column names as the first row
+    separator: separator to use when reading or writing CSV files. A character. By default, a comma: #\,
+    quote:     quote character to use when reading or writing CSV files. A character. By default, a double-quote: #\"
+    eol:       line ending to use when writing CSV files. A string. By default, +CRLF+ as specified by creativyst.
 
 Notes:
-    The :newline keyword requires a sequence, so use :newline '(#\newline) or use cl-interpol"
+    The :newline keyword requires a sequence, so use :newline '(#\newline)"
   (let ((rows (if add-first-row
 		  (list* (coerce (df:keys df) 'list)
 			 (df::2d-array-to-list (aops:as-array df)))
-		  (df::2d-array-to-list (aops:as-array df)))))
-    (cl-csv:write-csv rows
-		      :stream stream
-		      :separator separator
-		      :quote  quote
-		      :escape quote-escape
-		      :newline write-newline
-		      :always-quote always-quote)))
-
+		  (df::2d-array-to-list (aops:as-array df))))
+	(fare-csv:*separator* separator)
+        (fare-csv:*quote*     quote)
+	(fare-csv:*eol*       eol))
+    (with-csv-output-stream (s stream)
+      (fare-csv:write-csv-lines rows s)
+      (unless stream
+	(get-output-stream-string s)))))
