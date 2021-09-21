@@ -1,7 +1,14 @@
-;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO-TESTS -*-
+;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: CL-USER -*-
 ;;; (c) 2021 Symbolics Pte. Ltd. All rights reserved.
 
-(cl:defpackage #:dfio-tests
+;;; Genera has two problems in compiling this file:
+;;; 1. Error: Offset is past end of function
+;;; 2. Pretty Printing functions are undefined
+
+;;; The latter is because we load XP into the DATA-FRAME package, not CL. I tried to get it loading in CL, but ran out of time futzing with it. An issue on the Genera github was raised to get these functions into CL, and a question posted on stackoverflow
+;;; The former problem is somewhat of a mystery. Bisecting and compiling this file showed the offending code to be in various locations, leading me to think this is an issue in a CLUNIT2 macro. The most important tests can be buffer compiled and run, those tests being the number parsing, which all pass on Genera, meaning Genera is safe to use from an accuracy perspective with LISP-STAT. So, to run the tests, load this file in Zmacs and M-X Compile Buffer, then run the tests from the Listener. Be sure to only compile the tests you want, and you may have to "Continue as if loading fasl was successful" because you'll get caught out at issue 2, since CLUNIT uses the pretty printer for output reports.
+
+(defpackage #:dfio-tests
   (:use #:cl
         #:alexandria
         #:clunit
@@ -168,10 +175,8 @@ STRING represents a number, randomly generated according to the following rules:
 (defsuite data-column-tests (dfio-tests))
 
 (deftest data-column-basic-test (data-column-tests)
-  (let* ((e-float 'double-float)
-         (dc (data-column :map-alist '(("" . missing)
-                                       ("NA" . not-available))
-                          ))
+  (let* ((dc (data-column :map-alist '((""   . missing)
+                                       ("NA" . not-available))))
          (strings #("male" "female" "male" "male" "female"
                     "112.7" "99" "28" "1e2" "1e-2"
                     "" "NA" "NA" "" ""))
@@ -234,4 +239,5 @@ STRING represents a number, randomly generated according to the following rules:
 2,Male,32
 "
 	(remove #\ (write-csv df nil :add-first-row t))))) ; remove CR if on windows
+
 

@@ -26,7 +26,7 @@ When SKIP-FIRST-ROW?, the first row is read separately and returned as the secon
 		   (skip-first-row? nil)
                    (column-keys-or-function #'string-to-symbol)
 		   (package nil)
-		   (map-alist '(("" . :na) ;could be anything, e.g. :missing, nil
+		   (map-alist '((""   . :missing)
                                 ("NA" . :na))))
   "Read a CSV file, stream, or string into a DATA-FRAME, which is returned.
 When SKIP-FIRST-ROW?, the first row is read separately and COLUMN-KEYS-OR-FUNCTION is used to form column keys.
