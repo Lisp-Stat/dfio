@@ -8,6 +8,10 @@
 ;; (load #P"LS:DATASETS;mtcars")
 ;; (save mtcars #P"LS:DATASETS;mtcars2.lisp")
 
+;;; TODO Set these up to work with defaults: ".lisp" as the filename
+;;; extension and the *default-pathname-defaults* for the directory
+;;; See `savevar` function
+
 (defmacro write-df (df stream)
   "Write DF to STREAM in a format suitable for reading back in with the Lisp reader"
   `(progn (format ,stream ";;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: LS-USER -*-")

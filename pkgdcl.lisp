@@ -48,6 +48,7 @@
    ;; Utility functions
    #:string-to-keyword
    #:string-to-symbol
+   #:symbol-name-to-pathname
 
    ;; Text delimited format
    #:read-csv

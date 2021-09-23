@@ -34,6 +34,15 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
     (export sym)
     sym))
 
+(defun symbol-name-to-pathname (string)
+  "Map the symbol-name of S to something that can be part of a logical-pathname"
+  (map 'string
+       (lambda (character)
+	 (case character
+	   ((#\. #\_ #\space) #\-)
+	   (otherwise (char-upcase character))))
+	   string))
+
 
 ;;; I/O stream simplification
 
