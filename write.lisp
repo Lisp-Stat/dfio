@@ -15,7 +15,7 @@
 (defmacro write-df (df stream)
   "Write DF to STREAM in a format suitable for reading back in with the Lisp reader"
   `(progn (format ,stream ";;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: LS-USER -*-")
-	  (format ,stream "~%(define-data-frame ~A (alist-df '" (symbol-name ',df))
+	  (format ,stream "~%(defdf ~A (alist-df '" (symbol-name ',df))
 	  (prin1 (as-alist ,df) ,stream)
 	  (format ,stream ")")
 	  (print (documentation ',df 'variable) ,stream)
