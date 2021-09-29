@@ -59,8 +59,9 @@
    #:save
 
    ;; JSON (Vega-Lite) format
-   #:json-to-data-frame
-   #:data-frame-to-json))
+   #:vl-to-df				;Read vega-lite data into df
+   #:df-to-vl				;Write df data into vega-lite array
+   #:df-to-alist))			;Write df data to alist for further encoding via JSON library
 
 
 

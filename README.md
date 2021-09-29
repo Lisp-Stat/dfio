@@ -116,7 +116,7 @@ with a comma (',') from the slime REPL.
 
 #### Getting dependencies
 
-To get the third party systems that Lisp-Stat depends on, you can use a dependency manager, such as [Quicklisp](https://www.quicklisp.org/beta/) or [CLPM](https://www.clpm.dev/) Once installed, get the dependencies with either of:
+To get the third party systems that DFIO depends on, you can use a dependency manager, such as [Quicklisp](https://www.quicklisp.org/beta/) or [CLPM](https://www.clpm.dev/) Once installed, get the dependencies with either of:
 
 ```lisp
 (clpm-client:sync :sources "clpi") ;sources may vary
