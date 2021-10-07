@@ -5,13 +5,13 @@
 ;;; JSON/Vega-lite serialisation of data-frame
 ;;; Export list at the bottom of the file.
 
-(defun json-to-data-columns (stream-or-string)
+(defun json-to-data-columns  (source &key map-alist)
   "Read a JSON array and accumulate the values in DATA-COLUMNs, return a list of columns.  Rows are checked to have the same number of elements.  The second value is a list of column names."
   (let (data-columns column-keys)
-    (loop for row in (yason:parse stream-or-string)
+    (loop for row in (yason:parse source)
 	  do (if data-columns
 		 (assert (alexandria:length= data-columns (alexandria:hash-table-values row)))
-		 (setf data-columns (loop repeat (length (alexandria:hash-table-keys row)) collect (data-column))))
+		 (setf data-columns (loop repeat (length (alexandria:hash-table-keys row)) collect (data-column :map-alist map-alist))))
 	  do (if (not column-keys)
 		 (setf column-keys (alexandria:hash-table-keys row)))
 	  do (mapc #'data-column-add
@@ -20,10 +20,11 @@
 			   (alexandria:hash-table-values row)))) ;Sigh JSON->number->string to reuse data-column-add
     (values data-columns (map 'list #'string-to-symbol column-keys))))
 
-(defun vl-to-df (stream-or-string)
+(defun vl-to-df (source &key (map-alist '((""    . :na)
+					  ("NIL" . :na))))
   "Read a stream of Vega-Lite data into DATA-FRAME
 Useful when working with Vega-Lite data sets from external sources."
-  (let+ (((&values data-columns column-keys) (json-to-data-columns stream-or-string)))
+  (let+ (((&values data-columns column-keys) (json-to-data-columns source :map-alist map-alist)))
     (data-frame:alist-df
      (mapcar (lambda (column-key data-column)
                (cons column-key (data-column-vector data-column)))
