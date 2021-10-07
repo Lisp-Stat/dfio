@@ -4,13 +4,13 @@
 (defsystem "dfio"
   :version     (:read-file-form "version.sexp")
   :description "Common Lisp library for reading and writing data-frames"
-  :author      "Tamas Papp <tkpapp@gmail.com>"
   :author      "Steve Nunez <steve@symbolics.tech>"
   :licence     :MS-PL
   :depends-on ("alexandria"
                "anaphora"
-               "fare-csv"
                "data-frame"
+	       #-genera "dexador"
+               "fare-csv"
                "let-plus")
   :serial t
   :components ((:file "pkgdcl")
@@ -33,7 +33,6 @@
 
 (defsystem "dfio/tests"
   :description "Unit tests for DFIO."
-  :author      "Tamas Papp <tkpapp@gmail.com>"
   :author      "Steve Nunez <steve@symbolics.tech>"
   :depends-on ("dfio"
                "clunit2")		;TODO: Move tests to parachute

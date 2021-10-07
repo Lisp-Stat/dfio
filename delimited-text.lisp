@@ -2,13 +2,13 @@
 ;;; Copyright (c) 2021 Symbolics Pte. Ltd. All rights reserved.
 (in-package #:dfio)
 
-(defun csv-to-data-columns (stream-or-string skip-first-row? &key map-alist)
+(defun csv-to-data-columns (source skip-first-row? &key map-alist)
   "Read a CSV file (or stream, or string), accumulate the values in DATA-COLUMNs, return a list of these.  Rows are checked to have the same number of elements.
 
 When SKIP-FIRST-ROW?, the first row is read separately and returned as the second value (list of strings), otherwise it is considered data like all other rows."
   (let (data-columns
         (first-row skip-first-row?))
-    (with-csv-input-stream (s stream-or-string)
+    (with-csv-input-stream (s source)
       (loop for row = (fare-csv:read-csv-line s) while row do
 	(progn
 	  (if data-columns
@@ -21,21 +21,21 @@ When SKIP-FIRST-ROW?, the first row is read separately and returned as the secon
       )
     (values data-columns (unless skip-first-row? first-row))))
 
-(defun read-csv (stream-or-string
+(defun read-csv (source
                  &key
 		   (skip-first-row? nil)
                    (column-keys-or-function #'string-to-symbol)
 		   (package nil)
-		   (map-alist '((""   . :missing)
+		   (map-alist '((""   . :na)
                                 ("NA" . :na))))
-  "Read a CSV file, stream, or string into a DATA-FRAME, which is returned.
+  "Read a CSV file, stream, string or URL into a DATA-FRAME, which is returned.
 When SKIP-FIRST-ROW?, the first row is read separately and COLUMN-KEYS-OR-FUNCTION is used to form column keys.
 When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column keys, regardless of the value of SKIP-FIRST-ROW?.
 PACKAGE indicates the package to intern column names into.
 
 MAP-ALIST maps values during the import. This is useful if you want special mappings for missing, though the mechanism is general."
   (let+ (((&values data-columns first-row)
-          (csv-to-data-columns stream-or-string skip-first-row? :map-alist map-alist))
+          (csv-to-data-columns source skip-first-row? :map-alist map-alist))
 	 (*package* (cond
 		      ((not package) *package*)
 		      ((find-package (string-upcase package)) (find-package (string-upcase package)))

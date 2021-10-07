@@ -24,6 +24,19 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
   (let* ((sym (cond ((string= string "")
 		     (warn "Missing column name was filled in")
 		     (gentemp "X"))
+
+		    ;; Violating package locks was a problem at one
+		    ;; time, and seems to have been related to using
+		    ;; symbols and packages of the same name, when the
+		    ;; package uses CL. It may be worth considering
+		    ;; doing this anyway.
+		    ;; ((or (find-symbol string 'common-lisp) ;don't add column names (symbols) of the same name as CL
+		    ;; 	 (find-symbol string 'ls)
+		    ;; 	 (find-symbol string 'keyword))
+		    ;;  ;; (find-all-symbols (string-upcase string))
+		    ;;  (warn "A symbol with column name exists, renaming")
+		    ;;  (gentemp (concatenate 'string string "-")))
+
 		    (t (intern
 			(map 'string
 			     (lambda (character)
@@ -56,11 +69,14 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
   '(or null stream pathname)
   "A string, stream or a file path")
 
-(defun %in-stream (stream-or-string)
-  (typecase stream-or-string
-    (string (make-string-input-stream stream-or-string))
-    (stream stream-or-string)
-    (pathname (values (open stream-or-string :external-format *default-external-format*)
+(defun %in-stream (source)
+  (typecase source
+    (string (if (or (search "http://"  source :end1 7) ;Until https://github.com/fukamachi/quri/issues/57 is fixed
+		    (search "https://" source :end1 8))
+		(dex:get source :want-stream t)
+		(make-string-input-stream source)))
+    (stream source)
+    (pathname (values (open source :external-format *default-external-format*)
                       t))))
 
 (defmacro with-csv-input-stream ((name inp) &body body)
@@ -71,6 +87,16 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
           (when (and ,name ,opened?)
             (close ,name)))))))
 
+(defun %out-stream (source)
+  "creates a stream from the given thing, trying to DWIM"
+  (etypecase source
+    (null (make-string-output-stream))
+    (stream source)
+    (pathname
+     (values
+      (open source :direction :output :if-exists :supersede)
+      t))))
+
 (defmacro with-csv-output-stream ((name inp) &body body)
   (alexandria:with-unique-names (opened?)
     `(multiple-value-bind (,name ,opened?) (%out-stream ,inp)
@@ -78,14 +104,3 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
         (unwind-protect (body)
           (when (and ,name ,opened?)
             (close ,name)))))))
-
-(defun %out-stream (stream-or-string)
-  "creates a stream from the given thing, trying to DWIM"
-  (etypecase stream-or-string
-    (null (make-string-output-stream))
-    (stream stream-or-string)
-    (pathname
-     (values
-      (open stream-or-string :direction :output :if-exists :supersede)
-      t))))
-
