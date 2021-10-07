@@ -40,6 +40,7 @@
         #:alexandria
         #:anaphora
         #:let-plus
+	#:data-frame
         #:dfio.data-column)
   (:import-from #:num-utils
 		#:as-alist)
@@ -56,7 +57,9 @@
 
    ;; Lisp format
    #:write-df
+   #:write-properties
    #:save
+
 
    ;; JSON (Vega-Lite) format
    #:vl-to-df				;Read vega-lite data into df
