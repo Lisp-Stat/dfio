@@ -71,6 +71,7 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
 
 (defun %in-stream (source)
   (typecase source
+    #-genera
     (string (if (or (search "http://"  source :end1 7) ;Until https://github.com/fukamachi/quri/issues/57 is fixed
 		    (search "https://" source :end1 8))
 		(dex:get source :want-stream t)
@@ -79,7 +80,7 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
     (pathname (values (open source :external-format *default-external-format*)
                       t))))
 
-(defmacro with-csv-input-stream ((name inp) &body body)
+(defmacro with-input-stream ((name inp) &body body)
   (alexandria:with-unique-names (opened?)
     `(multiple-value-bind (,name ,opened?) (%in-stream ,inp)
       (flet ((body () ,@body))

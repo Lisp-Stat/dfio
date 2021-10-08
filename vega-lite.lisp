@@ -8,7 +8,8 @@
 (defun json-to-data-columns  (source &key map-alist)
   "Read a JSON array and accumulate the values in DATA-COLUMNs, return a list of columns.  Rows are checked to have the same number of elements.  The second value is a list of column names."
   (let (data-columns column-keys)
-    (loop for row in (yason:parse source)
+    (with-input-stream (s source)
+      (loop for row in (yason:parse s)
 	  do (if data-columns
 		 (assert (alexandria:length= data-columns (alexandria:hash-table-values row)))
 		 (setf data-columns (loop repeat (length (alexandria:hash-table-keys row)) collect (data-column :map-alist map-alist))))
@@ -17,10 +18,10 @@
 	  do (mapc #'data-column-add
 		   data-columns
 		   (mapcar #'princ-to-string
-			   (alexandria:hash-table-values row)))) ;Sigh JSON->number->string to reuse data-column-add
+			   (alexandria:hash-table-values row))))) ;Sigh JSON->number->string to reuse data-column-add
     (values data-columns (map 'list #'string-to-symbol column-keys))))
 
-(defun vl-to-df (source &key (map-alist '((""    . :na)
+(defun read-vl (source &key (map-alist '((""    . :na)
 					  ("NIL" . :na))))
   "Read a stream of Vega-Lite data into DATA-FRAME
 Useful when working with Vega-Lite data sets from external sources."
@@ -49,6 +50,6 @@ This is useful when working with a JSON encoder that will take a lisp alist and 
 		 finally (push row lst))
 	finally (return (coerce lst 'vector))))
 
-(export 'vl-to-df)
+(export 'read-vl)
 (export 'df-to-vl)
 (export 'df-to-alist)

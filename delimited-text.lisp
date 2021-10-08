@@ -8,7 +8,7 @@
 When SKIP-FIRST-ROW?, the first row is read separately and returned as the second value (list of strings), otherwise it is considered data like all other rows."
   (let (data-columns
         (first-row skip-first-row?))
-    (with-csv-input-stream (s source)
+    (with-input-stream (s source)
       (loop for row = (fare-csv:read-csv-line s) while row do
 	(progn
 	  (if data-columns
