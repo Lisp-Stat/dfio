@@ -18,6 +18,7 @@
 
 (defun write-df (df &optional (stream *standard-output*))
   "Write DF to STREAM in a format suitable for reading back in with the Lisp reader"
+  (let ((*package* (find-package (string-upcase (symbol-name df)))))
   (format stream ";;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: LS-USER -*-")
 
   ;; Write data frame
@@ -30,7 +31,7 @@
   ;; Write standard properties
   (write-properties (symbol-value df) :type  stream)
   (write-properties (symbol-value df) :label stream)
-  (write-properties (symbol-value df) :unit  stream))
+  (write-properties (symbol-value df) :unit  stream)))
 
 ;; TODO Implement automatic adding of suffix
 (defun save (df pathspec &optional (suffix ".lisp"))
