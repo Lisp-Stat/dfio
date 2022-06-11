@@ -240,4 +240,3 @@ STRING represents a number, randomly generated according to the following rules:
 "
 	(remove #\ (write-csv df nil :add-first-row t))))) ; remove CR if on windows
 
-

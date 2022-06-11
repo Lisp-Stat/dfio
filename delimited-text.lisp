@@ -1,5 +1,5 @@
 ;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO -*-
-;;; Copyright (c) 2021 Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2021-2022 Symbolics Pte. Ltd. All rights reserved.
 (in-package #:dfio)
 
 (defun csv-to-data-columns (source skip-first-row? &key map-alist)
@@ -33,7 +33,8 @@ When SKIP-FIRST-ROW?, the first row is read separately and COLUMN-KEYS-OR-FUNCTI
 When COLUMN-KEYS-OR-FUNCTION is a sequence, it is used for column keys, regardless of the value of SKIP-FIRST-ROW?.
 PACKAGE indicates the package to intern column names into.
 
-MAP-ALIST maps values during the import. This is useful if you want special mappings for missing, though the mechanism is general."
+MAP-ALIST maps values during the import. This is useful if you want special mappings for missing, though the mechanism is general.
+Returns two values, the data-frame and the source"
   (let+ (((&values data-columns first-row)
           (csv-to-data-columns source skip-first-row? :map-alist map-alist))
 	 (*package* (cond
@@ -48,11 +49,13 @@ MAP-ALIST maps values during the import. This is useful if you want special mapp
                                  "The length of column keys ~A does not match the number of columns ~A."
                                  column-keys-or-function (length data-columns))
 			 column-keys-or-function)
-                        (t (error "Could not generate column keys.")))))
-    (data-frame:alist-df
-     (mapcar (lambda (column-key data-column)
-               (cons column-key (data-column-vector data-column)))
-             column-keys data-columns))))
+                        (t (error "Could not generate column keys."))))
+	 (df (data-frame:alist-df
+	     (mapcar (lambda (column-key data-column)
+		       (cons column-key (data-column-vector data-column)))
+		     column-keys data-columns))))
+    (setf (df::source df) source)
+    df))
 
 (defun write-csv (df stream
                   &key

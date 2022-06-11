@@ -22,15 +22,6 @@
                (:file "delimited-text"))
   :in-order-to ((test-op (test-op "dfio/tests"))))
 
-(defsystem "dfio/json"
-  :description "Serialise/deserialise data-frames to various JSON formats"
-  :author      "Steve Nunez <steve@symbolics.tech>"
-  :licence     :MS-PL
-  :depends-on ("dfio"
-	       "yason")
-  :serial t
-  :components ((:file "vega-lite")))
-
 (defsystem "dfio/tests"
   :description "Unit tests for DFIO."
   :author      "Steve Nunez <steve@symbolics.tech>"

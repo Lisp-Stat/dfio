@@ -1,12 +1,12 @@
 ;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO -*-
-;;; Copyright (c) 2021 Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2021-2022 Symbolics Pte. Ltd. All rights reserved.
 (in-package #:dfio)
 
 ;;; Write a data frame to a form that can be read by the Lisp reader
 
 ;;; Examples:
-;; (load #P"LS:DATASETS;mtcars")
-;; (save mtcars #P"LS:DATASETS;mtcars2.lisp")
+;; (load #P"LS:DATA;mtcars")
+;; (save mtcars #P"LS:DATA;mtcars2.lisp")
 
 ;;; TODO Set these up to work with defaults: ".lisp" as the filename
 ;;; extension and the *default-pathname-defaults* for the directory
@@ -44,11 +44,11 @@
      (write-df df s)))
 
 (defun write-properties (df property &optional (stream *standard-output*))
-  "Write the variable PROPERTY strings to stream so they can be read back in when LOADed from a lisp file. By convention, the name of the function that sets the property is the same as the property.
+  "Write the variable PROPERTY strings to stream so they can be read back in when LOADed from a lisp file.  By convention, the name of the function that sets the property is the same as the property.
 Example (write-property mtcars :label)"
   (format stream "(set-properties ~A :~A '(" (df:name df) property)
   (loop for key across (keys df)
-	for value = (get (df::sym-mac df key) property)
+	for value = (get key property)
 	do
     	   (typecase value
 	     (string (format stream "~&  :~A \"~A\"" key value))
