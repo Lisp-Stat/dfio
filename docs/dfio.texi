@@ -2,16 +2,18 @@
 
 @c dfio.texi --- Reference manual
 
-@c Copyright (C) 2020--2021 Tamas Papp
+@c Copyright (C) 2019-2022 Steve Nunez
 
 @c This file is part of Data Frame I/O.
 
+@c This program is distributed under the terms of the Microsoft Public
+@c License.
 
 
 @c Commentary:
 
-@c Generated automatically by Declt version 2.4 patchlevel 1 "Will Decker"
-@c on Thu Oct 07 13:17:11 2021 GMT+8.
+@c Generated automatically by Declt version 4.0 beta 2 "William Riker"
+@c on Wed Jul 20 10:55:07 2022 GMT+8.
 
 
 @c ====================================================================
@@ -91,7 +93,7 @@
 @c ====================================================================
 @setchapternewpage odd
 @documentdescription
-The Data Frame I/O Reference Manual, version 2.0.
+The Data Frame I/O Reference Manual, version 1.0.0.
 @end documentdescription
 
 
@@ -118,57 +120,14 @@ The Data Frame I/O Reference Manual, version 2.0.
 
 @c Modules
 @macro moduleindex{name}
-@cindex @t{\name\}
-@cindex Module, @t{\name\}
+@tpindex @t{\name\}
+@tpindex Module, @t{\name\}
 @end macro
 
-@c Other files
-@macro otherfileindex{name}
-@cindex @t{\name\}
-@cindex Other File, @t{\name\}
-@cindex File, other, @t{\name\}
-@end macro
-
-@c Lisp files
-@macro lispfileindex{name}
-@cindex @t{\name\}
-@cindex Lisp File, @t{\name\}
-@cindex File, Lisp, @t{\name\}
-@end macro
-
-@c C files
-@macro cfileindex{name}
-@cindex @t{\name\}
-@cindex C File, @t{\name\}
-@cindex File, C, @t{\name\}
-@end macro
-
-@c Java files
-@macro javafileindex{name}
-@cindex @t{\name\}
-@cindex Java File, @t{\name\}
-@cindex File, Java, @t{\name\}
-@end macro
-
-@c Static files
-@macro staticfileindex{name}
-@cindex @t{\name\}
-@cindex Static File, @t{\name\}
-@cindex File, static, @t{\name\}
-@end macro
-
-@c Doc files
-@macro docfileindex{name}
-@cindex @t{\name\}
-@cindex Doc File, @t{\name\}
-@cindex File, doc, @t{\name\}
-@end macro
-
-@c HTML files
-@macro htmlfileindex{name}
-@cindex @t{\name\}
-@cindex HTML File, @t{\name\}
-@cindex File, html, @t{\name\}
+@c Files
+@macro fileindex{name}
+@tpindex @t{\name\}
+@tpindex File, @t{\name\}
 @end macro
 
 @c The following macros are meant to be used within @defxxx environments.
@@ -220,19 +179,13 @@ The Data Frame I/O Reference Manual, version 2.0.
 @end macro
 
 @c Setf Expanders
-@macro setfexpandersubindex{name}
+@macro expandersubindex{name}
 @findex @r{Setf Expander, }\name\
 @end macro
 
 @c Method Combinations
-@macro shortcombinationsubindex{name}
-@tpindex @r{Short Method Combination, }\name\
-@tpindex @r{Method Combination, Short, }\name\
-@end macro
-
-@macro longcombinationsubindex{name}
-@tpindex @r{Long Method Combination, }\name\
-@tpindex @r{Method Combination, Long, }\name\
+@macro combinationsubindex{name}
+@findex @r{Method Combination, }\name\
 @end macro
 
 @c Conditions
@@ -260,10 +213,40 @@ The Data Frame I/O Reference Manual, version 2.0.
 @c ====================================================================
 @c Info Category and Directory
 @c ====================================================================
-@dircategory Common Lisp
+@dircategory Lisp-Stat
 @direntry
-* Data Frame I/O Reference: (dfio). The Data Frame I/O Reference Manual.
+* Data Frame I/O Reference Manual: (dfio). The Data Frame I/O Reference Manual.
 @end direntry
+
+
+
+@c ====================================================================
+@c Copying
+@c ====================================================================
+@copying
+@quotation
+Copyright @copyright{} 2019-2022 Steve Nunez
+
+Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+@ignore
+Permission is granted to process this file through TeX and print the
+results, provided the printed document carries a copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual).
+
+@end ignore
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided also that the
+section entitled ``Copying'' is included exactly as in the original.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be translated as well.
+@end quotation
+@end copying
 
 
 
@@ -272,10 +255,16 @@ The Data Frame I/O Reference Manual, version 2.0.
 @c ====================================================================
 @titlepage
 @title The Data Frame I/O Reference Manual
-@subtitle Common Lisp library for reading and writing data-frames, version 2.0
+@subtitle Data frame I/O, version 1.0.0
 
-@author Tamas Papp <@email{tkpapp@atchar{}gmail.com}>
+@author Steve Nunez <@email{steve@atchar{}symbolics.tech}>
 
+@page
+@quotation
+This manual was generated automatically by Declt 4.0b2.
+@end quotation
+@vskip 0pt plus 1filll
+@insertcopying
 @end titlepage
 
 
@@ -291,25 +280,41 @@ The Data Frame I/O Reference Manual, version 2.0.
 @c Top
 @c ====================================================================
 @ifnottex
-@node Top, Systems, (dir), (dir)
+@node Top, Copying, (dir), (dir)
 @top The Data Frame I/O Reference Manual
-This is the Data Frame I/O Reference Manual, version 2.0.
+This is the Data Frame I/O Reference Manual, version 1.0.0,
+generated automatically by Declt version 4.0b2.
 
 @menu
+* Copying:: The Microsoft Public License
 * Systems:: The systems documentation
 * Files:: The files documentation
 * Packages:: The packages documentation
 * Definitions:: The symbols documentation
 * Indexes:: Concepts, functions, variables and data types
 @end menu
+
+@insertcopying
 @end ifnottex
+
+
+
+@c ====================================================================
+@c Copying
+@c ====================================================================
+@node Copying, Systems, Top, Top
+@unnumbered Copying
+@quotation
+This program is distributed under the terms of the Microsoft Public
+License.
+@end quotation
 
 
 
 @c ====================================================================
 @c Systems
 @c ====================================================================
-@node Systems, Files, Top, Top
+@node Systems, Files, Copying, Top
 @chapter Systems
 The main system appears first, followed by any subsystem dependency.
 
@@ -323,52 +328,57 @@ The main system appears first, followed by any subsystem dependency.
 @c ---------------
 @node The dfio system, , Systems, Systems
 @section @t{dfio}
-@anchor{go to the dfio system}@c
+@anchor{❨1❩}@c
 @systemindex{dfio}@c
+Common Lisp library for reading and writing data-frames
 @table @strong
+@item Long Name
+Data frame I/O
 @item Author
-Tamas Papp <@email{tkpapp@atchar{}gmail.com}>
+Steve Nunez <@email{steve@atchar{}symbolics.tech}>
+@item Source Control
+@t{(GIT https://github.com/Lisp-Stat/dfio.git)}
+@item Bug Tracker
+@uref{https://github.com/Lisp-Stat/dfio/issues}
 @item License
 MS-PL
-@item Description
-Common Lisp library for reading and writing data-frames
+@item Long Description
+DFIO is used to read and write data frames from string@comma{} streams or disk.  When building a library like this@comma{} one question that needs to be answered is "where do you draw the line on formats?".  For example@comma{} should DFIO read/write JSON?  The answer to that question is 'no'@comma{} and the reason is that there are many JSON formats -- they are applicaton specific.  Application specific format should be read in an application specific package@comma{} and this is the case@comma{} for example@comma{} with Vega.  Formats like CSV@comma{} HD5 or Feather are application agnostic and should be included in DFIO.
 @item Version
-2.0
+1.0.0
 @item Dependencies
 @itemize @bullet
 @item
-@t{alexandria}
+@t{alexandria}@: (system).
 @item
-@t{anaphora}
+@t{anaphora}@: (system).
 @item
-@t{data-frame}
+@t{data-frame}@: (system).
 @item
-@t{dexador}
+@t{dexador}@: (system).
 @item
-@t{fare-csv}
+@t{fare-csv}@: (system).
 @item
-@t{let-plus}
+@t{let-plus}@: (system).
 @end itemize
 @item Source
-@ref{go to the dfio․asd file, , @t{dfio.asd}} (file)
-@item Directory
-@url{file://s:/src/dfio/, ignore, @t{s:/src/dfio/}}
-@item Components
+@ref{❨2❩, , @t{dfio.asd}}.
+@item Child Components
 @itemize @bullet
 @item
-@ref{go to the dfio/pkgdcl․lisp file, , @t{pkgdcl.lisp}} (file)
+@ref{❨3❩, , @t{pkgdcl.lisp}}@: (file).
 @item
-@ref{go to the dfio/decimal․lisp file, , @t{decimal.lisp}} (file)
+@ref{❨4❩, , @t{decimal.lisp}}@: (file).
 @item
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
+@ref{❨5❩, , @t{string-table.lisp}}@: (file).
 @item
-@ref{go to the dfio/data-column․lisp file, , @t{data-column.lisp}} (file)
+@ref{❨6❩, , @t{data-column.lisp}}@: (file).
 @item
-@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
+@ref{❨7❩, , @t{utils.lisp}}@: (file).
 @item
-@ref{go to the dfio/write․lisp file, , @t{write.lisp}} (file)
+@ref{❨8❩, , @t{write.lisp}}@: (file).
 @item
-@ref{go to the dfio/delimited-text․lisp file, , @t{delimited-text.lisp}} (file)
+@ref{❨9❩, , @t{delimited-text.lisp}}@: (file).
 @end itemize
 @end table
 
@@ -393,236 +403,240 @@ components trees.
 @node Lisp files, , Files, Files
 @section Lisp
 @menu
-* The dfio.asd file: The dfio․asd file.
-* The dfio/pkgdcl.lisp file: The dfio/pkgdcl․lisp file.
-* The dfio/decimal.lisp file: The dfio/decimal․lisp file.
-* The dfio/string-table.lisp file: The dfio/string-table․lisp file.
-* The dfio/data-column.lisp file: The dfio/data-column․lisp file.
-* The dfio/utils.lisp file: The dfio/utils․lisp file.
-* The dfio/write.lisp file: The dfio/write․lisp file.
-* The dfio/delimited-text.lisp file: The dfio/delimited-text․lisp file.
+* The dfio/dfio․asd file::
+* The dfio/pkgdcl․lisp file::
+* The dfio/decimal․lisp file::
+* The dfio/string-table․lisp file::
+* The dfio/data-column․lisp file::
+* The dfio/utils․lisp file::
+* The dfio/write․lisp file::
+* The dfio/delimited-text․lisp file::
 @end menu
 
-@node The dfio․asd file, The dfio/pkgdcl․lisp file, Lisp files, Lisp files
-@subsection @t{dfio.asd}
-@anchor{go to the dfio․asd file}@c
-@lispfileindex{dfio.asd}@c
+@node The dfio/dfio․asd file, The dfio/pkgdcl․lisp file, Lisp files, Lisp files
+@subsection @t{dfio/dfio.asd}
+@anchor{❨2❩}@c
+@fileindex{dfio.asd}@c
 @table @strong
-@item Location
-@url{file://s:/src/dfio/dfio.asd, ignore, @t{dfio.asd}}
-@item Systems
-@ref{go to the dfio system, , @t{dfio}} (system)
+@item Source
+@ref{❨2❩, , @t{dfio.asd}}.
+@item Parent Component
+@ref{❨1❩, , @t{dfio}}@: (system).
+@item ASDF Systems
+@ref{❨1❩, , @t{dfio}}.
 @end table
 
-@node The dfio/pkgdcl․lisp file, The dfio/decimal․lisp file, The dfio․asd file, Lisp files
+@node The dfio/pkgdcl․lisp file, The dfio/decimal․lisp file, The dfio/dfio․asd file, Lisp files
 @subsection @t{dfio/pkgdcl.lisp}
-@anchor{go to the dfio/pkgdcl․lisp file}@c
-@lispfileindex{dfio/pkgdcl.lisp}@c
+@anchor{❨3❩}@c
+@fileindex{pkgdcl.lisp}@c
 @table @strong
-@item Parent
-@ref{go to the dfio system, , @t{dfio}} (system)
-@item Location
-@url{file://s:/src/dfio/pkgdcl.lisp, ignore, @t{pkgdcl.lisp}}
+@item Source
+@ref{❨2❩, , @t{dfio.asd}}.
+@item Parent Component
+@ref{❨1❩, , @t{dfio}}@: (system).
 @item Packages
 @itemize @bullet
 @item
-@ref{go to the DFIO․DATA-COLUMN package, , @t{dfio.data-column}}
+@ref{❨10❩, , @t{dfio.decimal}}.
 @item
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨12❩, , @t{dfio}}.
 @item
-@ref{go to the DFIO․DECIMAL package, , @t{dfio.decimal}}
+@ref{❨13❩, , @t{dfio.data-column}}.
 @end itemize
 @end table
 
 @node The dfio/decimal․lisp file, The dfio/string-table․lisp file, The dfio/pkgdcl․lisp file, Lisp files
 @subsection @t{dfio/decimal.lisp}
-@anchor{go to the dfio/decimal․lisp file}@c
-@lispfileindex{dfio/decimal.lisp}@c
+@anchor{❨4❩}@c
+@fileindex{decimal.lisp}@c
 @table @strong
 @item Dependency
-@ref{go to the dfio/pkgdcl․lisp file, , @t{pkgdcl.lisp}} (file)
-@item Parent
-@ref{go to the dfio system, , @t{dfio}} (system)
-@item Location
-@url{file://s:/src/dfio/decimal.lisp, ignore, @t{decimal.lisp}}
-@item Exported Definitions
+@ref{❨3❩, , @t{pkgdcl.lisp}}@: (file).
+@item Source
+@ref{❨2❩, , @t{dfio.asd}}.
+@item Parent Component
+@ref{❨1❩, , @t{dfio}}@: (system).
+@item Public Interface
 @itemize @bullet
 @item
-@ref{go to the DFIO․DECIMAL∶∶PARSE-RATIONAL function, , @t{parse-rational}} (function)
+@ref{❨18❩, , @t{parse-rational}}@: (function).
 @item
-@ref{go to the DFIO․DECIMAL∶∶PARSE-RATIONAL-ERROR condition, , @t{parse-rational-error}} (condition)
+@ref{❨15❩, , @t{parse-rational-error}}@: (condition).
 @item
-@ref{go to the DFIO․DECIMAL∶∶PARSE-REAL function, , @t{parse-real}} (function)
+@ref{❨14❩, , @t{parse-real}}@: (function).
 @end itemize
-@item Internal Definitions
+@item Internals
 @itemize @bullet
 @item
-@ref{go to the DFIO․DECIMAL∶∶+EXPONENT-CHARS+ special variable, , @t{+exponent-chars+}} (special variable)
+@ref{❨21❩, , @t{+exponent-chars+}}@: (special variable).
 @item
-@ref{go to the DFIO․DECIMAL∶∶GOBBLE-POSITIVE-INTEGER function, , @t{gobble-positive-integer}} (function)
+@ref{❨19❩, , @t{gobble-positive-integer}}@: (function).
 @item
-@ref{go to the DFIO․DECIMAL∶∶GOBBLE-SIGN function, , @t{gobble-sign}} (function)
+@ref{❨20❩, , @t{gobble-sign}}@: (function).
 @end itemize
 @end table
 
 @node The dfio/string-table․lisp file, The dfio/data-column․lisp file, The dfio/decimal․lisp file, Lisp files
 @subsection @t{dfio/string-table.lisp}
-@anchor{go to the dfio/string-table․lisp file}@c
-@lispfileindex{dfio/string-table.lisp}@c
+@anchor{❨5❩}@c
+@fileindex{string-table.lisp}@c
 @table @strong
 @item Dependency
-@ref{go to the dfio/decimal․lisp file, , @t{decimal.lisp}} (file)
-@item Parent
-@ref{go to the dfio system, , @t{dfio}} (system)
-@item Location
-@url{file://s:/src/dfio/string-table.lisp, ignore, @t{string-table.lisp}}
-@item Exported Definitions
+@ref{❨4❩, , @t{decimal.lisp}}@: (file).
+@item Source
+@ref{❨2❩, , @t{dfio.asd}}.
+@item Parent Component
+@ref{❨1❩, , @t{dfio}}@: (system).
+@item Public Interface
 @itemize @bullet
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE function, , @t{string-table}} (function)
+@ref{❨83❩, , @t{print-object}}@: (method).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE structure, , @t{string-table}} (structure)
+@ref{❨25❩, , @t{string-table}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-ADD function, , @t{string-table-add}} (function)
+@ref{❨26❩, , @t{string-table}}@: (structure).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-COUNT function, , @t{string-table-count}} (function)
+@ref{❨30❩, , @t{string-table-add}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-DUPLICATE condition, , @t{string-table-duplicate}} (condition)
+@ref{❨24❩, , @t{string-table-count}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-INTERN function, , @t{string-table-intern}} (function)
+@ref{❨29❩, , @t{string-table-duplicate}}@: (condition).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-LOOKUP function, , @t{string-table-lookup}} (function)
+@ref{❨23❩, , @t{string-table-intern}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-NOT-FOUND condition, , @t{string-table-not-found}} (condition)
+@ref{❨22❩, , @t{string-table-lookup}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-STRINGS function, , @t{string-table-strings}} (function)
+@ref{❨31❩, , @t{string-table-not-found}}@: (condition).
+@item
+@ref{❨28❩, , @t{string-table-strings}}@: (function).
 @end itemize
-@item Internal Definitions
+@item Internals
 @itemize @bullet
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶COPY-STRING-TABLE function, , @t{copy-string-table}} (function)
+@ref{❨36❩, , @t{copy-string-table}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-GET function, , @t{string-table-get}} (function)
+@ref{❨32❩, , @t{string-table-get}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶❨SETF STRING-TABLE-GET❩ function, , @t{(setf string-table-get)}} (function)
+@ref{❨33❩, , @t{(setf string-table-get)}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-P function, , @t{string-table-p}} (function)
+@ref{❨37❩, , @t{string-table-p}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-TABLE function, , @t{string-table-table}} (function)
+@ref{❨34❩, , @t{string-table-table}}@: (reader).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶❨SETF STRING-TABLE-TABLE❩ function, , @t{(setf string-table-table)}} (function)
+@ref{❨35❩, , @t{(setf string-table-table)}}@: (writer).
 @end itemize
 @end table
 
 @node The dfio/data-column․lisp file, The dfio/utils․lisp file, The dfio/string-table․lisp file, Lisp files
 @subsection @t{dfio/data-column.lisp}
-@anchor{go to the dfio/data-column․lisp file}@c
-@lispfileindex{dfio/data-column.lisp}@c
+@anchor{❨6❩}@c
+@fileindex{data-column.lisp}@c
 @table @strong
 @item Dependency
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
-@item Parent
-@ref{go to the dfio system, , @t{dfio}} (system)
-@item Location
-@url{file://s:/src/dfio/data-column.lisp, ignore, @t{data-column.lisp}}
-@item Exported Definitions
+@ref{❨5❩, , @t{string-table.lisp}}@: (file).
+@item Source
+@ref{❨2❩, , @t{dfio.asd}}.
+@item Parent Component
+@ref{❨1❩, , @t{dfio}}@: (system).
+@item Public Interface
 @itemize @bullet
 @item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN function, , @t{data-column}} (function)
+@ref{❨53❩, , @t{data-column}}@: (function).
 @item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN class, , @t{data-column}} (class)
+@ref{❨54❩, , @t{data-column}}@: (class).
 @item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-ADD function, , @t{data-column-add}} (function)
+@ref{❨65❩, , @t{data-column-add}}@: (function).
 @item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-COUNTS function, , @t{data-column-counts}} (function)
+@ref{❨67❩, , @t{data-column-counts}}@: (function).
 @item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-VECTOR function, , @t{data-column-vector}} (function)
+@ref{❨66❩, , @t{data-column-vector}}@: (function).
 @end itemize
-@item Internal Definitions
-@ref{go to the DFIO․DATA-COLUMN∶∶NON-NEGATIVE-INTEGER type, , @t{non-negative-integer}} (type)
+@item Internals
+@ref{❨68❩, , @t{non-negative-integer}}@: (type).
 @end table
 
 @node The dfio/utils․lisp file, The dfio/write․lisp file, The dfio/data-column․lisp file, Lisp files
 @subsection @t{dfio/utils.lisp}
-@anchor{go to the dfio/utils․lisp file}@c
-@lispfileindex{dfio/utils.lisp}@c
+@anchor{❨7❩}@c
+@fileindex{utils.lisp}@c
 @table @strong
 @item Dependency
-@ref{go to the dfio/data-column․lisp file, , @t{data-column.lisp}} (file)
-@item Parent
-@ref{go to the dfio system, , @t{dfio}} (system)
-@item Location
-@url{file://s:/src/dfio/utils.lisp, ignore, @t{utils.lisp}}
-@item Exported Definitions
+@ref{❨6❩, , @t{data-column.lisp}}@: (file).
+@item Source
+@ref{❨2❩, , @t{dfio.asd}}.
+@item Parent Component
+@ref{❨1❩, , @t{dfio}}@: (system).
+@item Public Interface
 @itemize @bullet
 @item
-@ref{go to the DFIO∶∶STRING-TO-KEYWORD function, , @t{string-to-keyword}} (function)
+@ref{❨42❩, , @t{string-to-keyword}}@: (function).
 @item
-@ref{go to the DFIO∶∶STRING-TO-SYMBOL function, , @t{string-to-symbol}} (function)
+@ref{❨44❩, , @t{string-to-symbol}}@: (function).
 @item
-@ref{go to the DFIO∶∶SYMBOL-NAME-TO-PATHNAME function, , @t{symbol-name-to-pathname}} (function)
+@ref{❨41❩, , @t{symbol-name-to-pathname}}@: (function).
 @end itemize
-@item Internal Definitions
+@item Internals
 @itemize @bullet
 @item
-@ref{go to the DFIO∶∶%IN-STREAM function, , @t{%in-stream}} (function)
+@ref{❨46❩, , @t{%in-stream}}@: (function).
 @item
-@ref{go to the DFIO∶∶%OUT-STREAM function, , @t{%out-stream}} (function)
+@ref{❨49❩, , @t{%out-stream}}@: (function).
 @item
-@ref{go to the DFIO∶∶*DEFAULT-EXTERNAL-FORMAT* special variable, , @t{*default-external-format*}} (special variable)
+@ref{❨48❩, , @t{*default-external-format*}}@: (special variable).
 @item
-@ref{go to the DFIO∶∶STR-STRM-FILE type, , @t{str-strm-file}} (type)
+@ref{❨50❩, , @t{str-strm-file}}@: (type).
 @item
-@ref{go to the DFIO∶∶WITH-CSV-INPUT-STREAM macro, , @t{with-csv-input-stream}} (macro)
+@ref{❨47❩, , @t{with-csv-output-stream}}@: (macro).
 @item
-@ref{go to the DFIO∶∶WITH-CSV-OUTPUT-STREAM macro, , @t{with-csv-output-stream}} (macro)
+@ref{❨52❩, , @t{with-input-stream}}@: (macro).
 @end itemize
 @end table
 
 @node The dfio/write․lisp file, The dfio/delimited-text․lisp file, The dfio/utils․lisp file, Lisp files
 @subsection @t{dfio/write.lisp}
-@anchor{go to the dfio/write․lisp file}@c
-@lispfileindex{dfio/write.lisp}@c
+@anchor{❨8❩}@c
+@fileindex{write.lisp}@c
 @table @strong
 @item Dependency
-@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
-@item Parent
-@ref{go to the dfio system, , @t{dfio}} (system)
-@item Location
-@url{file://s:/src/dfio/write.lisp, ignore, @t{write.lisp}}
-@item Exported Definitions
+@ref{❨7❩, , @t{utils.lisp}}@: (file).
+@item Source
+@ref{❨2❩, , @t{dfio.asd}}.
+@item Parent Component
+@ref{❨1❩, , @t{dfio}}@: (system).
+@item Public Interface
 @itemize @bullet
 @item
-@ref{go to the DFIO∶∶SAVE function, , @t{save}} (function)
+@ref{❨43❩, , @t{save}}@: (function).
 @item
-@ref{go to the DFIO∶∶WRITE-DF function, , @t{write-df}} (function)
+@ref{❨39❩, , @t{write-df}}@: (function).
 @item
-@ref{go to the DFIO∶∶WRITE-PROPERTIES function, , @t{write-properties}} (function)
+@ref{❨40❩, , @t{write-properties}}@: (function).
 @end itemize
 @end table
 
 @node The dfio/delimited-text․lisp file, , The dfio/write․lisp file, Lisp files
 @subsection @t{dfio/delimited-text.lisp}
-@anchor{go to the dfio/delimited-text․lisp file}@c
-@lispfileindex{dfio/delimited-text.lisp}@c
+@anchor{❨9❩}@c
+@fileindex{delimited-text.lisp}@c
 @table @strong
 @item Dependency
-@ref{go to the dfio/write․lisp file, , @t{write.lisp}} (file)
-@item Parent
-@ref{go to the dfio system, , @t{dfio}} (system)
-@item Location
-@url{file://s:/src/dfio/delimited-text.lisp, ignore, @t{delimited-text.lisp}}
-@item Exported Definitions
+@ref{❨8❩, , @t{write.lisp}}@: (file).
+@item Source
+@ref{❨2❩, , @t{dfio.asd}}.
+@item Parent Component
+@ref{❨1❩, , @t{dfio}}@: (system).
+@item Public Interface
 @itemize @bullet
 @item
-@ref{go to the DFIO∶∶READ-CSV function, , @t{read-csv}} (function)
+@ref{❨45❩, , @t{read-csv}}@: (function).
 @item
-@ref{go to the DFIO∶∶WRITE-CSV function, , @t{write-csv}} (function)
+@ref{❨38❩, , @t{write-csv}}@: (function).
 @end itemize
-@item Internal Definitions
-@ref{go to the DFIO∶∶CSV-TO-DATA-COLUMNS function, , @t{csv-to-data-columns}} (function)
+@item Internals
+@ref{❨51❩, , @t{csv-to-data-columns}}@: (function).
 @end table
 
 
@@ -635,126 +649,51 @@ components trees.
 Packages are listed by definition order.
 
 @menu
-* The dfio.data-column package: The dfio․data-column package.
+* The dfio․decimal package::
+* The dfio․string-table package::
 * The dfio package::
-* The dfio.string-table package: The dfio․string-table package.
-* The dfio.decimal package: The dfio․decimal package.
+* The dfio․data-column package::
 @end menu
 
 
-@c ----------------------------
-@c The dfio.data-column package
-@c ----------------------------
-@node The dfio․data-column package, The dfio package, Packages, Packages
-@section @t{dfio.data-column}
-@anchor{go to the DFIO․DATA-COLUMN package}@c
-@packageindex{dfio.data-column}@c
+@c ------------------------
+@c The dfio.decimal package
+@c ------------------------
+@node The dfio․decimal package, The dfio․string-table package, Packages, Packages
+@section @t{dfio.decimal}
+@anchor{❨10❩}@c
+@packageindex{dfio.decimal}@c
 @table @strong
 @item Source
-@ref{go to the dfio/pkgdcl․lisp file, , @t{pkgdcl.lisp}} (file)
+@ref{❨3❩, , @t{pkgdcl.lisp}}.
 @item Use List
 @itemize @bullet
 @item
-@t{let-plus}
+@t{anaphora}.
 @item
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@t{common-lisp}.
 @item
-@ref{go to the DFIO․DECIMAL package, , @t{dfio.decimal}}
-@item
-@t{anaphora}
-@item
-@t{common-lisp}
+@t{let-plus}.
 @end itemize
 @item Used By List
-@ref{go to the DFIO package, , @t{dfio}}
-@item Exported Definitions
+@ref{❨13❩, , @t{dfio.data-column}}.
+@item Public Interface
 @itemize @bullet
 @item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN function, , @t{data-column}} (function)
+@ref{❨18❩, , @t{parse-rational}}@: (function).
 @item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN class, , @t{data-column}} (class)
+@ref{❨15❩, , @t{parse-rational-error}}@: (condition).
 @item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-ADD function, , @t{data-column-add}} (function)
-@item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-COUNTS function, , @t{data-column-counts}} (function)
-@item
-@ref{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-VECTOR function, , @t{data-column-vector}} (function)
+@ref{❨14❩, , @t{parse-real}}@: (function).
 @end itemize
-@item Internal Definitions
-@ref{go to the DFIO․DATA-COLUMN∶∶NON-NEGATIVE-INTEGER type, , @t{non-negative-integer}} (type)
-@end table
-
-
-@c ----------------
-@c The dfio package
-@c ----------------
-@node The dfio package, The dfio․string-table package, The dfio․data-column package, Packages
-@section @t{dfio}
-@anchor{go to the DFIO package}@c
-@packageindex{dfio}@c
-@table @strong
-@item Source
-@ref{go to the dfio/pkgdcl․lisp file, , @t{pkgdcl.lisp}} (file)
-@item Use List
+@item Internals
 @itemize @bullet
 @item
-@ref{go to the DFIO․DATA-COLUMN package, , @t{dfio.data-column}}
+@ref{❨21❩, , @t{+exponent-chars+}}@: (special variable).
 @item
-@t{data-frame}
+@ref{❨19❩, , @t{gobble-positive-integer}}@: (function).
 @item
-@t{let-plus}
-@item
-@t{anaphora}
-@item
-@t{alexandria}
-@item
-@t{common-lisp}
-@end itemize
-@item Used By List
-@t{lisp-stat}
-@item Exported Definitions
-@itemize @bullet
-@item
-@ref{go to the DFIO∶∶DF-TO-ALIST function, , @t{df-to-alist}} (function)
-@item
-@ref{go to the DFIO∶∶DF-TO-VL function, , @t{df-to-vl}} (function)
-@item
-@ref{go to the DFIO∶∶READ-CSV function, , @t{read-csv}} (function)
-@item
-@ref{go to the DFIO∶∶SAVE function, , @t{save}} (function)
-@item
-@ref{go to the DFIO∶∶STRING-TO-KEYWORD function, , @t{string-to-keyword}} (function)
-@item
-@ref{go to the DFIO∶∶STRING-TO-SYMBOL function, , @t{string-to-symbol}} (function)
-@item
-@ref{go to the DFIO∶∶SYMBOL-NAME-TO-PATHNAME function, , @t{symbol-name-to-pathname}} (function)
-@item
-@ref{go to the DFIO∶∶VL-TO-DF function, , @t{vl-to-df}} (function)
-@item
-@ref{go to the DFIO∶∶WRITE-CSV function, , @t{write-csv}} (function)
-@item
-@ref{go to the DFIO∶∶WRITE-DF function, , @t{write-df}} (function)
-@item
-@ref{go to the DFIO∶∶WRITE-PROPERTIES function, , @t{write-properties}} (function)
-@end itemize
-@item Internal Definitions
-@itemize @bullet
-@item
-@ref{go to the DFIO∶∶%IN-STREAM function, , @t{%in-stream}} (function)
-@item
-@ref{go to the DFIO∶∶%OUT-STREAM function, , @t{%out-stream}} (function)
-@item
-@ref{go to the DFIO∶∶*DEFAULT-EXTERNAL-FORMAT* special variable, , @t{*default-external-format*}} (special variable)
-@item
-@ref{go to the DFIO∶∶CSV-TO-DATA-COLUMNS function, , @t{csv-to-data-columns}} (function)
-@item
-@ref{go to the DFIO∶∶JSON-TO-DATA-COLUMNS function, , @t{json-to-data-columns}} (function)
-@item
-@ref{go to the DFIO∶∶STR-STRM-FILE type, , @t{str-strm-file}} (type)
-@item
-@ref{go to the DFIO∶∶WITH-CSV-INPUT-STREAM macro, , @t{with-csv-input-stream}} (macro)
-@item
-@ref{go to the DFIO∶∶WITH-CSV-OUTPUT-STREAM macro, , @t{with-csv-output-stream}} (macro)
+@ref{❨20❩, , @t{gobble-sign}}@: (function).
 @end itemize
 @end table
 
@@ -762,104 +701,173 @@ Packages are listed by definition order.
 @c -----------------------------
 @c The dfio.string-table package
 @c -----------------------------
-@node The dfio․string-table package, The dfio․decimal package, The dfio package, Packages
+@node The dfio․string-table package, The dfio package, The dfio․decimal package, Packages
 @section @t{dfio.string-table}
-@anchor{go to the DFIO․STRING-TABLE package}@c
+@anchor{❨11❩}@c
 @packageindex{dfio.string-table}@c
 @table @strong
 @item Source
-@ref{go to the dfio/pkgdcl․lisp file, , @t{pkgdcl.lisp}} (file)
+@ref{❨3❩, , @t{pkgdcl.lisp}}.
 @item Use List
 @itemize @bullet
 @item
-@t{let-plus}
+@t{alexandria}.
 @item
-@t{anaphora}
+@t{anaphora}.
 @item
-@t{alexandria}
+@t{common-lisp}.
 @item
-@t{common-lisp}
+@t{let-plus}.
 @end itemize
 @item Used By List
-@ref{go to the DFIO․DATA-COLUMN package, , @t{dfio.data-column}}
-@item Exported Definitions
+@ref{❨13❩, , @t{dfio.data-column}}.
+@item Public Interface
 @itemize @bullet
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE function, , @t{string-table}} (function)
+@ref{❨25❩, , @t{string-table}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE structure, , @t{string-table}} (structure)
+@ref{❨26❩, , @t{string-table}}@: (structure).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-ADD function, , @t{string-table-add}} (function)
+@ref{❨64❩, , @t{string-table}}@: (slot).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-COUNT function, , @t{string-table-count}} (function)
+@ref{❨30❩, , @t{string-table-add}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-DUPLICATE condition, , @t{string-table-duplicate}} (condition)
+@ref{❨24❩, , @t{string-table-count}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-INTERN function, , @t{string-table-intern}} (function)
+@ref{❨29❩, , @t{string-table-duplicate}}@: (condition).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-LOOKUP function, , @t{string-table-lookup}} (function)
+@ref{❨23❩, , @t{string-table-intern}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-NOT-FOUND condition, , @t{string-table-not-found}} (condition)
+@ref{❨22❩, , @t{string-table-lookup}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-STRINGS function, , @t{string-table-strings}} (function)
+@ref{❨31❩, , @t{string-table-not-found}}@: (condition).
+@item
+@ref{❨28❩, , @t{string-table-strings}}@: (function).
 @end itemize
-@item Internal Definitions
+@item Internals
 @itemize @bullet
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶COPY-STRING-TABLE function, , @t{copy-string-table}} (function)
+@ref{❨36❩, , @t{copy-string-table}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-GET function, , @t{string-table-get}} (function)
+@ref{❨32❩, , @t{string-table-get}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶❨SETF STRING-TABLE-GET❩ function, , @t{(setf string-table-get)}} (function)
+@ref{❨33❩, , @t{(setf string-table-get)}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-P function, , @t{string-table-p}} (function)
+@ref{❨37❩, , @t{string-table-p}}@: (function).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-TABLE function, , @t{string-table-table}} (function)
+@ref{❨34❩, , @t{string-table-table}}@: (reader).
 @item
-@ref{go to the DFIO․STRING-TABLE∶∶❨SETF STRING-TABLE-TABLE❩ function, , @t{(setf string-table-table)}} (function)
+@ref{❨35❩, , @t{(setf string-table-table)}}@: (writer).
 @end itemize
 @end table
 
 
-@c ------------------------
-@c The dfio.decimal package
-@c ------------------------
-@node The dfio․decimal package, , The dfio․string-table package, Packages
-@section @t{dfio.decimal}
-@anchor{go to the DFIO․DECIMAL package}@c
-@packageindex{dfio.decimal}@c
+@c ----------------
+@c The dfio package
+@c ----------------
+@node The dfio package, The dfio․data-column package, The dfio․string-table package, Packages
+@section @t{dfio}
+@anchor{❨12❩}@c
+@packageindex{dfio}@c
 @table @strong
 @item Source
-@ref{go to the dfio/pkgdcl․lisp file, , @t{pkgdcl.lisp}} (file)
+@ref{❨3❩, , @t{pkgdcl.lisp}}.
 @item Use List
 @itemize @bullet
 @item
-@t{let-plus}
+@t{alexandria}.
 @item
-@t{anaphora}
+@t{anaphora}.
 @item
-@t{common-lisp}
+@t{common-lisp}.
+@item
+@t{data-frame}.
+@item
+@ref{❨13❩, , @t{dfio.data-column}}.
+@item
+@t{let-plus}.
 @end itemize
 @item Used By List
-@ref{go to the DFIO․DATA-COLUMN package, , @t{dfio.data-column}}
-@item Exported Definitions
+@t{lisp-stat}.
+@item Public Interface
 @itemize @bullet
 @item
-@ref{go to the DFIO․DECIMAL∶∶PARSE-RATIONAL function, , @t{parse-rational}} (function)
+@ref{❨45❩, , @t{read-csv}}@: (function).
 @item
-@ref{go to the DFIO․DECIMAL∶∶PARSE-RATIONAL-ERROR condition, , @t{parse-rational-error}} (condition)
+@ref{❨43❩, , @t{save}}@: (function).
 @item
-@ref{go to the DFIO․DECIMAL∶∶PARSE-REAL function, , @t{parse-real}} (function)
+@ref{❨42❩, , @t{string-to-keyword}}@: (function).
+@item
+@ref{❨44❩, , @t{string-to-symbol}}@: (function).
+@item
+@ref{❨41❩, , @t{symbol-name-to-pathname}}@: (function).
+@item
+@ref{❨38❩, , @t{write-csv}}@: (function).
+@item
+@ref{❨39❩, , @t{write-df}}@: (function).
+@item
+@ref{❨40❩, , @t{write-properties}}@: (function).
 @end itemize
-@item Internal Definitions
+@item Internals
 @itemize @bullet
 @item
-@ref{go to the DFIO․DECIMAL∶∶+EXPONENT-CHARS+ special variable, , @t{+exponent-chars+}} (special variable)
+@ref{❨46❩, , @t{%in-stream}}@: (function).
 @item
-@ref{go to the DFIO․DECIMAL∶∶GOBBLE-POSITIVE-INTEGER function, , @t{gobble-positive-integer}} (function)
+@ref{❨49❩, , @t{%out-stream}}@: (function).
 @item
-@ref{go to the DFIO․DECIMAL∶∶GOBBLE-SIGN function, , @t{gobble-sign}} (function)
+@ref{❨48❩, , @t{*default-external-format*}}@: (special variable).
+@item
+@ref{❨51❩, , @t{csv-to-data-columns}}@: (function).
+@item
+@ref{❨50❩, , @t{str-strm-file}}@: (type).
+@item
+@ref{❨47❩, , @t{with-csv-output-stream}}@: (macro).
+@item
+@ref{❨52❩, , @t{with-input-stream}}@: (macro).
 @end itemize
+@end table
+
+
+@c ----------------------------
+@c The dfio.data-column package
+@c ----------------------------
+@node The dfio․data-column package, , The dfio package, Packages
+@section @t{dfio.data-column}
+@anchor{❨13❩}@c
+@packageindex{dfio.data-column}@c
+@table @strong
+@item Source
+@ref{❨3❩, , @t{pkgdcl.lisp}}.
+@item Use List
+@itemize @bullet
+@item
+@t{anaphora}.
+@item
+@t{common-lisp}.
+@item
+@ref{❨10❩, , @t{dfio.decimal}}.
+@item
+@ref{❨11❩, , @t{dfio.string-table}}.
+@item
+@t{let-plus}.
+@end itemize
+@item Used By List
+@ref{❨12❩, , @t{dfio}}.
+@item Public Interface
+@itemize @bullet
+@item
+@ref{❨53❩, , @t{data-column}}@: (function).
+@item
+@ref{❨54❩, , @t{data-column}}@: (class).
+@item
+@ref{❨65❩, , @t{data-column-add}}@: (function).
+@item
+@ref{❨67❩, , @t{data-column-counts}}@: (function).
+@item
+@ref{❨66❩, , @t{data-column-vector}}@: (function).
+@end itemize
+@item Internals
+@ref{❨68❩, , @t{non-negative-integer}}@: (type).
 @end table
 
 
@@ -873,93 +881,70 @@ Definitions are sorted by export status, category, package, and then by
 lexicographic order.
 
 @menu
-* Exported definitions::
-* Internal definitions::
+* Public Interface::
+* Internals::
 @end menu
 
 
-@c --------------------
-@c Exported definitions
-@c --------------------
-@node Exported definitions, Internal definitions, Definitions, Definitions
-@section Exported definitions
+@c ----------------
+@c Public Interface
+@c ----------------
+@node Public Interface, Internals, Definitions, Definitions
+@section Public Interface
 @menu
-* Exported functions::
-* Exported conditions::
-* Exported structures::
-* Exported classes::
+* Public ordinary functions::
+* Public standalone methods::
+* Public conditions::
+* Public structures::
+* Public classes::
 @end menu
 
-@node Exported functions, Exported conditions, Exported definitions, Exported definitions
-@subsection Functions
-@deffn {Function} {data-column} &key MAP-ALIST DEFAULT-FLOAT-FORMAT
-@anchor{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN function}@c
+@node Public ordinary functions, Public standalone methods, Public Interface, Public Interface
+@subsection Ordinary functions
+@deffn {Function} {data-column} (&key map-alist default-float-format)
+@anchor{❨53❩}@c
 @functionsubindex{data-column}@c
 @table @strong
 @item Package
-@ref{go to the DFIO․DATA-COLUMN package, , @t{dfio.data-column}}
+@ref{❨13❩, , @t{dfio.data-column}}.
 @item Source
-@ref{go to the dfio/data-column․lisp file, , @t{data-column.lisp}} (file)
+@ref{❨6❩, , @t{data-column.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {data-column-add} DATA-COLUMN STRING
-@anchor{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-ADD function}@c
+@deffn {Function} {data-column-add} (data-column string)
+@anchor{❨65❩}@c
 @functionsubindex{data-column-add}@c
 @table @strong
 @item Package
-@ref{go to the DFIO․DATA-COLUMN package, , @t{dfio.data-column}}
+@ref{❨13❩, , @t{dfio.data-column}}.
 @item Source
-@ref{go to the dfio/data-column․lisp file, , @t{data-column.lisp}} (file)
+@ref{❨6❩, , @t{data-column.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {data-column-counts} DATA-COLUMN
-@anchor{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-COUNTS function}@c
+@deffn {Function} {data-column-counts} (data-column)
+@anchor{❨67❩}@c
 @functionsubindex{data-column-counts}@c
 Return the counts.
 @table @strong
 @item Package
-@ref{go to the DFIO․DATA-COLUMN package, , @t{dfio.data-column}}
+@ref{❨13❩, , @t{dfio.data-column}}.
 @item Source
-@ref{go to the dfio/data-column․lisp file, , @t{data-column.lisp}} (file)
+@ref{❨6❩, , @t{data-column.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {data-column-vector} DATA-COLUMN
-@anchor{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN-VECTOR function}@c
+@deffn {Function} {data-column-vector} (data-column)
+@anchor{❨66❩}@c
 @functionsubindex{data-column-vector}@c
 Return the collected elements as a vector.
 @table @strong
 @item Package
-@ref{go to the DFIO․DATA-COLUMN package, , @t{dfio.data-column}}
+@ref{❨13❩, , @t{dfio.data-column}}.
 @item Source
-@ref{go to the dfio/data-column․lisp file, , @t{data-column.lisp}} (file)
+@ref{❨6❩, , @t{data-column.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {df-to-alist} DF
-@anchor{go to the DFIO∶∶DF-TO-ALIST function}@c
-@functionsubindex{df-to-alist}@c
-Convert DF@comma{} a data-frame@comma{} to a Vega style alist matrix@*
-This is useful when working with a JSON encoder that will take a lisp alist and output a Vega-Lite plot specification.
-@table @strong
-@item Package
-@ref{go to the DFIO package, , @t{dfio}}
-@item Source
-@url{file://s:/src/dfio/vega-lite.lisp, ignore, @t{vega-lite.lisp}}
-@end table
-@end deffn
-@deffn {Function} {df-to-vl} DF &optional STREAM
-@anchor{go to the DFIO∶∶DF-TO-VL function}@c
-@functionsubindex{df-to-vl}@c
-Encode a DATA-FRAME as a JSON array@*
-Used to write Vega-Lite data to disk or network locations.  This is usually done when working with a third party tool where the data is not embedded within the Vega-Lite plot specification.
-@table @strong
-@item Package
-@ref{go to the DFIO package, , @t{dfio}}
-@item Source
-@url{file://s:/src/dfio/vega-lite.lisp, ignore, @t{vega-lite.lisp}}
-@end table
-@end deffn
-@deffn {Function} {parse-rational} STRING &key START END EXPONENT-CHARS
-@anchor{go to the DFIO․DECIMAL∶∶PARSE-RATIONAL function}@c
+@deffn {Function} {parse-rational} (string &key start end exponent-chars)
+@anchor{❨18❩}@c
 @functionsubindex{parse-rational}@c
 Parse a decimal rational in (subseq string start end) of the form [sign][whole][.[fraction]][exponent] where@*
 
@@ -986,26 +971,26 @@ Examples:@*
   (parse-rational ".7d1") => (values 7 T @hashchar{}d)
 @table @strong
 @item Package
-@ref{go to the DFIO․DECIMAL package, , @t{dfio.decimal}}
+@ref{❨10❩, , @t{dfio.decimal}}.
 @item Source
-@ref{go to the dfio/decimal․lisp file, , @t{decimal.lisp}} (file)
+@ref{❨4❩, , @t{decimal.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {parse-real} STRING &key START END S-FLOAT F-FLOAT D-FLOAT L-FLOAT E-FLOAT
-@anchor{go to the DFIO․DECIMAL∶∶PARSE-REAL function}@c
+@deffn {Function} {parse-real} (string &key start end s-float f-float d-float l-float e-float)
+@anchor{❨14❩}@c
 @functionsubindex{parse-real}@c
 Wrapper for PARSE-RATIONAL@comma{} converting non-integers to floats.  The float type is determined by the -float arguments for each exponent character.  Integers are not converted to floats.  Return a single value@comma{} type of (or integer float).
 
 See PARSE-RATIONAL for accepted formats@comma{} errors@comma{} etc.
 @table @strong
 @item Package
-@ref{go to the DFIO․DECIMAL package, , @t{dfio.decimal}}
+@ref{❨10❩, , @t{dfio.decimal}}.
 @item Source
-@ref{go to the dfio/decimal․lisp file, , @t{decimal.lisp}} (file)
+@ref{❨4❩, , @t{decimal.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {read-csv} SOURCE &key SKIP-FIRST-ROW? COLUMN-KEYS-OR-FUNCTION PACKAGE MAP-ALIST
-@anchor{go to the DFIO∶∶READ-CSV function}@c
+@deffn {Function} {read-csv} (source &key skip-first-row? column-keys-or-function package map-alist)
+@anchor{❨45❩}@c
 @functionsubindex{read-csv}@c
 Read a CSV file@comma{} stream@comma{} string or URL into a DATA-FRAME@comma{} which is returned.@*
 When SKIP-FIRST-ROW?@comma{} the first row is read separately and COLUMN-KEYS-OR-FUNCTION is used to form column keys.@*
@@ -1013,138 +998,127 @@ When COLUMN-KEYS-OR-FUNCTION is a sequence@comma{} it is used for column keys@co
 PACKAGE indicates the package to intern column names into.@*
 
 MAP-ALIST maps values during the import. This is useful if you want special mappings for missing@comma{} though the mechanism is general.
+Returns two values@comma{} the data-frame and the source
 @table @strong
 @item Package
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨12❩, , @t{dfio}}.
 @item Source
-@ref{go to the dfio/delimited-text․lisp file, , @t{delimited-text.lisp}} (file)
+@ref{❨9❩, , @t{delimited-text.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {save} DF PATHSPEC &optional SUFFIX
-@anchor{go to the DFIO∶∶SAVE function}@c
+@deffn {Function} {save} (data-symbol pathspec &optional suffix)
+@anchor{❨43❩}@c
 @functionsubindex{save}@c
-Save DF in the file named by PATHSPEC
+Save DF in the file named by PATHSPEC.  By default@comma{} a suffix of .lisp is added.
 @table @strong
 @item Package
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨12❩, , @t{dfio}}.
 @item Source
-@ref{go to the dfio/write․lisp file, , @t{write.lisp}} (file)
+@ref{❨8❩, , @t{write.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {string-table} &key (TABLE TABLE)
-@anchor{go to the DFIO․STRING-TABLE∶∶STRING-TABLE function}@c
+@deffn {Function} {string-table} (&key table)
+@anchor{❨25❩}@c
 @functionsubindex{string-table}@c
 @table @strong
 @item Package
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Source
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
+@ref{❨5❩, , @t{string-table.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {string-table-add} STRING-TABLE STRING &optional VALUE
-@anchor{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-ADD function}@c
+@deffn {Function} {string-table-add} (string-table string &optional value)
+@anchor{❨30❩}@c
 @functionsubindex{string-table-add}@c
 Add STRING mapped to VALUE to STRING-TABLE@comma{} raising STRING-TABLE-DUPLICATE if STRING is already in the table.  Return VALUE. 
 @table @strong
 @item Package
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Source
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
+@ref{❨5❩, , @t{string-table.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {string-table-count} STRING-TABLE
-@anchor{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-COUNT function}@c
+@deffn {Function} {string-table-count} (string-table)
+@anchor{❨24❩}@c
 @functionsubindex{string-table-count}@c
 Number of distinct strings in the table.
 @table @strong
 @item Package
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Source
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
+@ref{❨5❩, , @t{string-table.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {string-table-intern} STRING-TABLE STRING &optional NEW-VALUE
-@anchor{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-INTERN function}@c
+@deffn {Function} {string-table-intern} (string-table string &optional new-value)
+@anchor{❨23❩}@c
 @functionsubindex{string-table-intern}@c
 If STRING is already in STRING-TABLE@comma{} return its value@comma{} otherwise add it and return NEW-VALUE.  When used with the default argument for NEW-VALUE@comma{} EQUAL strings are always mapped to values that are EQ.
 @table @strong
 @item Package
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Source
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
+@ref{❨5❩, , @t{string-table.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {string-table-lookup} STRING-TABLE STRING
-@anchor{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-LOOKUP function}@c
+@deffn {Function} {string-table-lookup} (string-table string)
+@anchor{❨22❩}@c
 @functionsubindex{string-table-lookup}@c
 Return the value corresponding to STRING in STRING-TABLE@comma{} or raise the STRING-TABLE-NOT-FOUND error.
 @table @strong
 @item Package
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Source
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
+@ref{❨5❩, , @t{string-table.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {string-table-strings} STRING-TABLE
-@anchor{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-STRINGS function}@c
+@deffn {Function} {string-table-strings} (string-table)
+@anchor{❨28❩}@c
 @functionsubindex{string-table-strings}@c
 List of strings in STRING-TABLE.
 @table @strong
 @item Package
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Source
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
+@ref{❨5❩, , @t{string-table.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {string-to-keyword} STRING
-@anchor{go to the DFIO∶∶STRING-TO-KEYWORD function}@c
+@deffn {Function} {string-to-keyword} (string)
+@anchor{❨42❩}@c
 @functionsubindex{string-to-keyword}@c
 Map string to a keyword.@*
 
 The current implementation replaces @hashchar{}. and @hashchar{}space with a @hashchar{}-@comma{} and upcases all other characters.
 @table @strong
 @item Package
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨12❩, , @t{dfio}}.
 @item Source
-@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
+@ref{❨7❩, , @t{utils.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {string-to-symbol} STRING
-@anchor{go to the DFIO∶∶STRING-TO-SYMBOL function}@c
+@deffn {Function} {string-to-symbol} (string)
+@anchor{❨44❩}@c
 @functionsubindex{string-to-symbol}@c
 Map STRING to a symbol in PACKAGE@comma{} replacing @hashchar{}.@comma{} @hashchar{}_ and @hashchar{}space with a @hashchar{}-@comma{} and upcasing all other characters. Exports symbol.
 @table @strong
 @item Package
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨12❩, , @t{dfio}}.
 @item Source
-@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
+@ref{❨7❩, , @t{utils.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {symbol-name-to-pathname} STRING
-@anchor{go to the DFIO∶∶SYMBOL-NAME-TO-PATHNAME function}@c
+@deffn {Function} {symbol-name-to-pathname} (string)
+@anchor{❨41❩}@c
 @functionsubindex{symbol-name-to-pathname}@c
 Map the symbol-name of S to something that can be part of a logical-pathname
 @table @strong
 @item Package
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨12❩, , @t{dfio}}.
 @item Source
-@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
+@ref{❨7❩, , @t{utils.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {vl-to-df} STREAM-OR-STRING
-@anchor{go to the DFIO∶∶VL-TO-DF function}@c
-@functionsubindex{vl-to-df}@c
-Read a stream of Vega-Lite data into DATA-FRAME@*
-Useful when working with Vega-Lite data sets from external sources.
-@table @strong
-@item Package
-@ref{go to the DFIO package, , @t{dfio}}
-@item Source
-@url{file://s:/src/dfio/vega-lite.lisp, ignore, @t{vega-lite.lisp}}
-@end table
-@end deffn
-@deffn {Function} {write-csv} DF STREAM &key ADD-FIRST-ROW (SEPARATOR SEPARATOR) (QUOTE QUOTE) (EOL EOL)
-@anchor{go to the DFIO∶∶WRITE-CSV function}@c
+@deffn {Function} {write-csv} (df stream &key add-first-row separator quote eol)
+@anchor{❨38❩}@c
 @functionsubindex{write-csv}@c
 Write DF to STRING-OR-STREAM in CSV format. STRING-OR-STREAM can be a STREAM@comma{} a STRING or a file PATHSPEC.@*
 
@@ -1159,113 +1133,129 @@ Notes:@*
     The :newline keyword requires a sequence@comma{} so use :newline '(@hashchar{}newline)
 @table @strong
 @item Package
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨12❩, , @t{dfio}}.
 @item Source
-@ref{go to the dfio/delimited-text․lisp file, , @t{delimited-text.lisp}} (file)
+@ref{❨9❩, , @t{delimited-text.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {write-df} DF &optional STREAM
-@anchor{go to the DFIO∶∶WRITE-DF function}@c
+@deffn {Function} {write-df} (data-symbol &optional stream)
+@anchor{❨39❩}@c
 @functionsubindex{write-df}@c
-Write DF to STREAM in a format suitable for reading back in with the Lisp reader
+Write DATA-SYMBOL to STREAM in a format suitable for reading back in with the Lisp reader
 @table @strong
 @item Package
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨12❩, , @t{dfio}}.
 @item Source
-@ref{go to the dfio/write․lisp file, , @t{write.lisp}} (file)
+@ref{❨8❩, , @t{write.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {write-properties} DF PROPERTY &optional STREAM
-@anchor{go to the DFIO∶∶WRITE-PROPERTIES function}@c
+@deffn {Function} {write-properties} (data-symbol property &optional stream)
+@anchor{❨40❩}@c
 @functionsubindex{write-properties}@c
-Write the variable PROPERTY strings to stream so they can be read back in when LOADed from a lisp file. By convention@comma{} the name of the function that sets the property is the same as the property.
+Write the variable PROPERTY strings to stream so they can be read back in when LOADed from a lisp file.  By convention@comma{} the name of the function that sets the property is the same as the property.
 Example (write-property mtcars :label)
 @table @strong
 @item Package
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨12❩, , @t{dfio}}.
 @item Source
-@ref{go to the dfio/write․lisp file, , @t{write.lisp}} (file)
+@ref{❨8❩, , @t{write.lisp}}.
 @end table
 @end deffn
 
-@node Exported conditions, Exported structures, Exported functions, Exported definitions
+@node Public standalone methods, Public conditions, Public ordinary functions, Public Interface
+@subsection Standalone methods
+@deffn {Method} {print-object} ((string-table @ref{❨26❩, , @t{string-table}}) stream)
+@anchor{❨83❩}@c
+@methodsubindex{print-object}@c
+@table @strong
+@item Source
+@ref{❨5❩, , @t{string-table.lisp}}.
+@end table
+@end deffn
+
+@node Public conditions, Public structures, Public standalone methods, Public Interface
 @subsection Conditions
-@deftp {Condition} {parse-rational-error} ()
-@anchor{go to the DFIO․DECIMAL∶∶PARSE-RATIONAL-ERROR condition}@c
+@deftp {Condition} {parse-rational-error}
+@anchor{❨15❩}@c
 @conditionsubindex{parse-rational-error}@c
 Error used by parse-rational and parse-real.
 @table @strong
 @item Package
-@ref{go to the DFIO․DECIMAL package, , @t{dfio.decimal}}
+@ref{❨10❩, , @t{dfio.decimal}}.
 @item Source
-@ref{go to the dfio/decimal․lisp file, , @t{decimal.lisp}} (file)
+@ref{❨4❩, , @t{decimal.lisp}}.
 @item Direct superclasses
-@t{error} (condition)
+@t{error}.
 @item Direct slots
-@defvr {Slot} string
+@defvr {Slot} {string}
+@anchor{❨16❩}@c
 @slotsubindex{string}@c
 @table @strong
+@item Package
+@t{common-lisp}.
+@item Initform
+@t{(quote nil)}
 @item Initargs
 @t{:string}
-@item Initform
-@t{(quote nil)}
 @end table
 @end defvr
-@defvr {Slot} message
+@defvr {Slot} {message}
+@anchor{❨17❩}@c
 @slotsubindex{message}@c
 @table @strong
-@item Initargs
-@t{:message}
 @item Initform
 @t{(quote nil)}
+@item Initargs
+@t{:message}
 @end table
 @end defvr
 @end table
 @end deftp
-@deftp {Condition} {string-table-duplicate} ()
-@anchor{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-DUPLICATE condition}@c
+@deftp {Condition} {string-table-duplicate}
+@anchor{❨29❩}@c
 @conditionsubindex{string-table-duplicate}@c
 String is already in the table.
 @table @strong
 @item Package
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Source
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
+@ref{❨5❩, , @t{string-table.lisp}}.
 @item Direct superclasses
-@t{error} (condition)
+@t{error}.
 @end table
 @end deftp
-@deftp {Condition} {string-table-not-found} ()
-@anchor{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-NOT-FOUND condition}@c
+@deftp {Condition} {string-table-not-found}
+@anchor{❨31❩}@c
 @conditionsubindex{string-table-not-found}@c
 String not found in table.
 @table @strong
 @item Package
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Source
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
+@ref{❨5❩, , @t{string-table.lisp}}.
 @item Direct superclasses
-@t{error} (condition)
+@t{error}.
 @end table
 @end deftp
 
-@node Exported structures, Exported classes, Exported conditions, Exported definitions
+@node Public structures, Public classes, Public conditions, Public Interface
 @subsection Structures
-@deftp {Structure} {string-table} ()
-@anchor{go to the DFIO․STRING-TABLE∶∶STRING-TABLE structure}@c
+@deftp {Structure} {string-table}
+@anchor{❨26❩}@c
 @structuresubindex{string-table}@c
 A table of distinct strings@comma{} optionally mapping each one to a value.
 @table @strong
 @item Package
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Source
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
+@ref{❨5❩, , @t{string-table.lisp}}.
 @item Direct superclasses
-@t{structure-object} (structure)
+@t{structure-object}.
 @item Direct methods
-@t{print-object} (method)
+@ref{❨83❩, , @t{print-object}}.
 @item Direct slots
-@defvr {Slot} table
+@defvr {Slot} {table}
+@anchor{❨27❩}@c
 @slotsubindex{table}@c
 @table @strong
 @item Type
@@ -1273,35 +1263,35 @@ A table of distinct strings@comma{} optionally mapping each one to a value.
 @item Initform
 @t{(make-hash-table :test (function equalp))}
 @item Readers
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-TABLE function, , @t{string-table-table}} (function)
+@ref{❨34❩, , @t{string-table-table}}.
 @item Writers
-@ref{go to the DFIO․STRING-TABLE∶∶❨SETF STRING-TABLE-TABLE❩ function, , @t{(setf string-table-table)}} (function)
+@ref{❨35❩, , @t{(setf string-table-table)}}.
 @end table
 @end defvr
 @end table
 @end deftp
 
-@node Exported classes, , Exported structures, Exported definitions
+@node Public classes, , Public structures, Public Interface
 @subsection Classes
-@deftp {Class} {data-column} ()
-@anchor{go to the DFIO․DATA-COLUMN∶∶DATA-COLUMN class}@c
+@deftp {Class} {data-column}
+@anchor{❨54❩}@c
 @classsubindex{data-column}@c
 @table @strong
 @item Package
-@ref{go to the DFIO․DATA-COLUMN package, , @t{dfio.data-column}}
+@ref{❨13❩, , @t{dfio.data-column}}.
 @item Source
-@ref{go to the dfio/data-column․lisp file, , @t{data-column.lisp}} (file)
-@item Direct superclasses
-@t{standard-object} (class)
+@ref{❨6❩, , @t{data-column.lisp}}.
 @item Direct slots
-@defvr {Slot} reverse-elements
+@defvr {Slot} {reverse-elements}
+@anchor{❨55❩}@c
 @slotsubindex{reverse-elements}@c
 @table @strong
 @item Type
 @t{list}
 @end table
 @end defvr
-@defvr {Slot} default-float-format
+@defvr {Slot} {default-float-format}
+@anchor{❨56❩}@c
 @slotsubindex{default-float-format}@c
 @table @strong
 @item Type
@@ -1310,7 +1300,8 @@ A table of distinct strings@comma{} optionally mapping each one to a value.
 @t{:default-float-format}
 @end table
 @end defvr
-@defvr {Slot} float-count
+@defvr {Slot} {float-count}
+@anchor{❨57❩}@c
 @slotsubindex{float-count}@c
 @table @strong
 @item Type
@@ -1319,7 +1310,8 @@ A table of distinct strings@comma{} optionally mapping each one to a value.
 @t{0}
 @end table
 @end defvr
-@defvr {Slot} integer-count
+@defvr {Slot} {integer-count}
+@anchor{❨58❩}@c
 @slotsubindex{integer-count}@c
 @table @strong
 @item Type
@@ -1328,7 +1320,8 @@ A table of distinct strings@comma{} optionally mapping each one to a value.
 @t{0}
 @end table
 @end defvr
-@defvr {Slot} integer-min
+@defvr {Slot} {integer-min}
+@anchor{❨59❩}@c
 @slotsubindex{integer-min}@c
 @table @strong
 @item Type
@@ -1337,7 +1330,8 @@ A table of distinct strings@comma{} optionally mapping each one to a value.
 @t{0}
 @end table
 @end defvr
-@defvr {Slot} integer-max
+@defvr {Slot} {integer-max}
+@anchor{❨60❩}@c
 @slotsubindex{integer-max}@c
 @table @strong
 @item Type
@@ -1346,7 +1340,8 @@ A table of distinct strings@comma{} optionally mapping each one to a value.
 @t{0}
 @end table
 @end defvr
-@defvr {Slot} map-count
+@defvr {Slot} {map-count}
+@anchor{❨61❩}@c
 @slotsubindex{map-count}@c
 @table @strong
 @item Type
@@ -1355,7 +1350,8 @@ A table of distinct strings@comma{} optionally mapping each one to a value.
 @t{0}
 @end table
 @end defvr
-@defvr {Slot} map-table
+@defvr {Slot} {map-table}
+@anchor{❨62❩}@c
 @slotsubindex{map-table}@c
 @table @strong
 @item Type
@@ -1364,7 +1360,8 @@ A table of distinct strings@comma{} optionally mapping each one to a value.
 @t{:map-table}
 @end table
 @end defvr
-@defvr {Slot} string-count
+@defvr {Slot} {string-count}
+@anchor{❨63❩}@c
 @slotsubindex{string-count}@c
 @table @strong
 @item Type
@@ -1373,9 +1370,12 @@ A table of distinct strings@comma{} optionally mapping each one to a value.
 @t{0}
 @end table
 @end defvr
-@defvr {Slot} string-table
+@defvr {Slot} {string-table}
+@anchor{❨64❩}@c
 @slotsubindex{string-table}@c
 @table @strong
+@item Package
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Type
 @t{dfio.string-table:string-table}
 @item Initform
@@ -1386,114 +1386,114 @@ A table of distinct strings@comma{} optionally mapping each one to a value.
 @end deftp
 
 
-@c --------------------
-@c Internal definitions
-@c --------------------
-@node Internal definitions, , Exported definitions, Definitions
-@section Internal definitions
+@c ---------
+@c Internals
+@c ---------
+@node Internals, , Public Interface, Definitions
+@section Internals
 @menu
-* Internal special variables::
-* Internal macros::
-* Internal functions::
-* Internal types::
+* Private special variables::
+* Private macros::
+* Private ordinary functions::
+* Private types::
 @end menu
 
-@node Internal special variables, Internal macros, Internal definitions, Internal definitions
+@node Private special variables, Private macros, Internals, Internals
 @subsection Special variables
-@defvr {Special Variable} *default-external-format*
-@anchor{go to the DFIO∶∶*DEFAULT-EXTERNAL-FORMAT* special variable}@c
+@defvr {Special Variable} {*default-external-format*}
+@anchor{❨48❩}@c
 @specialsubindex{*default-external-format*}@c
 External format used for opening files
 @table @strong
 @item Package
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨12❩, , @t{dfio}}.
 @item Source
-@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
+@ref{❨7❩, , @t{utils.lisp}}.
 @end table
 @end defvr
-@defvr {Special Variable} +exponent-chars+
-@anchor{go to the DFIO․DECIMAL∶∶+EXPONENT-CHARS+ special variable}@c
+@defvr {Special Variable} {+exponent-chars+}
+@anchor{❨21❩}@c
 @specialsubindex{+exponent-chars+}@c
 Default exponent characters.
 @table @strong
 @item Package
-@ref{go to the DFIO․DECIMAL package, , @t{dfio.decimal}}
+@ref{❨10❩, , @t{dfio.decimal}}.
 @item Source
-@ref{go to the dfio/decimal․lisp file, , @t{decimal.lisp}} (file)
+@ref{❨4❩, , @t{decimal.lisp}}.
 @end table
 @end defvr
 
-@node Internal macros, Internal functions, Internal special variables, Internal definitions
+@node Private macros, Private ordinary functions, Private special variables, Internals
 @subsection Macros
-@deffn {Macro} {with-csv-input-stream} (NAME INP) &body BODY
-@anchor{go to the DFIO∶∶WITH-CSV-INPUT-STREAM macro}@c
-@macrosubindex{with-csv-input-stream}@c
-@table @strong
-@item Package
-@ref{go to the DFIO package, , @t{dfio}}
-@item Source
-@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
-@end table
-@end deffn
-@deffn {Macro} {with-csv-output-stream} (NAME INP) &body BODY
-@anchor{go to the DFIO∶∶WITH-CSV-OUTPUT-STREAM macro}@c
+@deffn {Macro} {with-csv-output-stream} ((name inp) &body body)
+@anchor{❨47❩}@c
 @macrosubindex{with-csv-output-stream}@c
 @table @strong
 @item Package
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨12❩, , @t{dfio}}.
 @item Source
-@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
+@ref{❨7❩, , @t{utils.lisp}}.
+@end table
+@end deffn
+@deffn {Macro} {with-input-stream} ((name inp) &body body)
+@anchor{❨52❩}@c
+@macrosubindex{with-input-stream}@c
+@table @strong
+@item Package
+@ref{❨12❩, , @t{dfio}}.
+@item Source
+@ref{❨7❩, , @t{utils.lisp}}.
 @end table
 @end deffn
 
-@node Internal functions, Internal types, Internal macros, Internal definitions
-@subsection Functions
-@deffn {Function} {%in-stream} SOURCE
-@anchor{go to the DFIO∶∶%IN-STREAM function}@c
+@node Private ordinary functions, Private types, Private macros, Internals
+@subsection Ordinary functions
+@deffn {Function} {%in-stream} (source)
+@anchor{❨46❩}@c
 @functionsubindex{%in-stream}@c
 @table @strong
 @item Package
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨12❩, , @t{dfio}}.
 @item Source
-@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
+@ref{❨7❩, , @t{utils.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {%out-stream} SOURCE
-@anchor{go to the DFIO∶∶%OUT-STREAM function}@c
+@deffn {Function} {%out-stream} (source)
+@anchor{❨49❩}@c
 @functionsubindex{%out-stream}@c
 creates a stream from the given thing@comma{} trying to DWIM
 @table @strong
 @item Package
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨12❩, , @t{dfio}}.
 @item Source
-@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
+@ref{❨7❩, , @t{utils.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {copy-string-table} INSTANCE
-@anchor{go to the DFIO․STRING-TABLE∶∶COPY-STRING-TABLE function}@c
+@deffn {Function} {copy-string-table} (instance)
+@anchor{❨36❩}@c
 @functionsubindex{copy-string-table}@c
 @table @strong
 @item Package
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Source
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
+@ref{❨5❩, , @t{string-table.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {csv-to-data-columns} SOURCE SKIP-FIRST-ROW? &key MAP-ALIST
-@anchor{go to the DFIO∶∶CSV-TO-DATA-COLUMNS function}@c
+@deffn {Function} {csv-to-data-columns} (source skip-first-row? &key map-alist)
+@anchor{❨51❩}@c
 @functionsubindex{csv-to-data-columns}@c
 Read a CSV file (or stream@comma{} or string)@comma{} accumulate the values in DATA-COLUMNs@comma{} return a list of these.  Rows are checked to have the same number of elements.
 
 When SKIP-FIRST-ROW?@comma{} the first row is read separately and returned as the second value (list of strings)@comma{} otherwise it is considered data like all other rows.
 @table @strong
 @item Package
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨12❩, , @t{dfio}}.
 @item Source
-@ref{go to the dfio/delimited-text․lisp file, , @t{delimited-text.lisp}} (file)
+@ref{❨9❩, , @t{delimited-text.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {gobble-positive-integer} STRING START END
-@anchor{go to the DFIO․DECIMAL∶∶GOBBLE-POSITIVE-INTEGER function}@c
+@deffn {Function} {gobble-positive-integer} (string start end)
+@anchor{❨19❩}@c
 @functionsubindex{gobble-positive-integer}@c
 If (SUBSEQ STRING START END) starts with a nonnegative integer (ie a sequence of digits 0-9)@comma{} return the integer and position at which it ends as two values.
 
@@ -1502,103 +1502,90 @@ Otherwise@comma{} return NIL and 0.@*
 START < END has to hold@comma{} END cannot be NIL.  Consequences are undefined when START >= END.
 @table @strong
 @item Package
-@ref{go to the DFIO․DECIMAL package, , @t{dfio.decimal}}
+@ref{❨10❩, , @t{dfio.decimal}}.
 @item Source
-@ref{go to the dfio/decimal․lisp file, , @t{decimal.lisp}} (file)
+@ref{❨4❩, , @t{decimal.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {gobble-sign} STRING START
-@anchor{go to the DFIO․DECIMAL∶∶GOBBLE-SIGN function}@c
+@deffn {Function} {gobble-sign} (string start)
+@anchor{❨20❩}@c
 @functionsubindex{gobble-sign}@c
 Return (values SIGNUM INDEX)@comma{} where SIGNUM is -1 or 1 depending on whether (CHAR STRING START) was a sign@comma{} and INDEX is the index of the subsequent character (START or START+1).
 @table @strong
 @item Package
-@ref{go to the DFIO․DECIMAL package, , @t{dfio.decimal}}
+@ref{❨10❩, , @t{dfio.decimal}}.
 @item Source
-@ref{go to the dfio/decimal․lisp file, , @t{decimal.lisp}} (file)
+@ref{❨4❩, , @t{decimal.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {json-to-data-columns} STREAM-OR-STRING
-@anchor{go to the DFIO∶∶JSON-TO-DATA-COLUMNS function}@c
-@functionsubindex{json-to-data-columns}@c
-Read a JSON array and accumulate the values in DATA-COLUMNs@comma{} return a list of columns.  Rows are checked to have the same number of elements.  The second value is a list of column names.
-@table @strong
-@item Package
-@ref{go to the DFIO package, , @t{dfio}}
-@item Source
-@url{file://s:/src/dfio/vega-lite.lisp, ignore, @t{vega-lite.lisp}}
-@end table
-@end deffn
-@deffn {Function} {string-table-get} STRING-TABLE STRING
-@anchor{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-GET function}@c
+@deffn {Function} {string-table-get} (string-table string)
+@anchor{❨32❩}@c
 @functionsubindex{string-table-get}@c
 Synonym for GETHASH@comma{} used internally.
 @table @strong
 @item Package
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Source
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
-@item Writer
-@ref{go to the DFIO․STRING-TABLE∶∶❨SETF STRING-TABLE-GET❩ function, , @t{(setf string-table-get)}} (function)
+@ref{❨5❩, , @t{string-table.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {(setf string-table-get)} VALUE STRING-TABLE STRING
-@anchor{go to the DFIO․STRING-TABLE∶∶❨SETF STRING-TABLE-GET❩ function}@c
+@deffn {Function} {(setf string-table-get)} (string-table string)
+@anchor{❨33❩}@c
 @functionsubindex{(setf string-table-get)}@c
 Synonym for (SETF GETHASH)@comma{} used internally@comma{} checks that STRING is a string.
 @table @strong
 @item Package
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Source
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
-@item Reader
-@ref{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-GET function, , @t{string-table-get}} (function)
+@ref{❨5❩, , @t{string-table.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {string-table-p} OBJECT
-@anchor{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-P function}@c
+@deffn {Function} {string-table-p} (object)
+@anchor{❨37❩}@c
 @functionsubindex{string-table-p}@c
 @table @strong
 @item Package
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Source
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
+@ref{❨5❩, , @t{string-table.lisp}}.
 @end table
 @end deffn
-@deffn {Function} {string-table-table} INSTANCE
-@anchor{go to the DFIO․STRING-TABLE∶∶STRING-TABLE-TABLE function}@c
+@deffn {Reader} {string-table-table} (instance)
+@anchor{❨34❩}@c
 @functionsubindex{string-table-table}@c
-@deffnx {Function} {(setf string-table-table)} VALUE INSTANCE
-@anchor{go to the DFIO․STRING-TABLE∶∶❨SETF STRING-TABLE-TABLE❩ function}@c
+@deffnx {Writer} {(setf string-table-table)} (instance)
+@anchor{❨35❩}@c
 @functionsubindex{(setf string-table-table)}@c
 @table @strong
 @item Package
-@ref{go to the DFIO․STRING-TABLE package, , @t{dfio.string-table}}
+@ref{❨11❩, , @t{dfio.string-table}}.
 @item Source
-@ref{go to the dfio/string-table․lisp file, , @t{string-table.lisp}} (file)
+@ref{❨5❩, , @t{string-table.lisp}}.
+@item Target Slot
+@ref{❨27❩, , @t{table}}.
 @end table
 @end deffn
 
-@node Internal types, , Internal functions, Internal definitions
+@node Private types, , Private ordinary functions, Internals
 @subsection Types
 @deftp {Type} {non-negative-integer} ()
-@anchor{go to the DFIO․DATA-COLUMN∶∶NON-NEGATIVE-INTEGER type}@c
+@anchor{❨68❩}@c
 @typesubindex{non-negative-integer}@c
 @table @strong
 @item Package
-@ref{go to the DFIO․DATA-COLUMN package, , @t{dfio.data-column}}
+@ref{❨13❩, , @t{dfio.data-column}}.
 @item Source
-@ref{go to the dfio/data-column․lisp file, , @t{data-column.lisp}} (file)
+@ref{❨6❩, , @t{data-column.lisp}}.
 @end table
 @end deftp
 @deftp {Type} {str-strm-file} ()
-@anchor{go to the DFIO∶∶STR-STRM-FILE type}@c
+@anchor{❨50❩}@c
 @typesubindex{str-strm-file}@c
 @table @strong
 @item Package
-@ref{go to the DFIO package, , @t{dfio}}
+@ref{❨12❩, , @t{dfio}}.
 @item Source
-@ref{go to the dfio/utils․lisp file, , @t{utils.lisp}} (file)
+@ref{❨7❩, , @t{utils.lisp}}.
 @end table
 @end deftp
 

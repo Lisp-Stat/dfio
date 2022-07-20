@@ -54,7 +54,6 @@ Returns two values, the data-frame and the source"
 	     (mapcar (lambda (column-key data-column)
 		       (cons column-key (data-column-vector data-column)))
 		     column-keys data-columns))))
-    (setf (df::source df) source)
     df))
 
 (defun write-csv (df stream

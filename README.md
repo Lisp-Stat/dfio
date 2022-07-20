@@ -22,7 +22,7 @@
   <p align="center">
   A system for file and network I/O for data frames
 	<br />
-    <a href="https://lisp-stat.dev/docs/tasks/data-frame/"><strong>Explore the docs »</strong></a>
+    <a href="https://lisp-stat.dev/docs/manuals/data-frame/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/lisp-stat/dfio/issues">Report Bug</a>
@@ -142,7 +142,7 @@ Create a data frame from a file named `sg-weather.csv` on the local disk:
 ```
 
 For more examples, refer to the
-[Documentation](https://lisp-stat.dev/docs/tasks/data-frame).
+[Documentation](https://lisp-stat.dev/docs/manuals/data-frame).
 
 
 <!-- ROADMAP -->

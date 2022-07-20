@@ -16,41 +16,48 @@
 ;;; use :after methods to save custom properties or data frame
 ;;; subclasses
 
-(defun write-df (df &optional (stream *standard-output*))
-  "Write DF to STREAM in a format suitable for reading back in with the Lisp reader"
-  (let ((*package* (find-package (string-upcase (symbol-name df)))))
+(defun write-df (data-symbol &optional (stream *standard-output*))
+  "Write DATA-SYMBOL to STREAM in a format suitable for reading back in with the Lisp reader"
+  (check-type data-symbol symbol "a SYMBOL naming a data frame")
+  (let ((*package* (find-package (string-upcase (symbol-name data-symbol)))))
   (format stream ";;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: LS-USER -*-")
 
   ;; Write data frame
-  (format stream "~%(defdf ~A (alist-df '" (symbol-name df))
-  (prin1 (as-alist (symbol-value df)) stream)
+  (format stream "~%(defdf ~A (alist-df '" (symbol-name data-symbol))
+  (prin1 (as-alist (symbol-value data-symbol)) stream)
   (format stream ")")
-  (print (documentation df 'variable) stream)
+  (print (documentation data-symbol 'variable) stream)
   (format stream ")~2%")
 
   ;; Write standard properties
-  (write-properties (symbol-value df) :type  stream)
-  (write-properties (symbol-value df) :label stream)
-  (write-properties (symbol-value df) :unit  stream)))
+  (write-properties data-symbol :type  stream)
+  (write-properties data-symbol :label stream)
+  (write-properties data-symbol :unit  stream)))
 
-;; TODO Implement automatic adding of suffix
-(defun save (df pathspec &optional (suffix ".lisp"))
-  "Save DF in the file named by PATHSPEC"
-  (declare (ignore suffix))		;Remove and implement
+(defun save (data-symbol pathspec &optional (suffix ".lisp"))
+  "Save DF in the file named by PATHSPEC.  By default, a suffix of .lisp is added."
   (with-open-file (s
-		   pathspec
+		   (uiop:add-pathname-suffix pathspec nil :type suffix)
 		   :direction :output
 		   :if-exists :supersede)
-     (write-df df s)))
+     (write-df data-symbol s)))
 
-(defun write-properties (df property &optional (stream *standard-output*))
+(defun write-properties (data-symbol property &optional (stream *standard-output*))
   "Write the variable PROPERTY strings to stream so they can be read back in when LOADed from a lisp file.  By convention, the name of the function that sets the property is the same as the property.
 Example (write-property mtcars :label)"
-  (format stream "(set-properties ~A :~A '(" (df:name df) property)
-  (loop for key across (keys df)
-	for value = (get key property)
-	do
-    	   (typecase value
-	     (string (format stream "~&  :~A \"~A\"" key value))
-	     (symbol (format stream "~&  :~A ~A"     key value))))
-  (format stream "))~2%"))
+  (let* ((name (symbol-name data-symbol))
+	 (df   (symbol-value data-symbol))
+	 (pkg  (find-package name)))
+    (when pkg
+      (format stream "(set-properties '~A :~A '(" name property)
+      (loop for x across (keys df)
+	    for key = (find-symbol (string-upcase (symbol-name x)) pkg)
+	    for value = (get key property)
+	    do
+	       (when value
+    		 (typecase value
+		   (string (format stream "~&  :~A \"~A\"" key value))
+		   (symbol (if (eql property :type)
+			       (format stream "~&  :~A :~A" key value)
+			       (format stream "~&  :~A ~A"     key value))))))
+      (format stream "))~2%"))))
