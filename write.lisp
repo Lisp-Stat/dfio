@@ -34,7 +34,7 @@
   (write-properties data-symbol :label stream)
   (write-properties data-symbol :unit  stream)))
 
-(defun save (data-symbol pathspec &optional (suffix ".lisp"))
+(defun save (data-symbol pathspec &optional (suffix "lisp"))
   "Save DF in the file named by PATHSPEC.  By default, a suffix of .lisp is added."
   (with-open-file (s
 		   (uiop:add-pathname-suffix pathspec nil :type suffix)
