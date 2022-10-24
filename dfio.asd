@@ -2,7 +2,7 @@
 ;;; Copyright (c) 2021-2022 by Symbolics Pte. Ltd. All rights reserved.
 
 (defsystem "dfio"
-  :version     "1.0.1"
+  :version     "1.0.2"
   :licence     :MS-PL
   :author      "Steve Nunez <steve@symbolics.tech>"
   :long-name   "Data frame I/O"
@@ -26,7 +26,9 @@
                (:file "data-column")
 	       (:file "utils")
 	       (:file "write")
-               (:file "delimited-text"))
+	       (:file "delimited-text")
+	       (:file "data")
+	       (:file "rdata"))
   :in-order-to ((test-op (test-op "dfio/tests"))))
 
 (defsystem "dfio/tests"
