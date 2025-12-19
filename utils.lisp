@@ -72,8 +72,8 @@ The current implementation replaces #\. and #\space with a #\-, and upcases all 
 (defun %in-stream (source)
   (typecase source
     #-genera
-    (string (if (or (search "http://"  source :end1 7) ;Until https://github.com/fukamachi/quri/issues/57 is fixed
-		    (search "https://" source :end1 8))
+    (string (if (or (search "http://"  source :end2 7) ;Until https://github.com/fukamachi/quri/issues/57 is fixed
+		    (search "https://" source :end2 8))
 		(dex:get source :want-stream t)
 		(make-string-input-stream source)))
     (stream source)
