@@ -1,8 +1,8 @@
 ;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: ASDF -*-
-;;; Copyright (c) 2021-2022 by Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2021-2022,2026 by Symbolics Pte. Ltd. All rights reserved.
 
 (defsystem "dfio"
-  :version     "1.0.2"
+  :version     "1.0.3"
   :licence     :MS-PL
   :author      "Steve Nunez <steve@symbolics.tech>"
   :long-name   "Data frame I/O"

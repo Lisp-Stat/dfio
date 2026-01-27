@@ -1,5 +1,5 @@
 ;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO -*-
-;;; Copyright (c) 2021-2022 Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2021-2022,2026 Symbolics Pte. Ltd. All rights reserved.
 (in-package #:dfio)
 
 (defun csv-to-data-columns (source skip-first-row? &key map-alist)
@@ -7,7 +7,7 @@
 
 When SKIP-FIRST-ROW?, the first row is read separately and returned as the second value (list of strings), otherwise it is considered data like all other rows."
   (let (data-columns
-        (first-row skip-first-row?))
+	(first-row skip-first-row?))
     (with-input-stream (s source)
       (loop for row = (fare-csv:read-csv-line s) while row do
 	(progn
@@ -56,6 +56,12 @@ Returns two values, the data-frame and the source"
 		     column-keys data-columns))))
     df))
 
+(defun 2d-array-to-list (array)
+  "Convert an array to a list of lists" 		; make flet?
+  (loop for i below (array-dimension array 0)
+        collect (loop for j below (array-dimension array 1)
+                      collect (aref array i j))))
+
 (defun write-csv (df stream
                   &key
 		    (add-first-row nil)
@@ -75,8 +81,8 @@ Notes:
     The :newline keyword requires a sequence, so use :newline '(#\newline)"
   (let ((rows (if add-first-row
 		  (list* (coerce (df:keys df) 'list)
-			 (df::2d-array-to-list (aops:as-array df)))
-		  (df::2d-array-to-list (aops:as-array df))))
+			 (2d-array-to-list (aops:as-array df)))
+		  (2d-array-to-list (aops:as-array df))))
 	(fare-csv:*separator* separator)
         (fare-csv:*quote*     quote)
 	(fare-csv:*eol*       eol))

@@ -1,5 +1,5 @@
 ;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO.DATA-COLUMN -*-
-;;; Copyright (c) 2021 Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2021, 2026 Symbolics Pte. Ltd. All rights reserved.
 (in-package #:dfio.data-column)
 
 ;;; Until https://github.com/Lisp-Stat/numerical-utilities/issues/3 is
@@ -43,7 +43,7 @@
     :initform (string-table)
     :type string-table)))
 
-(defun data-column (&key map-alist (default-float-format 'double-float))
+(defun data-column (&key map-alist (default-float-format cl:*read-default-float-format*))
   (make-instance 'data-column
                  :default-float-format default-float-format
                  :map-table (aprog1 (string-table)
@@ -87,8 +87,7 @@
 
 (defun data-column-vector (data-column)
   "Return the collected elements as a vector."
-  (let+ (((&slots-r/o float-count integer-count integer-min integer-max
-                      map-count string-count)
+  (let+ (((&slots-r/o float-count integer-count integer-min integer-max map-count string-count)
           data-column)
          (element-type
           (cond
