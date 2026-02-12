@@ -1,9 +1,10 @@
 ;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO.STRING-TABLE -*-
-;;; Copyright (c) 2021 Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2021, 2026 Symbolics Pte. Ltd. All rights reserved.
 (in-package #:dfio.string-table)
 
 (defstruct (string-table (:constructor string-table))
-  "A table of distinct strings, optionally mapping each one to a value."
+  "A table of distinct strings, optionally mapping each one to a value.
+When constructing factor variables they are interned case-insensitive.  So, for example \"Male\", \"MALE\" and \"male\" will all resolve to the same factor."
   (table (make-hash-table :test #'equalp) :type hash-table))
 
 (define-condition string-table-not-found (error)

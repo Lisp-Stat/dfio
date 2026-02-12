@@ -25,11 +25,11 @@
     :initform 0
     :type non-negative-integer)
    (integer-min
-    :initform 0 ; FIXME: should be :initform nil, but SBCL complains about type mismatch with INTEGER
-    :type integer)
+    :initform nil
+    :type (or null integer))
    (integer-max
-    :initform 0 ; FIXME: should be :initform nil, but SBCL complains about type mismatch with INTEGER
-    :type integer)
+    :initform nil
+    :type (or null integer))
    (map-count
     :initform 0
     :type non-negative-integer)

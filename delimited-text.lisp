@@ -5,7 +5,7 @@
 (defun csv-to-data-columns (source skip-first-row? &key map-alist)
   "Read a CSV file (or stream, or string), accumulate the values in DATA-COLUMNs, return a list of these.  Rows are checked to have the same number of elements.
 
-When SKIP-FIRST-ROW?, the first row is read separately and returned as the second value (list of strings), otherwise it is considered data like all other rows."
+When SKIP-FIRST-ROW? is non-NIL, the first row is read separately and returned as the second value (list of strings), otherwise it is considered data like all other rows."
   (let (data-columns
 	(first-row skip-first-row?))
     (with-input-stream (s source)
@@ -71,7 +71,7 @@ Returns two values, the data-frame and the source"
   "Write DF to STRING-OR-STREAM in CSV format. STRING-OR-STREAM can be a STREAM, a STRING or a file PATHSPEC.
 
 Keywords:
-    string-or-stream: stream to write to. Default: nil, returning a string
+    stream:    stream to write to. Default: nil, returning a string
     add-first-row:    add column names as the first row
     separator: separator to use when reading or writing CSV files. A character. By default, a comma: #\,
     quote:     quote character to use when reading or writing CSV files. A character. By default, a double-quote: #\"

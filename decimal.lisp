@@ -1,5 +1,5 @@
 ;;; -*- Mode: LISP; Syntax: Ansi-Common-Lisp; Base: 10; Package: DFIO.DECIMAL -*-
-;;; Copyright (c) 2021 Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2021, 2026 Symbolics Pte. Ltd. All rights reserved.
 (in-package #:dfio.decimal)
 
 ;;; conditions
@@ -138,7 +138,9 @@ Examples:
                                (d-float 'double-float)
                                (l-float 'long-float)
                                (e-float *read-default-float-format*))
-  "Wrapper for PARSE-RATIONAL, converting non-integers to floats.  The float type is determined by the -float arguments for each exponent character.  Integers are not converted to floats.  Return a single value, type of (or integer float).
+  "Wrapper for PARSE-RATIONAL, converting non-integers to floats.
+
+The float type is determined by the -float arguments for each exponent character.  Integers remain integers unless a decimal or exponent are present.  Return a single value, type of (or integer float).
 
 See PARSE-RATIONAL for accepted formats, errors, etc."
   (let+ (((&values real decimal-dot? exponent-char)
