@@ -2,7 +2,7 @@
 ;;; Copyright (c) 2021-2022,2026 by Symbolics Pte. Ltd. All rights reserved.
 
 (defsystem "dfio"
-  :version     "1.0.3"
+  :version     "1.0.4"
   :licence     :MS-PL
   :author      "Steve Nunez <steve@symbolics.tech>"
   :long-name   "Data frame I/O"

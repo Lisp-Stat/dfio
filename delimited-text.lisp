@@ -56,37 +56,56 @@ Returns two values, the data-frame and the source"
 		     column-keys data-columns))))
     df))
 
-(defun 2d-array-to-list (array)
-  "Convert an array to a list of lists" 		; make flet?
-  (loop for i below (array-dimension array 0)
-        collect (loop for j below (array-dimension array 1)
-                      collect (aref array i j))))
-
 (defun write-csv (df stream
                   &key
-		    (add-first-row nil)
-		    ((:separator separator) fare-csv:*separator*)
-                    ((:quote quote) fare-csv:*quote*)
-                    ((:eol eol) fare-csv:+LF+))
-  "Write DF to STRING-OR-STREAM in CSV format. STRING-OR-STREAM can be a STREAM, a STRING or a file PATHSPEC.
+                    (add-first-row nil)
+                    ((:separator separator) fare-csv:*separator*)
+                    ((:quote quote)         fare-csv:*quote*)
+                    ((:eol eol)             fare-csv:+LF+))
+  "Write DF to STREAM in CSV format.
 
-Keywords:
-    stream:    stream to write to. Default: nil, returning a string
-    add-first-row:    add column names as the first row
-    separator: separator to use when reading or writing CSV files. A character. By default, a comma: #\,
-    quote:     quote character to use when reading or writing CSV files. A character. By default, a double-quote: #\"
-    eol:       line ending to use when writing CSV files. A string. By default, +CRLF+ as specified by creativyst.
+STREAM can be:
+  - a stream (written to directly)
+  - a pathname (opened for output)
+  - NIL (a string is returned)
 
-Notes:
-    The :newline keyword requires a sequence, so use :newline '(#\newline)"
-  (let ((rows (if add-first-row
-		  (list* (coerce (df:keys df) 'list)
-			 (2d-array-to-list (aops:as-array df)))
-		  (2d-array-to-list (aops:as-array df))))
-	(fare-csv:*separator* separator)
+This implementation writes rows incrementally (streaming) and avoids
+materializing a 2-D array. Row count is computed using LENGTH on each
+column, which respects fill-pointers on adjustable vectors (fixes issue #9)."
+  (let ((fare-csv:*separator* separator)
         (fare-csv:*quote*     quote)
-	(fare-csv:*eol*       eol))
+        (fare-csv:*eol*       eol))
     (with-csv-output-stream (s stream)
-      (fare-csv:write-csv-lines rows s)
+      (let* ((keys (df:keys df))                 ; typically a vector
+             (ncol (length keys))
+             (cols (make-array ncol))
+             (nrow 0))
+        ;; Cache columns once; compute effective row count via LENGTH.
+        (loop for j below ncol
+              for k = (aref keys j)
+              for c = (df:column df k)
+              do (setf (aref cols j) c)
+              finally (setf nrow (if (zerop ncol) 0 (length (aref cols 0)))))
+
+        ;; Defensive: ensure all columns share the same effective length.
+        (loop for j below ncol
+              do (assert (= (length (aref cols j)) nrow) ()
+                         "Columns don't have the same effective length."))
+
+        ;; Optional header row.
+        (when add-first-row
+          (fare-csv:write-csv-line (coerce keys 'list) s))
+
+        ;; Stream data rows.
+        (loop for i below nrow do
+          (fare-csv:write-csv-line
+           (loop for j below ncol
+                 for col = (aref cols j)
+                 collect (if (arrayp col)
+                             (aref col i)
+                             (elt col i)))
+           s)))
+
       (unless stream
-	(get-output-stream-string s)))))
+        (get-output-stream-string s)))))
+
